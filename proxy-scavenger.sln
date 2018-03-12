@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proxy-scavenger", "Assembly-CSharp.csproj", "{D389E168-7772-8C32-541E-793C570F03DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proxy-scavenger", "Assembly-CSharp-firstpass.csproj", "{3171DB30-AA1D-56F6-14F7-C1B729E4CC9A}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proxy-scavenger", "Assembly-CSharp-Editor.csproj", "{C1DEC052-FC28-972E-FF01-F25CB8A7182A}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{D389E168-7772-8C32-541E-793C570F03DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D389E168-7772-8C32-541E-793C570F03DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D389E168-7772-8C32-541E-793C570F03DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3171DB30-AA1D-56F6-14F7-C1B729E4CC9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3171DB30-AA1D-56F6-14F7-C1B729E4CC9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3171DB30-AA1D-56F6-14F7-C1B729E4CC9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3171DB30-AA1D-56F6-14F7-C1B729E4CC9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1DEC052-FC28-972E-FF01-F25CB8A7182A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1DEC052-FC28-972E-FF01-F25CB8A7182A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1DEC052-FC28-972E-FF01-F25CB8A7182A}.Release|Any CPU.ActiveCfg = Release|Any CPU
