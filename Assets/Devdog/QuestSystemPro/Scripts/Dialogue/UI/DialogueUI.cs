@@ -67,7 +67,7 @@ namespace Devdog.QuestSystemPro.Dialogue.UI
 
             if (after.uiPrefab == null)
             {
-                DevdogLogger.LogWarning("No prefab found for node. Make sure to assign your UI prefabs to the manager", this);
+                DevdogLogger.Log("No prefab found for node. Make sure to assign your UI prefabs to the manager", this);
                 return;
             }
 

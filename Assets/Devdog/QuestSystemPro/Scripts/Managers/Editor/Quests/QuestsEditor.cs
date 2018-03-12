@@ -140,15 +140,7 @@ namespace Devdog.QuestSystemPro.Editors
 
         private void UpdateAssetID(Quest item)
         {
-            if(crudList == null || crudList.Count == 0)
-            {
-                item.ID = 0;
-            }
-            else
-            {
-                item.ID = crudList.Max(o => o.ID) + 1;
-            }
-            
+            item.ID = crudList.Max(o => o.ID) + 1;
             UnityEditor.EditorUtility.SetDirty(item);
         }
 

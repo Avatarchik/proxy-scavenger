@@ -5,10 +5,10 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 22411824}
-  - 114: {fileID: 11438624}
+  - component: {fileID: 22411824}
+  - component: {fileID: 11438624}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
@@ -21,11 +21,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 22402436}
-  - 114: {fileID: 11439442}
-  - 114: {fileID: 114000010063733152}
+  - component: {fileID: 22402436}
+  - component: {fileID: 11439442}
+  - component: {fileID: 114000010063733152}
   m_Layer: 5
   m_Name: PlayerDecisionNodeUI_PFB
   m_TagString: Untagged
@@ -38,12 +38,12 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 224: {fileID: 22403310}
-  - 222: {fileID: 22295688}
-  - 114: {fileID: 11447466}
-  - 114: {fileID: 11443714}
+  - component: {fileID: 22403310}
+  - component: {fileID: 22295688}
+  - component: {fileID: 11447466}
+  - component: {fileID: 11443714}
   m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
 --- !u!114 &11439442
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -86,7 +88,6 @@ MonoBehaviour:
   playerDecisionsContainer: {fileID: 22411824}
   moveToNextNodeText:
     _key: DefaultMoveToNextNodeText
-  selectFirstPlayerDecision: 1
   onShowAudio:
     audioClip: {fileID: 0}
     volume: 1
@@ -99,7 +100,7 @@ MonoBehaviour:
     crossFadeSpeed: 0.3
   defaultPlayerDecisionUIPrefab: {fileID: 11489228, guid: fa1552d6cac198242922edc1f4684efc,
     type: 2}
-  playerDecisionUIPrefab: {fileID: 11489228, guid: fa1552d6cac198242922edc1f4684efc,
+  playerDecisionUIPrefab: {fileID: 114195081463026754, guid: 70415bfca451e4e85bb3e7e486566d47,
     type: 2}
 --- !u!114 &11443714
 MonoBehaviour:
@@ -161,14 +162,14 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160454}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -22.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 22403310}
   - {fileID: 22411824}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -22.5}
@@ -181,12 +182,12 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 180938}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -22.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22402436}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -199,16 +200,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 22.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 22402436}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -200, y: 32}
+  m_SizeDelta: {x: -200, y: 70}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1001 &100100000
 Prefab:
@@ -233,3 +234,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navigationType: 2
+  _selectFirst: 1
+  _overwriteSelection: 0

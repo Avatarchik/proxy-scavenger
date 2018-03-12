@@ -1,4 +1,4 @@
-﻿#if UFPS
+﻿
 
 using Devdog.General;
 using UnityEngine;
@@ -61,4 +61,3 @@ namespace Devdog.InventoryPro.Integration.UFPS
     }
 }
 
-#endif

@@ -11,12 +11,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff202326860706c49af50d3d853023bd, type: 3}
   m_Name: DefaultSettings
   m_EditorClassIdentifier: 
-  inventoryProItemRewardRowUI: {fileID: 0}
-  inventoryProStatRewardRowUI: {fileID: 0}
-  inventoryProInventorySlotsRewardRowUI: {fileID: 0}
-  inventoryProGatherTaskRowUI: {fileID: 0}
+  inventoryProItemRewardRowUI: {fileID: 11476022, guid: 4dca9e3e253fd784580bfc9add1990a0,
+    type: 2}
+  inventoryProStatRewardRowUI: {fileID: 11469326, guid: 9e38965feb798e444bfd38b3905e500d,
+    type: 2}
+  inventoryProInventorySlotsRewardRowUI: {fileID: 11435436, guid: bcc465cff9839494e92dd7b295482b7e,
+    type: 2}
+  inventoryProGatherTaskRowUI: {fileID: 11419994, guid: 209a24341f20bb3459366b7ba2d8c597,
+    type: 2}
+  loveHateRewardRowUI: {fileID: 0}
+  loveHateGatherTaskRowUI: {fileID: 0}
   playerMaxActiveQuests: 10
-  objectUseDistance: 10
   defaultRewardRowUI: {fileID: 11462060, guid: ae760b2cdb27ec74e8b47e66373cf9b7, type: 2}
   defaultTaskRowUI: {fileID: 11480520, guid: 8f95899e623d6b144af6b9a0b71d7e4d, type: 2}
   defaultNodeUIPrefab: {fileID: 11405600, guid: 982f06a5bbe6fd54aa4065d72fdfd5bc,

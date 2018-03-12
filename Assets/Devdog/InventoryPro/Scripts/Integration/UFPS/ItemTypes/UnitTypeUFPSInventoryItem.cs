@@ -1,4 +1,4 @@
-﻿#if UFPS
+﻿
 
 using Devdog.General;
 using Devdog.General.ThirdParty.UniLinq;
@@ -149,4 +149,3 @@ namespace Devdog.InventoryPro.Integration.UFPS
     }
 }
 
-#endif

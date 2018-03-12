@@ -178,7 +178,10 @@ namespace Devdog.QuestSystemPro.UI
             selectedQuest = quest;
             ShowWindowForQuest(selectedQuest);
 
-            questDetailsWindow.Repaint(selectedQuest);
+            if(selectedQuest != null)
+            {
+                questDetailsWindow.Repaint(selectedQuest); // Repaint the window's details.
+            }
         }
 
         protected virtual void ShowWindowForQuest(Quest quest)

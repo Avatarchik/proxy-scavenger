@@ -1,8 +1,9 @@
-﻿#if UFPS
+﻿
 
 using System.Collections;
 using Devdog.General;
 using UnityEngine;
+using Devdog.InventoryPro.Integration.UFPS;
 #if UFPS_MULTIPLAYER
 
 using Devdog.InventoryPro.Integration.UFPS.Multiplayer;
@@ -140,5 +141,4 @@ namespace Devdog.InventoryPro.Integration.UFPS
         }
     }
 }
-
-#endif
+	

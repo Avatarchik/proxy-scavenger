@@ -20,8 +20,13 @@ namespace Devdog.QuestSystemPro
         public DefaultNodeUI playerDecisionNodeUI;
         public DefaultNodeUI playerInputNodeUIPrefab;
 
+		[Header("Custom Node UI Prefabs")]
+		public PlayerDecisionAndItemNodeUI playerDecisionAndItemNodeUI;
+
         [Header("Dialogue UI")]
         public Sprite playerDialogueIcon;
+
+
 
     }
 }

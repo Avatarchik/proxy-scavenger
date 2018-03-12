@@ -2,7 +2,7 @@
 {
     public static class QuestSystemPro
     {
-    	public const string Version = "1.0.7";
+    	public const string Version = "1.0.5";
         public const string ToolsMenuPath = "Tools/" + ProductName + "/";
         public const string AddComponentMenuPath = ProductName + "/";
         public const string CreateAssetMenuPath = ProductName + "/";

@@ -3,16 +3,22 @@ guid: 9159c892aa526c94b84b2613141a0d22
 timeCreated: 1424542759
 licenseType: Store
 TrueTypeFontImporter:
-  serializedVersion: 2
-  fontSize: 16
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 22
   forceTextureCase: -2
-  characterSpacing: 1
-  characterPadding: 0
+  characterSpacing: 0
+  characterPadding: 1
   includeFontData: 1
-  use2xBehaviour: 0
-  fontNames: []
+  fontName: Open Sans
+  fontNames:
+  - Open Sans
+  fallbackFontReferences:
+  - {instanceID: 0}
+  - {instanceID: 0}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 1
+  ascentCalculationMode: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

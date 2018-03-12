@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b75a309ff767a4bb3ede0d5c1d2f6f, type: 3}
   m_Name: QuestSystemLocalizationDbDE
   m_EditorClassIdentifier: 
-  _serializedJsonString: '{"_lang":"de-DE","_localizedStrings":{"ea4b67a7-8ce1-4716-ac38-5e6c06029fa6":"Nicht
+  _serializedJsonString: '{"_lang":"de-DE","_localizedStrings":{"NO_KEY":"","ea4b67a7-8ce1-4716-ac38-5e6c06029fa6":"Nicht
     schlecht","DefaultMoveToNextNodeText":"","13ff4830-1841-429c-a37b-a7d7927f25c2":"DE
     Text"},"_localizedObjects":{"740ca4d8-7941-4483-904e-392f33131535":null}}'
   _objectReferences: []
