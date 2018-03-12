@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_0;UNITY_2017_3;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UFPS</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_3_1;UNITY_2017_3;UNITY_2017;PLATFORM_ARCH_64;UNITY_64;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_GRID;ENABLE_TILEMAP;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_PACKMAN;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;ENABLE_LOCALIZATION;PLATFORM_STANDALONE_OSX;PLATFORM_STANDALONE;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_AR;ENABLE_SPATIALTRACKING;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;UFPS;INVENTORY_PRO</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -232,6 +232,82 @@
      <Compile Include="Assets\Devdog\InventoryPro\Scripts\Other\Editor\InventoryEditorBase.cs" />
      <Compile Include="Assets\Devdog\InventoryPro\Scripts\Other\Editor\Utilities\InventoryEditorUtility.cs" />
      <Compile Include="Assets\Devdog\InventoryPro\Scripts\UI\SlotUI\Editor\InventoryUIItemWrapperEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Achievements\Editor\AchievementPropertyDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Attributes\CustomNodeEditorAttribute.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\CustomDrawers\IfVariableEdgeConditionDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\CustomDrawers\VariableRefDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\DialogueDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\DialogueEditorUtility.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\DialogueEditorWindow.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\DialogueOwnerEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\DialogueReflectionUtility.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\NodeConditions\FakeEdgeCondition.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\DebugNodeVisualType.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\DefaultNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\EdgeConditionSummary.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\EdgeConnector.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\EntryNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\NodeEditorBase.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\NodeStyleElement.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\PlayerDecisionNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\PlayerInputNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\PlayerQuestStatusChoiceNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Nodes\SetVariableNodeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Sidebar\DialogueEditorSidebarBase.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Sidebar\DialogueEditorSidebarProperties.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Editor\Sidebar\DialogueEditorSidebarVariables.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Dialogue\Other\Editor\DialogueCameraEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Editor\GameRules\DialogueNodesRule.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Editor\GameRules\QuestGiverRule.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Editor\GameRules\QuestSystemPlayerRule.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Integrations\InventoryPro\Editor\ItemAmountRowEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\DocumentationLinkEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\GettingStartedEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\IntegrationHelperEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\MainEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\QuestManagerEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\Quests\AchievementsEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\Quests\QuestsEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Managers\Editor\Settings\SettingsEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\Editor\QuestDecoratorUtility.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\Editor\QuestDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\Editor\QuestPickerEditorWindow.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\Editor\QuestPropertyDrawer.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\Editor\QuestPropertyDrawerBase.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\ObjectAffectors\Editor\QuestStatusDecoratorEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\ProgressAffectors\Editor\QuestProgressDecoratorEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Quests\QuestGivers\Editor\QuestGiverEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Spawner\Distribution\Editor\PerlinNoiseSpawnerVolumeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Spawner\Distribution\Editor\WeightedTextureSpawnerVolumeEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Spawner\Editor\SpawnerBaseEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Waypoint\Editor\WaypointEditor.cs" />
+     <Compile Include="Assets\Devdog\QuestSystemPro\Scripts\Waypoint\Editor\WaypointGroupEditor.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\Editor\ImageEditor.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\Editor\SciFiDesignGettingStarted.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\Editor\SciFiDocumentationLinkEditor.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\Managers\Editor\IntegrationHelperEditor.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\UI\Dropdown\Editor\DropdownEditor.cs" />
+     <Compile Include="Assets\Devdog\SciFiDesign\FirstVersion\Scripts\UI\Editor\ShaderValueInterpolatorEditor.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\GameObjectSelectionTypes.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\GraphObjectObserver.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\DoorwayInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\DungeonArchetypeInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\DungeonFlowInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\GlobalPropInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\GraphObjectInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\KeyManagerInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\LocalPropSetInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\RandomPrefabInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\RuntimeDungeonInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\TileInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Inspectors\TileSetInspector.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\MenuMethods.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Utility\EditorUtil.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Utility\InspectorConstants.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Utility\TypeUtil.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Windows\DungeonAnalysisWindow.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Windows\DungeonFlowEditorWindow.cs" />
+     <Compile Include="Assets\DunGen\Code\Editor\Windows\DungeonGeneratorWindow.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_AboutBox.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_AddonBrowser.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_UFPSMenu.cs" />
@@ -335,6 +411,9 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="Devdog.Internal">
+ <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/Devdog/Internal/Devdog.Internal.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.3/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
@@ -355,9 +434,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="Devdog.Internal">
- <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/Devdog/Internal/Devdog.Internal.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

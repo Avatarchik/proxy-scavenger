@@ -47,11 +47,11 @@ namespace Devdog.General
         }
 
         [Header("Animations & Audio")]
-        public MotionInfo useAnimation;
-        public MotionInfo unUseAnimation;
+        public MotionInfo useAnimation = new MotionInfo();
+        public MotionInfo unUseAnimation = new MotionInfo();
 
-        public AudioClipInfo useAudioClip;
-        public AudioClipInfo unUseAudioClip;
+        public AudioClipInfo useAudioClip = new AudioClipInfo();
+        public AudioClipInfo unUseAudioClip = new AudioClipInfo();
 
         protected Animator animator;
         protected ITriggerWindowContainer windowContainer;

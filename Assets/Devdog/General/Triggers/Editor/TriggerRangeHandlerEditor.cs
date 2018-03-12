@@ -21,7 +21,12 @@ namespace Devdog.General.Editors
 
             color.a = 1f;
             Handles.color = color;
+
+#if UNITY_2017_1_OR_NEWER
+            Handles.CircleHandleCap(0, rangeHandler.transform.position, Quaternion.Euler(euler), rangeHandler.useRange, EventType.Repaint);
+#else
             Handles.CircleCap(0, rangeHandler.transform.position, Quaternion.Euler(euler), rangeHandler.useRange);
+#endif
         }
     }
 }

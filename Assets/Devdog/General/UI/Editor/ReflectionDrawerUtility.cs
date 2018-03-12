@@ -266,6 +266,7 @@ namespace Devdog.General.Editors.ReflectionDrawers
                         fromType.MakeGenericType(typeof (string)),
                         fromType.MakeGenericType(typeof (bool)),
                         fromType.MakeGenericType(typeof (int)),
+                        fromType.MakeGenericType(typeof (float)),
                         fromType.MakeGenericType(typeof (uint)),
                         fromType.MakeGenericType(typeof (Vector2)),
                         fromType.MakeGenericType(typeof (Vector3)),
@@ -318,18 +319,7 @@ namespace Devdog.General.Editors.ReflectionDrawers
 
         public static bool IsGenericTypeWithoutGenericArguments(Type type)
         {
-            if (type.IsGenericType == false)
-            {
-                return false;
-            }
-
-            var arguments = type.GetGenericArguments();
-            if (arguments.Length == 0 || (arguments.Length == 1 && arguments[0].AssemblyQualifiedName == null))
-            {
-                return true;
-            }
-
-            return false;
+            return type.IsGenericTypeDefinition;
         }
     }
 }

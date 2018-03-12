@@ -212,6 +212,12 @@ namespace Devdog.General.Editors.ReflectionDrawers
             // Can't construct UnityEngine.Object values
             if (typeof (UnityEngine.Object).IsAssignableFrom(createOfType) == false)
             {
+                if(createOfType.IsGenericTypeDefinition)
+                {
+                    // TODO: User choice for generic type.
+                    createOfType = createOfType.MakeGenericType(typeof(float));
+                }
+
                 newValue = Activator.CreateInstance(createOfType);
             }
 

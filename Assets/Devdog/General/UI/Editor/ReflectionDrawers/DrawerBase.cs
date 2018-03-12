@@ -259,9 +259,6 @@ namespace Devdog.General.Editors.ReflectionDrawers
             var val = DrawInternal(rect);
             rect.y += GetHeightInternal();
 
-            GUI.color = Color.white;
-
-
             if (readOnly && block != null)
             {
                 block.Dispose();
@@ -273,6 +270,8 @@ namespace Devdog.General.Editors.ReflectionDrawers
                     NotifyValueChanged(val);
                 }
             }
+
+            GUI.color = Color.white;
         }
 
         protected abstract object DrawInternal(Rect rect);

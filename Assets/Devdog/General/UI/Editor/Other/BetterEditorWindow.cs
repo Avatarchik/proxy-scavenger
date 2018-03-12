@@ -66,8 +66,6 @@ namespace Devdog.General.Editors
                     break;
                 // throw new ArgumentOutOfRangeException(Event.current.type.ToString());
             }
-
-//            Event.current.Use();
         }
 
         protected virtual void OnMouseMove(Vector2 delta)

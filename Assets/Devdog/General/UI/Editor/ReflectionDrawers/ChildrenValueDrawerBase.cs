@@ -91,7 +91,7 @@ namespace Devdog.General.Editors.ReflectionDrawers
             return children.FirstOrDefault(o => o.fieldInfo.Name == fieldName);
         }
 
-        private GUIContent GetFoldoutName()
+        protected GUIContent GetFoldoutName()
         {
             string childValueName = "";
             if (children.Count > 0 && children[0] is StringDrawer)
