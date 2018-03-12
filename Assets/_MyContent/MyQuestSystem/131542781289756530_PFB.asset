@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0763b70f85cfe5f4e93fd923c8b3d84a, type: 3}
+  m_Name: 131542781289756530_PFB
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"ID":10,"name":{"_key":"d5fe3f67-f5d9-4929-819c-24263f2c24d9"},"description":{"_key":"NO_KEY"},"icon":0,"autoCompleteWhenTasksAreDone":false,"taskOrder":0,"_tasks":[{"_item":1,"removeItemsOnComplete":true,"key":"Inject
+    Heat Capacitor","description":{"_key":"NO_KEY"},"statusMessage":{"_key":"NO_KEY"},"_icon":null,"_progressCap":1.0,"autoComplete":false,"useTimeLimit":true,"timeLimitInSeconds":300.0,"requirement":0,"giveRewardsOnTaskComplete":false,"rewardGivers":[],"overAchievements":[],"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.InventoryProGatherTask"}],"onActivationRewardGivers":[],"rewardGivers":[{"reward":{"item":2,"amount":1},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.InventoryProItemRewardGiver"}],"maxRepeatTimes":1,"requiresFinishedQuests":[],"conditions":[],"timeHandler":{"failQuestWhenOutOfTime":true,"$type":"Devdog.QuestSystemPro.QuestTimeHandler"}}'
+  _objectReferences:
+  - {fileID: 21300000, guid: 9418c956904fa4544ae5341e0dcaeea8, type: 3}
+  - {fileID: 114536233068814440, guid: 733f9a6f2ef404abd9936ed5349ac222, type: 2}
+  - {fileID: 114783424648428900, guid: 62796f9bb562f487b813dbb9fd09b3d4, type: 2}
+  ID: 10
+  name:
+    _key: d5fe3f67-f5d9-4929-819c-24263f2c24d9
+  description:
+    _key: NO_KEY
+  icon: {fileID: 21300000, guid: 9418c956904fa4544ae5341e0dcaeea8, type: 3}
+  autoCompleteWhenTasksAreDone: 0
+  taskOrder: 0
+  maxRepeatTimes: 1

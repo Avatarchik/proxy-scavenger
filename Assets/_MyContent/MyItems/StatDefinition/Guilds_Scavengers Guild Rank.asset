@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bce38bc8f61579041b751c97bf0ac3f0, type: 3}
+  m_Name: Guilds_Scavengers Guild Rank
+  m_EditorClassIdentifier: 
+  ID: 18
+  _enabled: 1
+  _statName: Scavengers Guild Rank
+  _category: Guilds
+  _showInUI: 1
+  _uiPrefab: {fileID: 11438680, guid: daab7375d65094f419fbf9574c539450, type: 2}
+  _valueStringFormat: '{0}'
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _icon: {fileID: 21300000, guid: b0f6bbf865c604e6797344ee5158e116, type: 3}
+  _baseValue: 0
+  _maxValue: 100
+  _startLevel: 0
+  _autoProgressLevels: 1
+  _levels:
+  - maxValue: 1
+    experienceRequired: 5
+    effectOnUnlock: {fileID: 0}
+  - maxValue: 2
+    experienceRequired: 25
+    effectOnUnlock: {fileID: 0}
+  - maxValue: 3
+    experienceRequired: 100
+    effectOnUnlock: {fileID: 0}
+  - maxValue: 4
+    experienceRequired: 200
+    effectOnUnlock: {fileID: 0}
+  - maxValue: 5
+    experienceRequired: 500
+    effectOnUnlock: {fileID: 0}

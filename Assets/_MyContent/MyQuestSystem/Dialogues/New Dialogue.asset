@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1b04f7aa160c3428767bf8c847bd2b, type: 3}
+  m_Name: New Dialogue
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"name":null,"description":null,"helpUrl":null,"_nodes":[{"_index":0,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":5,"conditions":[{"quests":[0],"canViewEndNode":true,"$type":"Devdog.QuestSystemPro.Dialogue.HasCompletableQuestEdgeCondition"}]},{"toNodeIndex":1,"conditions":[]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":81.0,"y":62.0},"$type":"Devdog.QuestSystemPro.Dialogue.EntryNode"},{"_playerDecisions":[{"option":{"_key":"f6cd0974-b382-4984-94c2-ed76d72718a0"}},{"option":{"_key":"cf74d07f-f538-4316-9fe2-22f67d8c047c"}}],"_index":1,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":2,"conditions":[]},{"toNodeIndex":3,"conditions":[]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":80.0,"y":175.0},"$type":"Devdog.QuestSystemPro.Dialogue.PlayerDecisionNode"},{"quests":[0],"status":0,"_index":2,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":63.0,"y":532.0},"$type":"Devdog.QuestSystemPro.Dialogue.ChangeQuestStatusNode"},{"_index":3,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"642ace51-9880-4d0e-b0b3-1ff15f89853b"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":341.0,"y":541.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"type":1,"quest":0,"questTask":"Recover
+    Warp Coordinates","amount":1.0,"_index":4,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":6,"conditions":[]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":-170.0,"y":425.0},"$type":"Devdog.QuestSystemPro.Dialogue.SetQuestProgressNode"},{"_index":5,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":4,"conditions":[{"item":1,"amount":1,"filterType":2,"canViewEndNode":true,"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.HasItemInInventory"}]}],"_message":{"_key":"87c35dd6-8d8f-4d6f-bc80-37ad07d60b3d"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":-165.0,"y":150.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"_index":6,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":7,"conditions":[]}],"_message":{"_key":"3d4957f6-c8d1-4390-89dd-5d68b004c029"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":-171.0,"y":601.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"items":[{"item":2,"amount":1}],"_index":7,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":-172.0,"y":802.0},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.GiveItemNode"}],"conditions":[],"variables":{"variables":[]}}'
+  _objectReferences:
+  - {fileID: 0}
+  - {fileID: 114783424648428900, guid: 62796f9bb562f487b813dbb9fd09b3d4, type: 2}
+  - {fileID: 114951607315275730, guid: b585882c5152e4f6f8b2bda440cd4a00, type: 2}
+  name: 
+  description: 
+  helpUrl: 

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1b04f7aa160c3428767bf8c847bd2b, type: 3}
+  m_Name: TestDialogue
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"name":"","description":"","helpUrl":"","_nodes":[{"_index":0,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":4,"conditions":[]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":563.0,"y":48.0},"$type":"Devdog.QuestSystemPro.Dialogue.EntryNode"},{"_playerDecisions":[{"option":{"_key":"61048cad-9b41-49d6-868a-42ef5c4a2569"},"item":0},{"option":{"_key":"e3618b74-4c6b-4345-a430-942f9417071b"},"item":1},{"option":{"_key":"NO_KEY"},"item":2},{"option":{"_key":"NO_KEY"},"item":3},{"option":{"_key":"4a2eb050-4a12-4c9b-a8f9-84d3dcd44c70"},"item":null},{"option":{"_key":"e2fe4962-18a0-4aa5-b41e-4848a8b083e6"},"item":null}],"_index":1,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":2,"conditions":[]},{"toNodeIndex":5,"conditions":[]},{"toNodeIndex":6,"conditions":[]},{"toNodeIndex":7,"conditions":[]},{"toNodeIndex":8,"conditions":[]},{"toNodeIndex":3,"conditions":[]}],"_message":{"_key":"253da104-3c7f-42e1-837b-d8553311d0fe"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":571.0,"y":375.0},"$type":"PlayerDecisionAndItemNode"},{"items":[{"item":0,"amount":1}],"_index":2,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":242.0,"y":909.0},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.GiveItemNode"},{"_index":3,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"896157ff-1aeb-4898-88be-12a91990f1d8"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":1193.0,"y":899.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"_index":4,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":1,"conditions":[]}],"_message":{"_key":"a7fc4eaf-f065-42ce-92d1-8908a8d363cf"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":569.0,"y":173.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"items":[{"item":1,"amount":1}],"_index":5,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":313.0,"y":1032.0},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.GiveItemNode"},{"items":[{"item":2,"amount":1}],"_index":6,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":575.0,"y":1072.0},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.GiveItemNode"},{"items":[{"item":3,"amount":1}],"_index":7,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":826.0,"y":1057.0},"$type":"Devdog.QuestSystemPro.Integration.InventoryPro.GiveItemNode"},{"extraSlots":1,"collectionName":"Inventory","_index":8,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":1049.0,"y":1050.0},"$type":"GiveInventorySlotNode"}],"conditions":[],"variables":{"variables":[]}}'
+  _objectReferences:
+  - {fileID: 114894874896607446, guid: 2f0c5d82d83c744eb8dd0923dfd7e270, type: 2}
+  - {fileID: 114382736348652456, guid: 091eceae5f8fd4e0582a7b8893f63404, type: 2}
+  - {fileID: 114514405402691622, guid: 4e2311b5ec5fc476fa1bec6166111cab, type: 2}
+  - {fileID: 114725724776257820, guid: 10e6c9a8b89a94d4285f565e0d5cbb3e, type: 2}
+  name: 
+  description: 
+  helpUrl: 

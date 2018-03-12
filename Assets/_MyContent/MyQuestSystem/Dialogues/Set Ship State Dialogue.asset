@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1b04f7aa160c3428767bf8c847bd2b, type: 3}
+  m_Name: Set Ship State Dialogue
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"name":null,"description":null,"helpUrl":null,"_nodes":[{"_index":0,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":1,"conditions":[]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":0.0,"y":0.0},"$type":"Devdog.QuestSystemPro.Dialogue.EntryNode"},{"SetShipState":3,"_index":1,"ownerType":1,"useAutoFocus":true,"_edges":[{"toNodeIndex":2,"conditions":[{"IfShipState":3,"canViewEndNode":true,"$type":"ShipDungeonStateEdge"}]},{"toNodeIndex":3,"conditions":[{"IfShipState":0,"canViewEndNode":true,"$type":"ShipDungeonStateEdge"}]}],"_message":{"_key":"NO_KEY"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":1.0,"y":111.0},"$type":"SetShipDungeonStateNode"},{"_index":2,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"90c106fb-559c-49a1-99d4-12eaa56a0d80"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":-165.0,"y":273.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"},{"_index":3,"ownerType":1,"useAutoFocus":true,"_edges":[],"_message":{"_key":"d4d242d3-644a-45ed-b153-be2a45fd68f2"},"audioInfo":{"audioClip":{"_key":null},"volume":1.0,"pitch":1.0,"loop":false},"motionInfo":{"motion":null,"speed":1.0},"_editorPosition":{"x":179.0,"y":271.0},"$type":"Devdog.QuestSystemPro.Dialogue.Node"}],"conditions":[],"variables":{"variables":[]}}'
+  _objectReferences: []
+  name: 
+  description: 
+  helpUrl: 

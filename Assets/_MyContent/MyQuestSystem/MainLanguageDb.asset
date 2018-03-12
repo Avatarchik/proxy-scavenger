@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b75a309ff767a4bb3ede0d5c1d2f6f, type: 3}
+  m_Name: MainLanguageDb
+  m_EditorClassIdentifier: 
+  _serializedJsonString: '{"_lang":"en-US","_localizedStrings":{"55d858a0-736d-46b7-9170-095021a17e66":"LEAVE","aa6df235-7457-42e7-a9fe-66cc71dc5a68":"Here
+    are 50,000 Units.","54b1c811-1b1c-4788-af9b-41a837268bb4":"Here are 300,000 Units.","ef91915a-e1cc-49ea-828c-65d176fc5fee":"As
+    a representative of the Scavengers Guild I will exchange units for ship Warp Coordinates.","a7fc4eaf-f065-42ce-92d1-8908a8d363cf":"Player
+    Decision and Item!","5dad3de8-a044-4043-8265-4050fe45a484":"What do you want?","134a8294-d7b7-44a9-9dc6-909f63199f15":"Basic","fd9eae2d-d1bf-474e-a264-6e724f11ce82":"Hello
+    I will buy your Warp Coordinates","28ffd227-82ff-4743-a40c-3a5d1f61dc86":"Have
+    any Warp Coordinates?","4131f4c2-c0cf-4442-96b5-ed1afa758447":"Hello.\nIf you
+    have any salvaged ship''s warp coordinates I will purchase them from you.","e549bbcc-4315-4d93-8bf5-947e068c4040":"heres
+    money","2d92e01a-28d3-4381-9e90-2a9c29e2a834":"Hello, Let''s Make Some Choices!","8561ccda-379a-498c-a590-c7e4c370cfe4":"Ship
+    has been repaired and coordinates recovered.","6d9172a7-8dd1-46f4-934a-fe702f4cc547":"Take
+    Ship Control Unit","d5fe3f67-f5d9-4929-819c-24263f2c24d9":"Repair Ship Before
+    it''s Frozen Over","1a46f575-02c7-4868-90c9-e4b428f4b775":"Repair Ship Before
+    Meltdownltdown","f6cd0974-b382-4984-94c2-ed76d72718a0":"Quest","cf74d07f-f538-4316-9fe2-22f67d8c047c":"Stuff","642ace51-9880-4d0e-b0b3-1ff15f89853b":"beep
+    boop","7a2e046e-6ea7-49f3-866d-9f16b8047fd5":"Acquire Ship Reactor Core","91eea937-42e8-4714-bb0e-cb06a6c0e4c4":"Recover
+    Space Compression Research Core","80442d2f-e9f6-420b-9840-822b57492207":"Repair
+    Power Core","97188946-2c10-456d-942b-090a4a8ed0d7":"Cancel","03906640-b5bb-4361-bd38-06795476e1b4":"Cancel
+    Power Core Repair","63c5f11e-bf0d-4228-9928-2be647b322db":"Power Core has been
+    repaired.","f5d2b5c6-5966-4a07-bb48-fa51f5368e30":"Find a Latticed Heat Capacitor
+    to Repair Ship","d20d4fd1-49c5-4a16-8c68-4823b0a00363":"You leave Engine Core
+    intact.","68a171a6-b516-4148-8dc1-80adcae96f85":"Leave Ship Control Unit","8e693037-274d-4ddb-94d4-99f4fb54ceef":"Removed
+    Ship Control Unit. Ship no longer able to be repaired. Ship Melted Down.","c81063dc-0e2f-4e82-8e11-f1cca64e8e80":"Left
+    Ship Control Unit intact","606f71e6-7d14-467c-90de-3d0f01ac57b1":"Ship Control
+    Unit Removed. Ship is unrecoverable.","b5c34ab3-7369-4a98-82ca-a6259b8aa59f":"Remove
+    Broken Power Core","6fe0f620-3190-415b-8490-e9d75fa2a3b9":"Reactor Melted Down","3f88f976-4bc1-4af9-8a61-922fd69f38e7":"Took
+    removed the Intact Core. The Engine Melted Down.","d1792d3c-57a5-4944-852b-811591c76343":"Remove
+    Reactor Core","30070958-4b2e-4ff4-9210-653edcd6c130":"Repair Ship Using Latticed
+    Heat Capacitor","dcb80fd5-0755-4700-8136-38b9996d19a1":"Cancel","2e03596e-4aa2-40f2-970d-15e309df82db":"Find
+    a Latticed Heat Capacitor","3cd036be-eefa-4278-8533-c6945a7408d3":"Took Reactor
+    Core. Reactor Melted Down.","425e50c7-4c8c-4f0c-9aa2-c13fcf7bb975":"Cancel Ship
+    Repair","1488edc4-462c-48e1-9e21-bc939a804c63":"Ship has been repaired. Recovered
+    Warp Coordinates for salvaging ship.","a1c0e256-6433-4b7c-a16a-94342b75aeb1":"Recover
+    Salvaged Ship Warp Coordinates","87c35dd6-8d8f-4d6f-bc80-37ad07d60b3d":"Have you
+    recovered the Warp Coordinates of a salvagable ship?","3d4957f6-c8d1-4390-89dd-5d68b004c029":"Well
+    Done. Here''s payment for the ship.","b75469f2-747c-49f6-ae8f-3ad1d48edd51":"Here''s
+    some money.","df8fc214-ac2e-4da8-879d-e2c61e752f23":"Get Money","f346c0cc-dbed-455c-87b3-a8f3a135d6c9":"Get
+    Money","d51681c0-475b-4a4a-bb3a-c4981c93a4bd":"Give Item","6305cf32-c838-493c-b67c-1fd554026ea1":"Set
+    Ship Part State","da3bebb6-988f-46eb-be0f-615c505eff6e":"Set Overall Ship State","0dc49814-daac-4d6a-b65c-a79d8fe1e2ad":"Here''s
+    $123","7c1b2b68-0889-497e-a8df-bf2f95a105b0":"Thanks for the Sub Machine Gun","b8979af8-0039-41d9-b800-e82abaeed831":"Give
+    Up Sub Machine Gun","65acd4f2-6d4d-4290-8745-ca5908c78f5e":"Fix Randomly Generated
+    Ship''s Engine!","35b85658-9c7d-45e3-a1af-aec01aefdcf1":"Fixed!","77eca79d-610c-43c9-a576-24ab8a771406":"Set
+    Ship to being Recovered!","e679987c-ad1f-489c-91af-46e8d7b17e1c":"Ship''s Been
+    Recovered!","6e8c4a96-2057-4e5d-8bf4-174bbd431037":"Get Money","c9732bc3-df1f-41a5-ad8c-71d0c3a613f1":"Give
+    Item","0644c176-cd9d-47ad-8a17-b9b9d027e336":"Set Ship Part State","3db7a564-3d9b-4692-b258-4710c79bdded":"Set
+    Ship State","7f3e92c2-c92e-47b4-82f3-3baee0bcb9b0":"give submachine gun","2f4fd416-a8c4-430a-8c53-6e972f272b68":"Engine
+    is fixed!","90c106fb-559c-49a1-99d4-12eaa56a0d80":"Ship Recovered!","d4d242d3-644a-45ed-b153-be2a45fd68f2":"Ship''s
+    Broken Still","4870a1e4-68f3-4f67-8b52-f62a8a90affa":"Engine Still Broken.","5ae09c22-ee2b-46f4-a2ae-348fbe8db198":"Find
+    a Hydronic Shielding Fillament","7329ace4-407d-453e-8e65-dbb7c963455f":"Ship has
+    been fixed and warp coordinates recovered.","08f26ec3-a844-490c-8368-d90f7dbf7314":"You
+    removed the Power Core.","e675cff7-8056-4349-811e-0dfe5df7c5e1":"What quality
+    of ship do you have the coordinates for?","f7d8050a-a155-4565-8b5b-3c82e4094fc8":"Basic","0296b85f-d93e-4d87-b689-6d1c9a7442ca":"Standard","796a3652-14cc-4a2e-8cff-d32c3ad73868":"Specialized","1c0a7946-5d5e-42e5-8488-86e89b72e617":"Superior","15ad111f-0a55-4011-b5bc-1c1d92909955":"High
+    End","f72aa520-91d8-4c95-af86-2aa499466afa":"Here is 50,000 Units for the Coordinates.","db52230c-f1f2-4bdc-a39d-7f7be7c9df0e":"Do
+    you have other Coordinates?","2a173202-ffb6-46f0-9027-67210384e14d":"Yes, I have
+    other Coordinates","a167cbd4-0c88-48d2-b180-c453d444b9d7":"No, I''m all out.","cb1e4872-4096-497c-b41a-42c81c757aca":"Come
+    back when you have some salvaged ships you would like to sell.","74e25f32-e89b-436d-bdf6-8c14ffe73210":"I
+    will take the Basic Warp Coordinates for the basic ship you''ve salvaged.","a0b19c36-e8f6-4ea3-b64b-053c159c8cd1":"You
+    do not have any Basic Warp Coordinates.","5677d1b0-b5e9-46d8-92b4-f7ef77a5357c":"I
+    will take the Standard Warp Coordinates.","193b6516-0ffe-48a7-90cf-e1f1c3dc480a":"no
+    standard","a911df3f-ec75-468e-ad66-868a6bc7bd6f":"I will take the Specialized
+    Warp Coordinates.","efe47b1c-56dd-450b-a5d0-94673d35e6bb":"Here''s 250,000 units","19e45c74-57eb-410b-9e3a-5e01e8646760":"Here''s
+    150,000 unites","db7027f7-a2d1-4158-ab4d-20271e4b0604":"no specialized","5f863e57-1f0e-4361-9ee4-89dee9a83f85":"I
+    will take the Superior Warp Coordinates.","7f417545-377d-4631-a212-867a8a42db09":"no
+    superior","53589c15-626f-4746-969d-dbfd522b8997":"Here''s 500,000 units","560e2f79-7cde-4473-bb10-31b77eb9922a":"I
+    will take the High End Warp Coordinates.","2e17e153-a521-4716-ba4e-7a7ce5f9ec2c":"Here''s
+    1 million units","59810d82-efbe-493f-97f9-4158efc6eff8":"no high end","85a9ceee-ce6e-48ee-a5b0-9edeb0fbc3e7":"none","922fca08-61d0-42b5-b48e-220be9d868d2":"Get
+    Coordinates","270d4110-a39a-4646-a391-d564569ba510":"Take Broken Control Unit","5bd97699-386a-4bf8-b0ca-39184b06455c":"Acquired
+    Broken Ship Coordinates.","574526e1-4732-4535-9c45-1a2b6b80e0b0":"Removed Broken
+    Ship Control Unit","d3b5c7aa-cdd1-4ad1-96a3-98417c215033":"Leave","b3e8c13c-8355-4b6e-8f25-acb90f2dd44a":"You
+    left the ship controls.","f09bbfa8-7241-48c4-8d92-523e80ba251e":"Recover Repaired
+    Ship Coordinates","98c4f712-150f-4056-af34-e2ae66d6a8f4":"Remove Intact Ship Control
+    Unit","545d41c8-a6d2-4666-8e7c-1a9733ccd909":"Leave","72069d54-70af-4ef9-883c-80a0a84b6691":"Removed
+    Intact Ship Control Unit. Ship Coordinates are now unrecoverable.","43fad8e1-bbfa-44d4-bef9-8b07a350e490":"You
+    left the ship controls.","07f610fd-21fb-4bc1-8f56-a4d9314f4b83":"Ship Controls
+    are destroyed.","b0b4f9fe-bd42-4df4-afc9-15633daa6aaf":"Remove Fixed Power core","4db5b42c-a98e-43a0-b52a-4df92e7076b0":"Leave","71785ddf-15f1-4ba0-863e-9cee57cefa8a":"Removed
+    Broken Power Core. Ship is unrecoverable.","41e49efc-9c74-41de-977a-8b7a21b7cfd3":"Take
+    Broken","a35b0f0d-3c4e-4b5e-886a-d119ebec927b":"You leave the Engine Core.","c4cc9489-1cd8-4b95-8c99-9088109c6496":"Remove
+    Intact Engine Core","7594d072-bd64-4f6d-8e45-c617f3225298":"Leave","58e9a6cf-4984-4427-8720-5cef86da9226":"Take
+    broken Ship Control Unit","98b3ebf2-c0cc-4312-95eb-f00262847667":"Leave","da45d1a0-5f36-4c35-941d-ebd9964a29f3":"You
+    left the ship controls.","fbaba971-1d1f-481b-9611-ebaed8cc9e4b":"Ship''s Power
+    Core has been removed.","3498d462-c4ea-434b-8bbe-34ca11fca41e":"Repair Power Core","9e2657fe-4f39-46f1-81b5-01f3c675bda2":"Remove
+    Broken Power Reactor Core","21ce9e9d-9d94-469a-b061-443e59eefbec":"Leave","b660110e-be34-4723-9ea4-3ace1361affc":"Repaired
+    the Ship''s Power Core","506d61f2-7758-44a5-a03a-75eac91f01ab":"Find a Hydronic
+    Shielding Fillament to repair the Power Reactor.","a88d112d-d153-4bc2-a519-ef49420f6cd4":"You
+    leave Power Core.","8fdbedd0-72bf-4eb7-8160-581c1b8b5240":"Hydronic Power Reactor
+    removed from the Power Core.","2353f569-2c5c-4dca-b826-aca4fd372a7c":"Remove Broken
+    Power Reactor Core","59a52dfa-671a-4fdb-840a-82167fa45581":"Leave","a99bff6f-9b7f-4928-8c53-892a783bf2f9":"Remove
+    Intact Power Core","48384abc-6a4a-4951-93c9-e1feb214b010":"Leave","07fe4d33-fbad-485f-a521-f9afef6e2999":"Leave
+    Power Core.","6e06121e-8b57-44b3-bf91-752a5c6d3eda":"Leave Power Core.","42002f84-38f4-42a6-84a1-f5278537ccb8":"What
+    kind do you have?","bcaf818f-abcc-441f-8710-38f234ceea78":"Basic","9acab28a-1089-4520-805a-da1f9ea10cae":"Standard","9da7f41e-18ba-4a74-93f9-0cf20338cd38":"Specialized","86e1d0ef-d164-4830-b28a-15435947bfbe":"Superior","22b67c23-82c1-4182-bd47-9819211ca1e6":"High
+    End","0fa0a171-d589-4239-84c9-836a101a4327":"Here''s some money for it.","16d57e2a-9b0a-47c9-9707-e71047ffda2f":"You
+    don''t have this.","f98d0388-1914-47ce-a201-ae535c1b90d5":"Here''s some money
+    for it.","37d2738c-07a8-4cd5-ba7f-a263cb1701fc":"You don''t have this.","913c5392-ab81-4b28-ba78-f01eb386d280":"Here''s
+    some money for this.","2bc38d4d-da9e-475b-97c0-7bc9d67d70f5":"You don''t have
+    this.","003bb1b2-35e5-4868-824e-46104f52b168":"Here''s some money for it.","cd97fbd7-ef6b-4b3c-883b-cc87799a5a99":"You
+    don''t have this.","a01a8e5c-fab3-406f-abce-3e47595df1dc":"Here''s some money
+    for it.","24599545-b17d-4ba6-8d49-a0c636679440":"You don''t have this.","c4dc0bbf-1d7e-4d3e-9c26-6b58eaf80249":"Cancel","c4d942d6-c1d1-4ca6-a750-4d81a3c9d8e0":"See
+    you later.","0d13d31a-706f-4bd8-b78c-f312ba82c407":"Do you have any more items","dd0010aa-85da-4d79-a68d-23e7762cbbb2":"Yes","d4268162-2adb-4a41-a600-2e0400c94374":"No","d7f5b6df-2413-4c0d-bb34-dcac8526e2ad":"Do
+    you have any more Warp Coordinates?","41d05425-2481-4578-988a-8a196b03aff6":"See
+    you later.","781c33b6-38ec-40d4-b997-7361e52e6ea1":"Basic","5a513d13-33cd-4e18-a1d9-5a57ebe23f3a":"Standard","7565d5ad-3953-4194-b319-25926d2efdba":"What
+    type do you have","121ec26b-00e1-4ee3-bc10-79b72e10a307":"Cancel","cc3bbace-e46a-4530-8f9f-9aca867c2360":"Here''s
+    Money","06003047-e0eb-4f9c-a533-65d714d4fa05":"You don''t have this.","86b7c288-5616-433a-95ed-c279b6bec0f2":"Here''s
+    Money","65df4c1f-0a1d-4cea-8bcf-736f38fb9047":"See you later.","1783492e-63e0-4733-9d85-5185889d52d2":"Yes","9c0be9ef-ea56-4e35-a862-bd4d083cf857":"No","97b9f1d7-d6be-4206-aa86-54216dd7a4d0":"Have
+    any more Warp Coordinates?","3fabbc25-498f-4935-a0bc-2f6f94a515a1":"See you later.","01ecd80c-5ef7-4a86-bb9a-cbed08f66178":"You
+    don''t have this.","fcd39c5f-6fe7-4439-9d7a-e275a47195d3":"Cancel","00e54daa-7a4a-4a04-9dd5-313de9f5db68":"Here''s
+    money","412d265e-87f9-441d-9f0f-c5d241bb0c7a":"You don''t have this.","0facc52c-1f88-4e53-a101-83499afbd7b3":"See
+    you later.","d7fe5b6c-8f73-41ef-957a-5618076f026b":"Take","26546be9-dfa6-4b37-842b-aa00ecc7ccaa":"Take","c3cfb1ac-4f87-4de7-be3f-8b4b0b89671f":"Money","6e37e478-1680-4062-8d26-4e5774f8c32b":"Nothing","163dd10c-c015-4a1a-99d0-8faa958a894c":"You
+    Leave","4a2eb050-4a12-4c9b-a8f9-84d3dcd44c70":"Inventory Slot","896157ff-1aeb-4898-88be-12a91990f1d8":"Leave","61048cad-9b41-49d6-868a-42ef5c4a2569":"TAKE","253da104-3c7f-42e1-837b-d8553311d0fe":"You
+    want this?","506fd162-6c76-4f08-ad3a-e64fadb2a22b":"What type of Warp Coordinates
+    do you have?","342dfbb3-7f75-4d8b-bc26-61e03ff92726":"LEAVE","69cbf4d6-8e51-4f39-8287-2377b46d2b84":"Units","3c023866-db72-4565-a7c0-8c7cb4f09c32":"You
+    don''t have this.","843fbc26-98c7-4af7-ae87-a242ae3ef6c9":"Units","6cbac5d1-9623-4087-9128-fa30756e772e":"You
+    don''t have this.","91fc3703-efac-4c85-926f-0f6f01b76755":"Units","db3646dd-e350-4254-b05a-bcabe2d9f5bf":"You
+    don''t have this.","391f0e8c-1870-4cec-800e-28850b781934":"Units","0aef7284-8b4c-4edd-a641-355bb606f701":"You
+    don''t have this.","d68ebe27-b33b-4562-b037-b2fcc869f60c":"I will purchase Warp
+    Coordinates from you","b3948c38-3448-498c-89d1-f967c532b524":"You don''t have
+    this.","a2bda3e8-e4d8-4399-a562-b26dcc89b2c0":"You don''t have this.","20191f15-d13b-42ae-9870-8e5f44eccfb6":"you
+    leave","dd1cb010-aae2-4b13-b342-9310e0c32018":"Here are 150,000 Units.","da444116-2636-4ff0-9c75-2842dff2c25e":"You
+    don''t have this.","f33dbec8-932e-4347-809d-a709f9eadecc":"LEAVE","c3c23312-b36f-4fa8-979b-a8e574bfa5e0":"You
+    don''t have this.","52260b19-0466-49e0-9ba2-6e0f9180104f":"You don''t have this.","e2fe4962-18a0-4aa5-b41e-4848a8b083e6":"Leave","b5b9d8a6-3abd-4688-ad45-84f6343d0c37":"I
+    can increase how much you can carry if you have the right equipment.","b9220caf-c69c-4eab-83dc-2497f400b6ad":"GIVE","ab1bcb4f-5ef8-41ef-bcca-1a43c77c9255":"You
+    don''t have a space compression unit.","aef21b56-98a6-4935-96b4-58621d1d78ac":"You
+    leave","d9b65289-03da-47a5-86d7-4024803695aa":"you can now carry more."},"_localizedObjects":{}}'
+  _objectReferences: []
+  _lang: en-US
