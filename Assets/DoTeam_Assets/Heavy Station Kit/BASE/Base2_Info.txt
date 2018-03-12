@@ -1,0 +1,77 @@
+﻿Heavy Station Kit base
+
+----------------
+B  A  S  E   2.1
+----------------
+
+WHAT'S NEW
+
+- Added Crouching option and Flash light control to Dot FPC (which is First Person Controller)
+- Scripts and selected Prefabs were updated and unified with other Heavy Station Kit assets
+- Crags, Rocks and some other prefabs were enchanced
+
+----------------
+B  A  S  E   2.0
+----------------
+
+WHAT'S NEW
+
+- Exterior Prefabs
+- Pentagonal and Hexagonal Rooms
+- Transparent Roofs
+- One-sided Floors and Ceilings
+- Equipment
+- Animated Materials for Displays
+- Universal Doors Control
+- Detail Albedo Map
+
+ATTENTION!
+
+Before downloading and installing Heavy Station Kit base 2.0 it is necessary that You download and install Standard Assets (Characters and Effects) first.
+
+
+Previous Versions:
+
+----------------
+B  A  S  E   1.3
+----------------
+
+WHAT'S NEW
+
+- Overall -50% tris from colliders. Colliders were redone for all prefabs, with box colliders and low poly mesh.
+- Light leaks were fixed, by modifying light source.
+- Added Top-Down support with 5 new prefabs (for Walls, Partitions2 and Arches, new Outwall element).
+- Top-Down Demo Scene.
+- New Metal Material for all Prefabs.
+- Three new prefabs were added, Solid Floor, Wall lights On, Wall lights Off.
+
+----------------
+B  A  S  E   1.2
+----------------
+
+WHAT'S NEW
+
+- Added lighting to prefabs: Walls, Channels, Stairs, Equipment, Top Bottom.
+- Optimized colliders for: Arms, Arches, Stairs, Support, Equipment, Partitions2, Props.
+- Done 10 pages Booklet of Prefabs, which shows in artistic way quantity and materials of all prefabs.
+
+----------------
+B  A  S  E   1.1
+----------------
+
+WHAT'S NEW
+
+- Improved Textures and Materials
+- Unity3D 5.x GI Supported
+- Unity3D WebGL Compatible
+
+----------------
+
+DotTeam Assets Forum
+http://forum.unity3d.com/threads/1-3d-model-promo-set-easy-marketing-materials-for-3d-models-post-14-dotteam.385773/
+
+DotTeam Site
+http://myAsset.Store
+
+DotTeam support E-mail
+charge@fursdesign.com
