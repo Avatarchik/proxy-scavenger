@@ -495,6 +495,7 @@ public class vp_WeaponHandler : MonoBehaviour
 	/// </summary>
 	protected virtual void OnStart_SetWeapon()
 	{
+
 		// abort timers that won't be needed anymore
 		CancelTimers();
 		
@@ -523,8 +524,9 @@ public class vp_WeaponHandler : MonoBehaviour
 	/// </summary>
 	protected virtual void OnStop_SetWeapon()
 	{
-        // fetch weapon index from when 'SetWeapon.TryStart' was called
-        int weapon = 0;
+
+		// fetch weapon index from when 'SetWeapon.TryStart' was called
+		int weapon = 0;
 		if(m_Player.SetWeapon.Argument != null)
 			weapon = (int)m_Player.SetWeapon.Argument;
 

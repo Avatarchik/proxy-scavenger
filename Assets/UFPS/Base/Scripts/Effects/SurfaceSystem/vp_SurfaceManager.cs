@@ -31,6 +31,7 @@ public class vp_SurfaceManager : MonoBehaviour
 	public bool m_ShowHelp = true;
 
 	public List<ObjectSurface> ObjectSurfaces = new List<ObjectSurface>();
+	public List<TerrainSurface> TerrainSurfaces = new List<TerrainSurface>();
 	public DefaultFallbacks Fallbacks;
 
 	protected static bool m_UsingFallbackImpact = false;
@@ -80,6 +81,18 @@ public class vp_SurfaceManager : MonoBehaviour
 
 	}
 	
+	[System.Serializable]
+	public class TerrainSurface
+	{
+		public TerrainSurface()
+		{
+			Name = "Unnamed";
+		}
+		public string Name;
+		public vp_SurfaceType SurfaceType;
+		public Texture Texture;
+	}
+
 	// ---
 
 	// terrain status

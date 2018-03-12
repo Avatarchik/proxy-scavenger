@@ -235,6 +235,7 @@ public class vp_Shooter : vp_Component
 	/// </summary>
 	protected virtual void Fire()
 	{
+
 		// update firing rate
 		m_NextAllowedFireTime = Time.time + ProjectileFiringRate;
 
@@ -387,6 +388,7 @@ public class vp_Shooter : vp_Component
 
 		// spawn the shell
 		GameObject s = null;
+
 		s = (GameObject)vp_Utility.Instantiate(ShellPrefab,
 			((m_ShellEjectSpawnPoint == null)
 			? FirePosition + m_ProjectileSpawnPoint.transform.TransformDirection(ShellEjectPosition)	// we have no shell eject object: use old logic

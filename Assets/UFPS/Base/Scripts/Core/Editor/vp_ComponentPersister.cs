@@ -37,15 +37,13 @@ public class vp_ComponentPersister
 	/// </summary>
 	public vp_ComponentPersister()
 	{
-#if UNITY_2017_3_OR_NEWER
-		EditorApplication.playModeStateChanged += delegate(PlayModeStateChange stateChange)
-#else
-        EditorApplication.playmodeStateChanged += delegate()
-#endif
-        {
-            PlayModeCallback();
+
+		EditorApplication.playmodeStateChanged += delegate()
+		{
+			PlayModeCallback();
 		};
-    }
+
+	}
 
 
 	/// <summary>

@@ -293,7 +293,7 @@ public class vp_FPController : vp_CharacterController
 
 		// convert horizontal input to forces in the motor
 		m_MotorThrottle +=
-            ((Player.InputMoveVector.Get().y > 0) ? Player.InputMoveVector.Get().y : // if moving forward or sideways: use normal speed
+			((Player.InputMoveVector.Get().y > 0) ? Player.InputMoveVector.Get().y : // if moving forward or sideways: use normal speed
 			(Player.InputMoveVector.Get().y * MotorBackwardsSpeed))		// if moving backwards: apply backwards-modifier
 			* (Transform.TransformDirection(
 			Vector3.forward *
@@ -309,6 +309,7 @@ public class vp_FPController : vp_CharacterController
 		// dampen motor force
 		m_MotorThrottle.x /= (1.0f + (MotorDamping * m_MotorAirSpeedModifier * Time.timeScale));
 		m_MotorThrottle.z /= (1.0f + (MotorDamping * m_MotorAirSpeedModifier * Time.timeScale));
+
 	}
 
 
@@ -469,6 +470,7 @@ public class vp_FPController : vp_CharacterController
 		// start sliding if ground is steep enough in angles
 		else if (GroundAngle > PhysicsSlopeSlideLimit)
 		{
+
 			m_Slide = true;
 
 			// if ground angle is within slopelimit, slide at a constant speed
@@ -581,7 +583,7 @@ public class vp_FPController : vp_CharacterController
 				Player.Move.Send(vp_MathUtility.NaNSafeVector3(m_Platform.TransformPoint(PositionOnPlatform) -
 																		m_Transform.position));
 
-        // move on our own
+		// move on our own
 		Player.Move.Send(vp_MathUtility.NaNSafeVector3(m_MoveDirection * Delta * Time.timeScale));
 
 		// while there is an active death event, block movement input
@@ -825,8 +827,8 @@ public class vp_FPController : vp_CharacterController
 	/// knockback, wind or jump pads
 	/// </summary>
 	protected virtual void AddForceInternal(Vector3 force)
-    {
-        m_ExternalForce += force;
+	{
+		m_ExternalForce += force;
 	}
 
 
@@ -981,6 +983,7 @@ public class vp_FPController : vp_CharacterController
 	/// </summary>
 	protected virtual void DeflectHorizontalForce()
 	{
+
 		// flatten positions (this is 2d) and get our direction at point of impact
 		m_PredictedPos.y = Transform.position.y;
 		m_PrevPosition.y = Transform.position.y;

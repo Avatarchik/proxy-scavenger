@@ -98,8 +98,8 @@ public class vp_FPWeaponShooter : vp_WeaponShooter
 
 		m_ProjectileDefaultSpawnpoint = m_ProjectileSpawnPoint;
 
-        // reset the next allowed fire time
-        m_NextAllowedFireTime = Time.time;
+		// reset the next allowed fire time
+		m_NextAllowedFireTime = Time.time;
 
 		ProjectileSpawnDelay = Mathf.Min(ProjectileSpawnDelay, (ProjectileFiringRate - 0.1f));
 

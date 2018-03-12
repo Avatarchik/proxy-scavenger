@@ -360,13 +360,13 @@ public class vp_FPWeapon : vp_Weapon
 
 			UpdateZoom();
 
-            UpdateSwaying();
+			UpdateSwaying();
 
-            UpdateBob();
+			UpdateBob();
 
-            UpdateEarthQuake();
+			UpdateEarthQuake();
 
-            UpdateStep();
+			UpdateStep();
 
 			UpdateShakes();
 
@@ -375,7 +375,8 @@ public class vp_FPWeapon : vp_Weapon
 			UpdateSprings();
 
 			UpdateLookDown();
-        }
+
+		}
 
 	}
 
@@ -705,10 +706,10 @@ public class vp_FPWeapon : vp_Weapon
 		m_PositionPivotSpring.FixedUpdate();
 		m_RotationPivotSpring.FixedUpdate();
 		m_RotationSpring.FixedUpdate();
-        m_PositionSpring2.FixedUpdate();
-        m_RotationSpring2.FixedUpdate();
+		m_PositionSpring2.FixedUpdate();
+		m_RotationSpring2.FixedUpdate();
 
-    }
+	}
 
 
 
@@ -802,7 +803,7 @@ public class vp_FPWeapon : vp_Weapon
 		bool elevating = (m_LastUpBob < m_CurrentBobVal.x) ? true : false;
 		m_LastUpBob = m_CurrentBobVal.x;
 
-        // if bob is dipping, add soft down force to the weapon
+		// if bob is dipping, add soft down force to the weapon
 		if (elevating && !m_BobWasElevating)
 		{
 
@@ -859,25 +860,25 @@ public class vp_FPWeapon : vp_Weapon
 			(m_LookInput.x * (RotationLookSway.y * -0.025f)),
 			m_LookInput.x * (RotationLookSway.z * -0.025f)));
 
-        // --- falling ---
+		// --- falling ---
 
-        // rotate weapon while falling. this will take effect in reverse when being elevated,
-        // for example walking up a ramp. however, the weapon will only rotate around the z
-        // vector while going down
-        m_FallSway = (RotationFallSway * (m_SwayVel.y * 0.005f));
+		// rotate weapon while falling. this will take effect in reverse when being elevated,
+		// for example walking up a ramp. however, the weapon will only rotate around the z
+		// vector while going down
+		m_FallSway = (RotationFallSway * (m_SwayVel.y * 0.005f));
 		// if grounded, optionally reduce fallsway
 		if (Controller.isGrounded)
 			m_FallSway *= RotationSlopeSway;
 		m_FallSway.z = Mathf.Max(0.0f, m_FallSway.z);
 		m_RotationSpring.AddForce(m_FallSway);
 
-        // drag weapon towards ourselves
-        m_PositionSpring.AddForce(Vector3.forward * -Mathf.Abs((m_SwayVel.y) * (PositionFallRetract * 0.000025f)));
+		// drag weapon towards ourselves
+		m_PositionSpring.AddForce(Vector3.forward * -Mathf.Abs((m_SwayVel.y) * (PositionFallRetract * 0.000025f)));
 
-        // --- weapon strafe & walk slide ---
-        // PositionWalkSlide x will slide sideways when strafing
-        // PositionWalkSlide y will slide down when strafing (it can't push up)
-        // PositionWalkSlide z will slide forward or backward when walking
+		// --- weapon strafe & walk slide ---
+		// PositionWalkSlide x will slide sideways when strafing
+		// PositionWalkSlide y will slide down when strafing (it can't push up)
+		// PositionWalkSlide z will slide forward or backward when walking
 		m_PositionSpring.AddForce(new Vector3(
 			(localVelocity.x * (PositionWalkSlide.x * 0.0016f)),
 			-(Mathf.Abs(localVelocity.x * (PositionWalkSlide.y * 0.0016f))),
@@ -963,9 +964,9 @@ public class vp_FPWeapon : vp_Weapon
 				new Vector3(RotationPivotSpringDamping, RotationPivotSpringDamping, RotationPivotSpringDamping);
 			m_RotationPivotSpring.RestState = RotationPivot;
 
-        }
+		}
 
-        if (m_PositionSpring2 != null)
+		if (m_PositionSpring2 != null)
 		{
 			m_PositionSpring2.Stiffness =
 				new Vector3(PositionSpring2Stiffness, PositionSpring2Stiffness, PositionSpring2Stiffness);
@@ -1144,8 +1145,8 @@ public class vp_FPWeapon : vp_Weapon
 			m_RotationPivotSpring.RestState = RotationPivot;
 			m_RotationPivotSpring.State = RotationPivot;
 			m_RotationPivotSpring.Stop(true);
-        }
-        Transform.localEulerAngles = RotationPivot;
+		}
+		Transform.localEulerAngles = RotationPivot;
 
 		if (m_RotationSpring != null)
 		{

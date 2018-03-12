@@ -49,7 +49,7 @@ public class vp_Switch : vp_Interactable
 			m_Player = player;
 		
 		PlaySound();
-
+		
 		Target.SendMessage(TargetMessage, SendMessageOptions.DontRequireReceiver);
 		
 		return true;

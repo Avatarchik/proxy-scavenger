@@ -333,13 +333,9 @@ public class vp_VRCameraManager : MonoBehaviour
 
 		vp_Gameplay.IsVR = true;
 
-#if UNITY_5_3 || UNITY_5_4 || UNITY_5_5 || UNITY_5_6 || UNITY_2017_1
-        UnityEngine.VR.VRSettings.enabled = true;
-#else
-        UnityEngine.XR.XRSettings.enabled = true;
-#endif
+		UnityEngine.XR.XRSettings.enabled = true;
 
-        TryEnsureSingleAudioListener();
+		TryEnsureSingleAudioListener();
 
 		if (CenterEyeAnchor == null)
 		{
@@ -368,12 +364,8 @@ public class vp_VRCameraManager : MonoBehaviour
 
 		vp_Gameplay.IsVR = false;
 
-#if UNITY_5_3 || UNITY_5_4 || UNITY_5_5 || UNITY_5_6 || UNITY_2017_1
-        UnityEngine.VR.VRSettings.enabled = false;
-#else
-        UnityEngine.XR.XRSettings.enabled = false;
-#endif
-        RestorePlayerHierarchy();
+		UnityEngine.XR.XRSettings.enabled = false;
+		RestorePlayerHierarchy();
 
 		if (!m_AppQuitting)
 		{

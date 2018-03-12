@@ -74,6 +74,22 @@ public class vp_FPWeaponShooterEditor : Editor
 
 		GUI.color = Color.white;
 
+		string objectInfo = m_Component.gameObject.name;
+
+		if (vp_Utility.IsActive(m_Component.gameObject))
+			GUI.enabled = true;
+		else
+		{
+			GUI.enabled = false;
+			objectInfo += " (INACTIVE)";
+		}
+
+		if (!vp_Utility.IsActive(m_Component.gameObject))
+		{
+			GUI.enabled = true;
+			return;
+		}
+
 		if (Application.isPlaying || m_Component.DefaultState.TextAsset == null)
 		{
 
@@ -237,13 +253,10 @@ public class vp_FPWeaponShooterEditor : Editor
 					m_MuzzleFlashVisible = true;
 
 				vp_MuzzleFlash mf = (vp_MuzzleFlash)m_Component.MuzzleFlash.GetComponent("vp_MuzzleFlash");
-                if (mf != null) {
-                    mf.transform.localPosition = currentPosition;
-                    mf.transform.localScale = currentScale;
-                    mf.ForceShow = currentMuzzleFlashVisible;
-                }
+				if (mf != null)
+					mf.ForceShow = currentMuzzleFlashVisible;
 
-                GUI.enabled = false;
+				GUI.enabled = false;
 				GUILayout.Label("Set Muzzle Flash Z to about 0.5 to bring it into view.", vp_EditorGUIUtility.NoteStyle);
 				GUI.enabled = true;
 			}

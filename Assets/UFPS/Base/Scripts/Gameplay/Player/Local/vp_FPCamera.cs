@@ -275,24 +275,17 @@ public class vp_FPCamera : vp_Component
 		m_RotationSpring.MinVelocity = 0.0f;
 
 #if UNITY_EDITOR
-#if UNITY_5_3 || UNITY_5_4 || UNITY_5_5 || UNITY_5_6 || UNITY_2017_1
-        if (DisableVRModeOnStartup && UnityEngine.VR.VRSettings.enabled) {
-            UnityEngine.VR.VRSettings.enabled = false;
-        }
-#else
-        if (DisableVRModeOnStartup && UnityEngine.XR.XRSettings.enabled) {
-            UnityEngine.XR.XRSettings.enabled = false;
-        }
-#endif
+		if (DisableVRModeOnStartup && UnityEngine.XR.XRSettings.enabled)
+			UnityEngine.XR.XRSettings.enabled = false;
 #endif
 
-    }
+	}
 
 
-    /// <summary>
-    /// 
-    /// </summary>
-    protected override void OnEnable()
+	/// <summary>
+	/// 
+	/// </summary>
+	protected override void OnEnable()
 	{
 		base.OnEnable();
 		vp_TargetEvent<float>.Register(m_Root, "CameraBombShake", OnMessage_CameraBombShake);
@@ -830,7 +823,6 @@ public class vp_FPCamera : vp_Component
 			earthQuakeForce.y = -earthQuakeForce.y;
 			Player.CameraEarthQuakeForce.Set(earthQuakeForce);
 		}
-
 		m_PositionSpring.AddForce(Player.CameraEarthQuakeForce.Get() * PositionEarthQuakeFactor);
 
 		// apply earthquake roll force on the camera rotation spring
