@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: 4eeacfa1f465fb04d91d98019b2a1f65
+timeCreated: 1506396228
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Big_Container_Close
+    100004: Big_Container_Close_Lod
+    100006: Big_Container_Close_Mesh
+    100008: Big_container_Demountable
+    100010: Big_Container_Door_Original_Lod
+    100012: Big_Container_Door_Original_mesh
+    100014: Big_Container_No_door
+    100016: Big_Container_No_door_lod
+    100018: Big_Container_No_door_mesh
+    100020: Big_Container_Open-1Door
+    100022: Big_Container_Open-1Door_Lod
+    100024: Big_Container_Open-1Door_Mesh
+    100026: Big_Container_open_all_Door
+    100028: Big_Container_open_all_Door_lod
+    100030: Big_Container_open_all_Door_Mesh
+    100032: Container_Big_Big_container_De_mesh
+    100034: Container_Big_De_lod
+    100036: Door_Original
+    400000: //RootNode
+    400002: Big_Container_Close
+    400004: Big_Container_Close_Lod
+    400006: Big_Container_Close_Mesh
+    400008: Big_container_Demountable
+    400010: Big_Container_Door_Original_Lod
+    400012: Big_Container_Door_Original_mesh
+    400014: Big_Container_No_door
+    400016: Big_Container_No_door_lod
+    400018: Big_Container_No_door_mesh
+    400020: Big_Container_Open-1Door
+    400022: Big_Container_Open-1Door_Lod
+    400024: Big_Container_Open-1Door_Mesh
+    400026: Big_Container_open_all_Door
+    400028: Big_Container_open_all_Door_lod
+    400030: Big_Container_open_all_Door_Mesh
+    400032: Container_Big_Big_container_De_mesh
+    400034: Container_Big_De_lod
+    400036: Door_Original
+    2300000: Big_Container_Close_Lod
+    2300002: Big_Container_Close_Mesh
+    2300004: Big_Container_Door_Original_Lod
+    2300006: Big_Container_Door_Original_mesh
+    2300008: Big_Container_No_door_lod
+    2300010: Big_Container_No_door_mesh
+    2300012: Big_Container_Open-1Door_Lod
+    2300014: Big_Container_Open-1Door_Mesh
+    2300016: Big_Container_open_all_Door_lod
+    2300018: Big_Container_open_all_Door_Mesh
+    2300020: Container_Big_Big_container_De_mesh
+    2300022: Container_Big_De_lod
+    3300000: Big_Container_Close_Lod
+    3300002: Big_Container_Close_Mesh
+    3300004: Big_Container_Door_Original_Lod
+    3300006: Big_Container_Door_Original_mesh
+    3300008: Big_Container_No_door_lod
+    3300010: Big_Container_No_door_mesh
+    3300012: Big_Container_Open-1Door_Lod
+    3300014: Big_Container_Open-1Door_Mesh
+    3300016: Big_Container_open_all_Door_lod
+    3300018: Big_Container_open_all_Door_Mesh
+    3300020: Container_Big_Big_container_De_mesh
+    3300022: Container_Big_De_lod
+    4300000: Container_Big_Big_container_De_mesh
+    4300002: Container_Big_De_lod
+    4300004: Big_Container_No_door_lod
+    4300006: Big_Container_No_door_mesh
+    4300008: Big_Container_open_all_Door_lod
+    4300010: Big_Container_open_all_Door_Mesh
+    4300012: Big_Container_Close_Mesh
+    4300014: Big_Container_Close_Lod
+    4300016: Big_Container_Open-1Door_Mesh
+    4300018: Big_Container_Open-1Door_Lod
+    4300020: Big_Container_Door_Original_Lod
+    4300022: Big_Container_Door_Original_mesh
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
