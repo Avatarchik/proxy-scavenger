@@ -1,6 +1,8 @@
 fileFormatVersion: 2
-guid: b4c98dc24f881404cad2bed7fa5acbc6
-timeCreated: 1520960477
+guid: 05cefffb9d5ce4616953c09df817ab7f
+labels:
+- InventoryProPrefab
+timeCreated: 1521063295
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
