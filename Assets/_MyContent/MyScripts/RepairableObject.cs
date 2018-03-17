@@ -26,6 +26,12 @@ public enum RepairUnitPart {
 [RequireComponent(typeof(Trigger))]
 public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITriggerCallbacks {
 
+	public GameObject Anchor;
+	public GameObject WiresAnchor;
+	public GameObject PowerAnchor;
+	public GameObject CoolantAnchor;
+	public GameObject windowToAnchor;
+
 	[BoxGroup("Visual Indicator Objects")]
 	public GameObject visualWorkingIndicator;
 	[BoxGroup("Visual Indicator Objects")]
@@ -154,6 +160,12 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	}
 
 	public bool OnTriggerUsed(Player player){
+
+		var windowAnchor = windowToAnchor.GetComponent<UItoWorldAnchor>();
+		//windowAnchor.objectToFollow = Anchor.transform;
+		windowAnchor.wiresToFollow = WiresAnchor.transform;
+		windowAnchor.powerToFollow = PowerAnchor.transform;
+		windowAnchor.coolantToFollow = CoolantAnchor.transform;
 
 		_collection.OnRemovedItem += OnItemRemoved;
 		_collection.OnAddedItem += OnItemAdded;
