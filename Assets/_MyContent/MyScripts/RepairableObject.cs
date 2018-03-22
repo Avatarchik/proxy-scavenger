@@ -32,6 +32,10 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	public GameObject CoolantAnchor;
 	public GameObject windowToAnchor;
 
+	public bool ItemAdjusted = false;
+
+	public bool ObjectRepaired = false;
+
 	[BoxGroup("Visual Indicator Objects")]
 	public GameObject visualWorkingIndicator;
 	[BoxGroup("Visual Indicator Objects")]
@@ -80,6 +84,10 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		foreach(RepairableUnitPart r in RepairableParts){
 			
 			r.init();
+
+			Debug.Log(r.visualItemBrokenItem.transform.localPosition + " broken local position");
+			Debug.Log(r.visualItemWorkingItem.transform.localPosition + " working local position");
+
 			if(r.partState == RepairUnitPartState.Broken){
 				r.currentItem = r.GetBrokenItem();
 			} else if (r.partState == RepairUnitPartState.Working){
@@ -101,6 +109,42 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		FunctionalityCheck();
 	}
 
+	void Update(){
+		if(!ItemAdjusted){
+			AdjustItemPostions();
+		}
+	}
+
+	private void AdjustItemPostions(){
+		
+		foreach(RepairableUnitPart r in RepairableParts){
+			if(r.visualItemBrokenItem ){
+				if(r.visualItemBrokenItem.transform.localPosition != r.itemAnchor.transform.localPosition){
+					r.visualItemBrokenItem.transform.localPosition = r.itemAnchor.transform.localPosition;
+					r.visualItemBrokenItem.transform.localRotation = Quaternion.identity;
+
+					Debug.Log(r.visualItemBrokenItem.transform.localPosition + " Repair Box Main File - Local Position of broken item");
+				}
+			}
+			if(r.visualItemWorkingItem){
+				if(r.visualItemWorkingItem.transform.localPosition != r.itemAnchor.transform.localPosition){
+					r.visualItemWorkingItem.transform.localPosition = r.itemAnchor.transform.localPosition;
+					r.visualItemWorkingItem.transform.localRotation = Quaternion.identity;
+
+					Debug.Log(r.visualItemWorkingItem.transform.localPosition + " Repair Box Main File - Local Position of working item");
+				}
+			}
+			if(r.currentItemGO){
+				if(r.currentItemGO.transform.localPosition != r.itemAnchor.transform.localPosition){
+					r.currentItemGO.transform.localPosition = r.itemAnchor.transform.localPosition;
+					r.currentItemGO.transform.localRotation = Quaternion.identity;
+				}
+			}
+		}
+
+		ItemAdjusted = true;
+	}
+
 	private void OnItemRemoved(InventoryItemBase item, uint itemID, uint slot, uint amount){
 		foreach(RepairableUnitPart u in RepairableParts){
 			if(item == u.currentItem){
@@ -108,6 +152,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 			}
 		}
 		FunctionalityCheck();
+		ItemAdjusted = false;
 	}
 
 	private void OnItemAdded(IEnumerable<InventoryItemBase> items, uint amount, bool cameFromCollection){
@@ -115,6 +160,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 			r.currentItem = r.slot.item;
 		}
 		FunctionalityCheck();
+		ItemAdjusted = false;
 	}
 
 	private void OnItemSwapped(ItemCollectionBase i, uint u, ItemCollectionBase ii, uint uu){
@@ -123,6 +169,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 			r.currentItem = r.slot.item;
 		}
 		FunctionalityCheck();
+		ItemAdjusted = false;
 	}
 
 	private void FunctionalityCheck(){
@@ -139,9 +186,21 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 				Debug.Log(r.currentItem.ID + " - " + w.ID + " - " + b.ID + " current + working ID + broken ID");
 				if(r.currentItem.ID == w.ID){
 					working++;
+					if(r.currentItemGO != null){
+						r.DestroyOffUnitPart();
+					}
 					r.Working();
 				} else if (r.currentItem.ID == b.ID){
+					if(r.currentItemGO != null){
+						r.DestroyOffUnitPart();
+					}
 					r.Broken();
+				} else if (r.currentItem.ID != w.ID && r.currentItem.ID != b.ID){
+					r.None();
+					if(r.currentItemGO != null){
+						r.DestroyOffUnitPart();
+					}
+					r.SetOffUnitPart();
 				} else {
 					r.None();
 				}
@@ -153,9 +212,13 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		if(numberOfParts == working){
 			visualWorkingIndicator.SetActive(true);
 			visualBrokenIndicator.SetActive(false);
+			ObjectRepaired = true;
+
 		} else {
 			visualWorkingIndicator.SetActive(false);
 			visualBrokenIndicator.SetActive(true);
+			ObjectRepaired = false;
+
 		}
 	}
 
