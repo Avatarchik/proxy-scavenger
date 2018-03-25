@@ -21,15 +21,26 @@ public enum RepairUnitPart {
 	PowerUnit = 0,
 	WireUnit = 1,
 	CoolantUnit = 2,
+	MemoryUnit = 3,
+}
+
+public enum RepairUnitSlotPosition {
+	RepairUnitSlotPositionNone = 0,
+	RepairUnitSlotPositionA = 1,
+	RepairUnitSlotPositionB = 2,
+	RepairUnitSlotPositionC = 3,
+	RepairUnitSlotPositionD = 4,
+	RepairUnitSlotPositionE = 5,
+	RepairUnitSlotPositionF = 6,
 }
 
 [RequireComponent(typeof(Trigger))]
 public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITriggerCallbacks {
 
 	public GameObject Anchor;
-	public GameObject WiresAnchor;
-	public GameObject PowerAnchor;
-	public GameObject CoolantAnchor;
+	public GameObject PositionAAnchor;
+	public GameObject PositionBAnchor;
+	public GameObject PositionCAnchor;
 	public GameObject windowToAnchor;
 
 	public bool ItemAdjusted = false;
@@ -70,6 +81,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	private InventoryItemBase PowerUnitItem;
 	private InventoryItemBase WireUnitItem;
 	private InventoryItemBase CoolantUnitItem;
+	private InventoryItemBase MemoryUnitItem;
 
 	// Use this for initialization
 	void Awake () {
@@ -82,28 +94,31 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		int i = 0;
 
 		foreach(RepairableUnitPart r in RepairableParts){
-			
-			r.init();
 
-			Debug.Log(r.visualItemBrokenItem.transform.localPosition + " broken local position");
-			Debug.Log(r.visualItemWorkingItem.transform.localPosition + " working local position");
+			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+				r.init();
 
-			if(r.partState == RepairUnitPartState.Broken){
-				r.currentItem = r.GetBrokenItem();
-			} else if (r.partState == RepairUnitPartState.Working){
-				r.currentItem = r.GetWorkingItem();
-			} else {
-				r.currentItem = null;
+				Debug.Log(r.visualItemBrokenItem.transform.localPosition + " broken local position");
+				Debug.Log(r.visualItemWorkingItem.transform.localPosition + " working local position");
+
+				if(r.partState == RepairUnitPartState.Broken){
+					r.currentItem = r.GetBrokenItem();
+				} else if (r.partState == RepairUnitPartState.Working){
+					r.currentItem = r.GetWorkingItem();
+				} else {
+					r.currentItem = null;
+				}
+
+				if(r.currentItem != null){
+					r.currentItem = GameObject.Instantiate<InventoryItemBase>(r.currentItem);
+					r.currentItem.transform.SetParent(transform);
+					r.currentItem.gameObject.SetActive(false);
+					_items[i] = r.currentItem;
+				}
+				i++;
 			}
 
-			if(r.currentItem != null){
-				r.currentItem = GameObject.Instantiate<InventoryItemBase>(r.currentItem);
-				r.currentItem.transform.SetParent(transform);
-				r.currentItem.gameObject.SetActive(false);
-				_items[i] = r.currentItem;
-			}
 
-			i++;
 		}
 
 		FunctionalityCheck();
@@ -118,26 +133,28 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	private void AdjustItemPostions(){
 		
 		foreach(RepairableUnitPart r in RepairableParts){
-			if(r.visualItemBrokenItem ){
-				if(r.visualItemBrokenItem.transform.localPosition != r.itemAnchor.transform.localPosition){
-					r.visualItemBrokenItem.transform.localPosition = r.itemAnchor.transform.localPosition;
-					r.visualItemBrokenItem.transform.localRotation = Quaternion.identity;
+			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+				if(r.visualItemBrokenItem ){
+					if(r.visualItemBrokenItem.transform.localPosition != r.itemAnchor.transform.localPosition){
+						r.visualItemBrokenItem.transform.localPosition = r.itemAnchor.transform.localPosition;
+						r.visualItemBrokenItem.transform.localRotation = Quaternion.identity;
 
-					Debug.Log(r.visualItemBrokenItem.transform.localPosition + " Repair Box Main File - Local Position of broken item");
+						Debug.Log(r.visualItemBrokenItem.transform.localPosition + " Repair Box Main File - Local Position of broken item");
+					}
 				}
-			}
-			if(r.visualItemWorkingItem){
-				if(r.visualItemWorkingItem.transform.localPosition != r.itemAnchor.transform.localPosition){
-					r.visualItemWorkingItem.transform.localPosition = r.itemAnchor.transform.localPosition;
-					r.visualItemWorkingItem.transform.localRotation = Quaternion.identity;
+				if(r.visualItemWorkingItem){
+					if(r.visualItemWorkingItem.transform.localPosition != r.itemAnchor.transform.localPosition){
+						r.visualItemWorkingItem.transform.localPosition = r.itemAnchor.transform.localPosition;
+						r.visualItemWorkingItem.transform.localRotation = Quaternion.identity;
 
-					Debug.Log(r.visualItemWorkingItem.transform.localPosition + " Repair Box Main File - Local Position of working item");
+						Debug.Log(r.visualItemWorkingItem.transform.localPosition + " Repair Box Main File - Local Position of working item");
+					}
 				}
-			}
-			if(r.currentItemGO){
-				if(r.currentItemGO.transform.localPosition != r.itemAnchor.transform.localPosition){
-					r.currentItemGO.transform.localPosition = r.itemAnchor.transform.localPosition;
-					r.currentItemGO.transform.localRotation = Quaternion.identity;
+				if(r.currentItemGO){
+					if(r.currentItemGO.transform.localPosition != r.itemAnchor.transform.localPosition){
+						r.currentItemGO.transform.localPosition = r.itemAnchor.transform.localPosition;
+						r.currentItemGO.transform.localRotation = Quaternion.identity;
+					}
 				}
 			}
 		}
@@ -179,33 +196,39 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 
 		foreach(RepairableUnitPart r in RepairableParts){
-			numberOfParts ++;
-			if(r.currentItem != null){
-				InventoryItemBase w = r.workingInventoryItem.GetComponent<InventoryItemBase>();
-				InventoryItemBase b = r.brokenInventoryItem.GetComponent<InventoryItemBase>();
-				Debug.Log(r.currentItem.ID + " - " + w.ID + " - " + b.ID + " current + working ID + broken ID");
-				if(r.currentItem.ID == w.ID){
-					working++;
-					if(r.currentItemGO != null){
-						r.DestroyOffUnitPart();
+			
+			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+				numberOfParts ++;
+				if(r.currentItem != null){
+					InventoryItemBase w = r.workingInventoryItem.GetComponent<InventoryItemBase>();
+					InventoryItemBase b = r.brokenInventoryItem.GetComponent<InventoryItemBase>();
+					Debug.Log(r.currentItem.ID + " - " + w.ID + " - " + b.ID + " current + working ID + broken ID");
+					if(r.currentItem.ID == w.ID){
+						working++;
+						if(r.currentItemGO != null){
+							r.DestroyOffUnitPart();
+						}
+						r.Working();
+					} else if (r.currentItem.ID == b.ID){
+						if(r.currentItemGO != null){
+							r.DestroyOffUnitPart();
+						}
+						r.Broken();
+					} else if (r.currentItem.ID != w.ID && r.currentItem.ID != b.ID){
+						Debug.Log("r.currentItem.ID != w.ID or b.IDictionary");
+						r.None();
+						if(r.currentItemGO != null){
+							r.DestroyOffUnitPart();
+						}
+						r.SetOffUnitPart();
+					} else {
+						Debug.Log("r.None() being called");
+						r.None();
 					}
-					r.Working();
-				} else if (r.currentItem.ID == b.ID){
-					if(r.currentItemGO != null){
-						r.DestroyOffUnitPart();
-					}
-					r.Broken();
-				} else if (r.currentItem.ID != w.ID && r.currentItem.ID != b.ID){
-					r.None();
-					if(r.currentItemGO != null){
-						r.DestroyOffUnitPart();
-					}
-					r.SetOffUnitPart();
-				} else {
-					r.None();
 				}
 			} else {
-				r.None();
+				Debug.Log("r.None() on slot position none");
+				//r.None();
 			}
 		}
 
@@ -226,16 +249,18 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 		var windowAnchor = windowToAnchor.GetComponent<UItoWorldAnchor>();
 		//windowAnchor.objectToFollow = Anchor.transform;
-		windowAnchor.wiresToFollow = WiresAnchor.transform;
-		windowAnchor.powerToFollow = PowerAnchor.transform;
-		windowAnchor.coolantToFollow = CoolantAnchor.transform;
+		windowAnchor.positionAToFollow = PositionAAnchor.transform;
+		windowAnchor.positionBToFollow = PositionBAnchor.transform;
+		windowAnchor.positionCToFollow = PositionCAnchor.transform;
 
 		_collection.OnRemovedItem += OnItemRemoved;
 		_collection.OnAddedItem += OnItemAdded;
 		_collection.OnSwappedItems += OnItemSwapped;
 
 		foreach(RepairableUnitPart ru in RepairableParts){
-			_collection.SetItem(ru.slot.index, ru.currentItem, true);
+			if(ru.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+				_collection.SetItem(ru.slot.index, ru.currentItem, true);
+			}
 		}
 
 		_syncer = new CollectionToArraySyncer(_collection, items);

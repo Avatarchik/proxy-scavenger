@@ -6,14 +6,14 @@ public class UItoWorldAnchor : MonoBehaviour {
 
 	public RectTransform targetCanvas;
 	public Transform objectToFollow;
-	public Transform wiresToFollow;
-	public Transform powerToFollow;
-	public Transform coolantToFollow;
+	public Transform positionAToFollow;
+	public Transform positionBToFollow;
+	public Transform positionCToFollow;
 
 	public RectTransform UI;
-	public RectTransform WiresUI;
-	public RectTransform PowerUI;
-	public RectTransform CoolantUI;
+	public RectTransform PostionAUI;
+	public RectTransform PositionBUI;
+	public RectTransform PositionCUI;
 
 	public Camera MainCam;
 	public Vector3 ScreenPoint;
@@ -23,9 +23,9 @@ public class UItoWorldAnchor : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		RepositionUI(wiresToFollow, WiresUI);
-		RepositionUI(powerToFollow, PowerUI);
-		RepositionUI(coolantToFollow, CoolantUI);
+		RepositionUI(positionAToFollow, PostionAUI);
+		RepositionUI(positionBToFollow, PositionBUI);
+		RepositionUI(positionCToFollow, PositionCUI);
 	}
 
 	private void RepositionUI(Transform objToFollow, RectTransform anchoredUI)

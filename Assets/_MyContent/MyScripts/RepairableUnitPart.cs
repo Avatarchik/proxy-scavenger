@@ -9,97 +9,75 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public partial class RepairableUnitPart {
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Parenting Object")]
 	public GameObject parentObject;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Type and State")]
 	public RepairUnitPart repairablePart;
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Type and State")]
 	public RepairUnitPartState partState;
+	[FoldoutGroup(" Repairable Unit Part")]
+	public RepairUnitSlotPosition unitSlotPosition;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Inventory Item Reference")]
 	public GameObject workingInventoryItem;
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Inventory Item Reference")]
 	public GameObject brokenInventoryItem;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Item Anchors")]
 	public GameObject itemAnchor;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Visual Item Objects")]
-	public GameObject visualItemBroken;
-	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Visual Item Objects")]
-	public GameObject visualItemWorking;
-
-	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Visual Item Items")]
 	public GameObject visualItemBrokenItem;
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Visual Item Items")]
 	public GameObject visualItemWorkingItem;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("UI Window Slot")]
 	public ItemCollectionSlotUI slot;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Current Inventory Item")]
 	public GameObject currentItemGO;
 
 	[FoldoutGroup(" Repairable Unit Part")]
-	//[BoxGroup("Current Inventory Item")]
 	public InventoryItemBase currentItem;
 
 	public void init(){
-		GameObject b = MakeVisualObject(brokenInventoryItem);
-		GameObject w = MakeVisualObject(workingInventoryItem);
+		if(unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+			GameObject b = MakeVisualObject(brokenInventoryItem);
+			GameObject w = MakeVisualObject(workingInventoryItem);
 
-		visualItemBrokenItem = b;
-		visualItemWorkingItem = w;
+			visualItemBrokenItem = b;
+			visualItemWorkingItem = w;
 
-		switch(partState){
-		case RepairUnitPartState.None:
-			None();
-			break;
-		case RepairUnitPartState.Broken:
-			Broken();
-			break;
-		case RepairUnitPartState.Working:
-			Working();
-			break;
+			switch(partState){
+			case RepairUnitPartState.None:
+				None();
+				break;
+			case RepairUnitPartState.Broken:
+				Broken();
+				break;
+			case RepairUnitPartState.Working:
+				Working();
+				break;
+			}
 		}
 	}
 
 	public void Working(){
-		visualItemBroken.SetActive(false);
-		//visualItemWorking.SetActive(true);
-		visualItemWorking.SetActive(false);
-
 		visualItemWorkingItem.SetActive(true);
 		visualItemBrokenItem.SetActive(false);
 	}
 
 	public void Broken(){
-		//visualItemBroken.SetActive(true);
-		visualItemWorking.SetActive(false);
-		visualItemBroken.SetActive(false);
-
 		visualItemBrokenItem.SetActive(true);
 		visualItemWorkingItem.SetActive(false);
 	}
 
 	public void None(){
-		visualItemBroken.SetActive(false);
-		visualItemWorking.SetActive(false);
-
+		
+		Debug.Log("None called fully");
 		visualItemBrokenItem.SetActive(false);
 		visualItemWorkingItem.SetActive(false);
+		
 	}
 
 	public void SetOffUnitPart(){
@@ -146,9 +124,7 @@ public partial class RepairableUnitPart {
 
 		i.transform.localPosition = lp;
 		i.transform.localRotation = q;
-
-		Debug.Log(i.transform.position + " i - position : " + i.transform.rotation + " i - rotation : " + i.transform.localScale + " i - localScale");
-		Debug.Log(i.transform.localPosition + " i - LocalPosition : " + i.transform.localRotation + " i - LocalRotation : " + i.transform.localScale + " i - LocalScale");
+				
 		return i;
 	}
 }

@@ -209,6 +209,7 @@ public class GrabObjectSlide : vp_Interactable {
 		Vector3 lerpPos;
 		lerpPos = Vector3.Lerp(m_Transform.position, (m_Camera.Transform.position - m_CurrentSwayForce)+
 			(m_Camera.Transform.right * m_TempCarryingOffset.x) +
+			(m_Camera.Transform.up * m_Transform.localScale.y * m_TempCarryingOffset.y) +
 			(m_Camera.Transform.forward * m_TempCarryingOffset.z), 
 			((m_FetchProgress < 1.0f) ? m_FetchProgress : (Time.deltaTime * (Stiffness * 60.0f))));
 		initLerpPos = lerpPos;

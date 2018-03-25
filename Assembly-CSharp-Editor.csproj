@@ -346,6 +346,7 @@
      <Compile Include="Assets\Female_mannequin\PostProcessing\Editor\Utils\EditorResources.cs" />
      <Compile Include="Assets\Female_mannequin\PostProcessing\Editor\Utils\FxStyles.cs" />
      <Compile Include="Assets\Female_mannequin\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
+     <Compile Include="Assets\IconCreator\Editor\IconCreatorEditor.cs" />
      <Compile Include="Assets\ootii\Framework_v1\Code\Utilities\Debug\Editor\LogEditor.cs" />
      <Compile Include="Assets\ootii\MessageDispatcher\Code\Messages\Editor\MessageDispatcherEditorSymbol.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_AboutBox.cs" />

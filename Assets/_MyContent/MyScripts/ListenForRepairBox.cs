@@ -6,7 +6,8 @@ public class ListenForRepairBox : MonoBehaviour {
 
 	public RepairableObject[] RepairBox;
 	public bool Repaired = false;
-	public GameObject Light;
+	public IndicatorObjectController indicator;
+	//public GameObject Light;
 
 	// Use this for initialization
 	void Start () {
@@ -24,11 +25,13 @@ public class ListenForRepairBox : MonoBehaviour {
 		}
 		if(i == o){
 			Repaired = true;
-			Light.SetActive(true);
+			indicator.SetState(IndicatorState.Positive);
+			//Light.SetActive(true);
 			Debug.Log("Object Fully Repaired!");
 		} else {
 			Repaired = false;
-			Light.SetActive(false);
+			indicator.SetState(IndicatorState.Negative);
+			//Light.SetActive(false);
 		}
 	}
 }

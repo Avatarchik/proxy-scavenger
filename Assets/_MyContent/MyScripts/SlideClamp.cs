@@ -19,7 +19,7 @@ public class SlideClamp : MonoBehaviour {
 	void Update () {
 		var pos = transform.position;
 		pos.x =  Mathf.Clamp(transform.position.x, initPosition.x + offsetA, initPosition.x + offsetB);
-		Debug.Log(Mathf.Clamp(transform.position.x, initPosition.x + offsetA, initPosition.x + offsetB) + " Clamped x transform?");
+		//Debug.Log(Mathf.Clamp(transform.position.x, initPosition.x + offsetA, initPosition.x + offsetB) + " Clamped x transform?");
 		pos.y = initPosition.y;
 		pos.z = initPosition.z;
 		transform.position = pos;
