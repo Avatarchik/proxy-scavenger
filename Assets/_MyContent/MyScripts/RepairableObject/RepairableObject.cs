@@ -37,10 +37,10 @@ public enum RepairUnitSlotPosition {
 [RequireComponent(typeof(Trigger))]
 public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITriggerCallbacks {
 
-	public GameObject Anchor;
 	public GameObject PositionAAnchor;
 	public GameObject PositionBAnchor;
 	public GameObject PositionCAnchor;
+
 	public GameObject windowToAnchor;
 
 	public bool ItemAdjusted = false;
@@ -53,6 +53,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	public GameObject visualBrokenIndicator;
 
 	public RepairableUnitPart[] RepairableParts;
+	public ComponentLayout[] ComponentLayouts;
 
 	[SerializeField]
 	private InventoryItemBase[] _items = new InventoryItemBase[3];
@@ -78,10 +79,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	private UIWindow window;
 	private bool windowShown = false;
 
-	private InventoryItemBase PowerUnitItem;
-	private InventoryItemBase WireUnitItem;
-	private InventoryItemBase CoolantUnitItem;
-	private InventoryItemBase MemoryUnitItem;
+	private ComponentPart[] ComponentParts;
 
 	// Use this for initialization
 	void Awake () {
@@ -93,13 +91,56 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 		int i = 0;
 
+		GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
+		ComponentManager cm = gm.GetComponentInChildren<ComponentManager>();
+		ComponentParts = cm.GetComponentParts();
+
+		int NumberOfComponentParts = 0;
+		foreach(ComponentPart cp in ComponentParts){
+			NumberOfComponentParts ++;
+		}
+
+		int HighestNumberOfItems = 0;
+		foreach(ComponentLayout cl in ComponentLayouts){
+			if(cl.SlotCount > HighestNumberOfItems){
+				HighestNumberOfItems = cl.SlotCount;
+			}
+		}
+
+		int rrPartCount = UnityEngine.Random.Range(0,(HighestNumberOfItems + 1));
+		Debug.Log("Random Range for picking how many repair items are in the unit : " + rrPartCount);
+		rrPartCount = 3; // setting it to 3 just for now until more layouts are made.
+
+		RepairableParts = new RepairableUnitPart[rrPartCount];
+		//RepairableUnitPart[] rp = new RepairableUnitPart[rrPartCount];
+
+		for(int l = 0; l < rrPartCount; l++){
+			RepairableParts[l] = new RepairableUnitPart();
+
+			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts + 1);
+			int RandomWorkingLevel = UnityEngine.Random.Range(0,3);
+			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
+
+			RepairableParts[l].Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[l].ItemAnchor, ComponentLayouts[0].Anchors[l].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
+		}
+		/*
+		int RepairableUnitPartCounter = 0;
+		foreach(RepairableUnitPart rup in RepairableParts){
+			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts);
+			int RandomWorkingLevel = UnityEngine.Random.Range(0,3);
+			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
+			Debug.Log("Random Repair Unit Part State : " + rups);
+			Debug.Log("Repairable Unit Part [" + RepairableUnitPartCounter + "] - " + rup);
+			if(rup == null){
+				Debug.Log("rup is null");
+			}
+			rup.Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[RepairableUnitPartCounter].ItemAnchor, ComponentLayouts[0].Anchors[RepairableUnitPartCounter].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
+			RepairableUnitPartCounter++;
+		}
+		*/
+
 		foreach(RepairableUnitPart r in RepairableParts){
-
-			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
 				r.init();
-
-				Debug.Log(r.visualItemBrokenItem.transform.localPosition + " broken local position");
-				Debug.Log(r.visualItemWorkingItem.transform.localPosition + " working local position");
 
 				if(r.partState == RepairUnitPartState.Broken){
 					r.currentItem = r.GetBrokenItem();
@@ -116,9 +157,6 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 					_items[i] = r.currentItem;
 				}
 				i++;
-			}
-
-
 		}
 
 		FunctionalityCheck();
@@ -133,7 +171,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 	private void AdjustItemPostions(){
 		
 		foreach(RepairableUnitPart r in RepairableParts){
-			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+			
 				if(r.visualItemBrokenItem ){
 					if(r.visualItemBrokenItem.transform.localPosition != r.itemAnchor.transform.localPosition){
 						r.visualItemBrokenItem.transform.localPosition = r.itemAnchor.transform.localPosition;
@@ -156,7 +194,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 						r.currentItemGO.transform.localRotation = Quaternion.identity;
 					}
 				}
-			}
+
 		}
 
 		ItemAdjusted = true;
@@ -197,7 +235,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 		foreach(RepairableUnitPart r in RepairableParts){
 			
-			if(r.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
+
 				numberOfParts ++;
 				if(r.currentItem != null){
 					InventoryItemBase w = r.workingInventoryItem.GetComponent<InventoryItemBase>();
@@ -225,10 +263,10 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 						Debug.Log("r.None() being called");
 						r.None();
 					}
-				}
+
 			} else {
 				Debug.Log("r.None() on slot position none");
-				//r.None();
+				r.None();
 			}
 		}
 
@@ -258,9 +296,9 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		_collection.OnSwappedItems += OnItemSwapped;
 
 		foreach(RepairableUnitPart ru in RepairableParts){
-			if(ru.unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
-				_collection.SetItem(ru.slot.index, ru.currentItem, true);
-			}
+			
+			_collection.SetItem(ru.slot.index, ru.currentItem, true);
+			
 		}
 
 		_syncer = new CollectionToArraySyncer(_collection, items);

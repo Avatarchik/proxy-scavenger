@@ -23,9 +23,15 @@ public class UItoWorldAnchor : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		RepositionUI(positionAToFollow, PostionAUI);
-		RepositionUI(positionBToFollow, PositionBUI);
-		RepositionUI(positionCToFollow, PositionCUI);
+		if(positionAToFollow != null){
+			RepositionUI(positionAToFollow, PostionAUI);
+		}
+		if(positionBToFollow != null){
+			RepositionUI(positionBToFollow, PositionBUI);
+		}
+		if(positionCToFollow != null){
+			RepositionUI(positionCToFollow, PositionCUI);
+		}
 	}
 
 	private void RepositionUI(Transform objToFollow, RectTransform anchoredUI)

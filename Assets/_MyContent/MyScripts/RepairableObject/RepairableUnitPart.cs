@@ -15,13 +15,16 @@ public partial class RepairableUnitPart {
 	public RepairUnitPart repairablePart;
 	[FoldoutGroup(" Repairable Unit Part")]
 	public RepairUnitPartState partState;
-	[FoldoutGroup(" Repairable Unit Part")]
-	public RepairUnitSlotPosition unitSlotPosition;
 
 	[FoldoutGroup(" Repairable Unit Part")]
 	public GameObject workingInventoryItem;
 	[FoldoutGroup(" Repairable Unit Part")]
 	public GameObject brokenInventoryItem;
+
+	[FoldoutGroup(" Repairable Unit Part")]
+	public GameObject mountingItem;
+	[FoldoutGroup(" Repairable Unit Part")]
+	public GameObject mountingItemGO;
 
 	[FoldoutGroup(" Repairable Unit Part")]
 	public GameObject itemAnchor;
@@ -40,15 +43,32 @@ public partial class RepairableUnitPart {
 	[FoldoutGroup(" Repairable Unit Part")]
 	public InventoryItemBase currentItem;
 
+
+	public void Setup(GameObject parent, RepairUnitPart part, RepairUnitPartState state, GameObject workingItem, GameObject brokenItem, GameObject anchor, ItemCollectionSlotUI slotUI, GameObject mount)
+	{
+		parentObject = parent;
+		repairablePart = part;
+		partState = state;
+		workingInventoryItem = workingItem;
+		brokenInventoryItem = brokenItem;
+		itemAnchor = anchor;
+		slot = slotUI;
+		mountingItem = mount;
+	}
+
 	public void init(){
-		if(unitSlotPosition != RepairUnitSlotPosition.RepairUnitSlotPositionNone){
-			GameObject b = MakeVisualObject(brokenInventoryItem);
-			GameObject w = MakeVisualObject(workingInventoryItem);
+		
+		GameObject b = MakeVisualObject(brokenInventoryItem);
+		GameObject w = MakeVisualObject(workingInventoryItem);
 
-			visualItemBrokenItem = b;
-			visualItemWorkingItem = w;
+		visualItemBrokenItem = b;
+		visualItemWorkingItem = w;
 
-			switch(partState){
+		mountingItemGO = GameObject.Instantiate(mountingItem,parentObject.transform);
+		mountingItemGO.transform.position = itemAnchor.transform.position;
+		mountingItemGO.transform.rotation = itemAnchor.transform.rotation;
+
+		switch(partState){
 			case RepairUnitPartState.None:
 				None();
 				break;
@@ -58,8 +78,8 @@ public partial class RepairableUnitPart {
 			case RepairUnitPartState.Working:
 				Working();
 				break;
-			}
 		}
+
 	}
 
 	public void Working(){
@@ -73,11 +93,11 @@ public partial class RepairableUnitPart {
 	}
 
 	public void None(){
-		
-		Debug.Log("None called fully");
 		visualItemBrokenItem.SetActive(false);
 		visualItemWorkingItem.SetActive(false);
-		
+		if(currentItemGO != null){
+			DestroyOffUnitPart();
+		}
 	}
 
 	public void SetOffUnitPart(){

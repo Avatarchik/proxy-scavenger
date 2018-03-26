@@ -1,0 +1,21 @@
+﻿using System.Collections.Generic;
+using Devdog.General.ThirdParty.UniLinq;
+using System.Text;
+using UnityEngine;
+using Devdog.General;
+using Devdog.InventoryPro;
+using Sirenix.OdinInspector;
+
+[System.Serializable]
+public partial class ComponentLayout {
+
+	[FoldoutGroup("Component Layout")]
+	public int SlotCount;
+
+	[FoldoutGroup("Component Layout")]
+	public int SlotLayoutVersion;
+
+	[FoldoutGroup("Component Layout")]
+	public ItemSlotAnchors[] Anchors;
+
+}

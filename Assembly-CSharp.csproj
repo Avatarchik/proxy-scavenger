@@ -104,9 +104,13 @@
      <Compile Include="Assets\_MyContent\MyScripts\IndicatorObjectController.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\ListenForRepairBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\MyInfoBox.cs" />
-     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject.cs" />
-     <Compile Include="Assets\_MyContent\MyScripts\RepairableUnitPart.cs" />
-     <Compile Include="Assets\_MyContent\MyScripts\RepairBoardCover.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ComponentLayout.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ComponentManager.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ComponentPart.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ItemSlotAnchors.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\RepairableObject.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\RepairableUnitPart.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\RepairBoardCover.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RodProjectile.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RollOverTrigger.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RoomController.cs" />
