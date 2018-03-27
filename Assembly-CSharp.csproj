@@ -51,6 +51,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\DoorHori.cs" />
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\DoorVert.cs" />
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\HoriDoorManager.cs" />
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\OTween.cs" />
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\ScrollTexture.cs" />
+     <Compile Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Scripts\VertDoorManager.cs" />
+     <Compile Include="Assets\_Barking_Dog\Common Scripts\Turn_Move.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_CustomMessages\HazardMessage.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_DialogueSystem\CustomDecision\IPlayerDecisionAndItemNode.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_DialogueSystem\CustomDecision\PlayerDecisionAndItem.cs" />
@@ -1548,6 +1555,7 @@
      <None Include="Assets\Female_mannequin\PostProcessing\Editor Resources\Monitors\WaveformRender.shader" />
      <None Include="Assets\Devdog\SciFiDesign\FirstVersion\Fonts\Michroma\License\OFL.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Standard\Input\InputDead.txt" />
+     <None Include="Assets\_Barking_Dog\_3D Scifi Base Vol 1\Shader\ForceField.shader" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Standard\Weapon\WeaponPistolOutOfControl.txt" />
      <None Include="Assets\Female_mannequin\PostProcessing\Editor Resources\Monitors\VectorscopeCompute.compute" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\AssaultRifle01\WeaponAssaultRifle01Zoom.txt" />
@@ -1717,6 +1725,7 @@
      <None Include="Assets\AmplifyBloom\Resources\BloomLib.cginc" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\Pistol01\WeaponPistol01Default.txt" />
      <None Include="Assets\DoTeam_Assets\Heavy Station Kit base\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
+     <None Include="Assets\_Barking_Dog\README - SETUP DOORS AND PROJECT.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\AssaultRifle01\WeaponAssaultRifle01Default.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Standard\FootFX\FootFXFixedTimeCrouch.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\Knife01\KnifeAttackToDownLeft.txt" />
