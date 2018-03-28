@@ -107,6 +107,10 @@
      <Compile Include="Assets\_MyContent\MyScripts\GameManager.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\GateOpenAutoClose.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\GrabObjectSlide.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\GeneratorBase.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\GeneratorUnit.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\HackingGameManager.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\UnlockBase.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\HalcyonLaser.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\IndicatorObjectController.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\ListenForRepairBox.cs" />
