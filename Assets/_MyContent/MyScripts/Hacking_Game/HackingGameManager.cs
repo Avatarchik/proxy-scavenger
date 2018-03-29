@@ -26,32 +26,79 @@ namespace mindler.hacking
 		[BoxGroup("Current Currency")]
 		public float AccruedCurrency = 0f;
 
+		[BoxGroup("Current Currency Text")]
+		public HackingTopBar TopBar;
+
+		[BoxGroup("Generator Objects")]
+		public GameObject GeneratorHolder;
+		[BoxGroup("Generator Objects")]
+		public GameObject GeneratorUI;
+		[BoxGroup("Generator Objects")]
+		public GameObject[] Generators;
+
+		[BoxGroup("Currency Generator Bases")]
+		public GeneratorBase[] CurrencyGeneratorBase;
+
 		[BoxGroup("Currency Generators")]
 		public GeneratorUnit[] CurrencyGenerators;
 
 		public bool HackingRunning = false;
+		public bool HackLoopRunning = false;
 
 		// Use this for initialization
 		void Start () {
-			//StartHackingGame();
+
+			int p = CurrencyGeneratorBase.Length;
+			Generators = new GameObject[p];
+			CurrencyGenerators = new GeneratorUnit[p];
+
+			int t = 0;
+			foreach(GeneratorBase i in CurrencyGeneratorBase){
+				GameObject g = GameObject.Instantiate(GeneratorUI, GeneratorHolder.transform);
+				GeneratorUnit gu = g.GetComponent<GeneratorUnit>();
+				gu.baseObject = i;
+				gu.HGM = this;
+				if(t == 0){
+					gu.Locked = false;
+				}
+				gu.init();
+
+				Generators[t] = g;
+				CurrencyGenerators[t] = gu;
+
+				t++;
+			}
+			/*
 			foreach(GeneratorUnit g in CurrencyGenerators){
 				g.init();
 			}
+			*/
+			TopBar.UpdateCurrentCurrency(0f);
+			StartCoroutine("StartHackingGame");
+
 		}
-		
+
+
 		// Update is called once per frame
 		void Update () {
+			/*
 			if(HackingRunning){
 				GameUpdate();
+				TopBar.UpdateCurrentCurrency(AccruedCurrency);
 			}
+			*/
+
 		}
 
-		public void StartHackingGame(){
-			HackingRunning = true;
 
+		IEnumerator StartHackingGame()
+		{
+			
 			while(HackingRunning)
 			{
 				GameUpdate();
+				TopBar.UpdateCurrentCurrency(AccruedCurrency);
+				yield return null;
 			}
 		}
 
@@ -59,6 +106,8 @@ namespace mindler.hacking
 			foreach(GeneratorUnit g in CurrencyGenerators){
 				if(g.IsThisLocked() == false){
 					g.GeneratorUpdate();
+				} else {
+					g.CheckPurchaseable();
 				}
 			}
 		}
