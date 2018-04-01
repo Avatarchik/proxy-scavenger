@@ -11,9 +11,9 @@ namespace mindler.hacking
 
 		[BoxGroup("UI Elements")]
 		public Text CurrentCurrencyText;
-		
+
 		public void UpdateCurrentCurrency(float value){
-			CurrentCurrencyText.text = value.ToString();
+			CurrentCurrencyText.text = value.ToString("N");
 		}
 	}
 }

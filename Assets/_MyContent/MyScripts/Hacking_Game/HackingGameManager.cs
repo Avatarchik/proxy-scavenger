@@ -10,7 +10,7 @@ public enum GeneratorType {
 	Nanocite = 3,
 	Nentite = 4,
 	NentiteController = 5,
-	Nentitium = 6,
+	Nentium = 6,
 }
 
 public enum HackingUnlock {
@@ -74,7 +74,9 @@ namespace mindler.hacking
 			}
 			*/
 			TopBar.UpdateCurrentCurrency(0f);
-			StartCoroutine("StartHackingGame");
+			if(HackingRunning){
+				StartCoroutine("StartHackingGame");
+			}
 
 		}
 
@@ -97,12 +99,18 @@ namespace mindler.hacking
 			while(HackingRunning)
 			{
 				GameUpdate();
+
 				TopBar.UpdateCurrentCurrency(AccruedCurrency);
 				yield return null;
 			}
 		}
 
 		public void GameUpdate(){
+			if(!HackingRunning){
+				StopHack();
+				return;
+			}
+
 			foreach(GeneratorUnit g in CurrencyGenerators){
 				if(g.IsThisLocked() == false){
 					g.GeneratorUpdate();
@@ -114,11 +122,16 @@ namespace mindler.hacking
 
 		public void AddCurrency(float a){
 			AccruedCurrency += a;
+			double d = System.Math.Round(AccruedCurrency, 2);
+			AccruedCurrency = (float)d;
 		}
 
 		public void RemoveCurrency(float r){
 			if(r <= AccruedCurrency){
 				AccruedCurrency -= r;
+
+				double d = System.Math.Round(AccruedCurrency, 2);
+				AccruedCurrency = (float)d;
 			}
 		}
 
@@ -126,8 +139,20 @@ namespace mindler.hacking
 			return AccruedCurrency;
 		}
 
+		public void StartHack(){
+			StartCoroutine("StartHackingGame");
+		}
+
+		public void StopHack(){
+			HackingRunning = false;
+		}
+
 		public void Reset(){
+			HackingRunning = false;
 			AccruedCurrency = 0f;
+			foreach(GeneratorUnit g in CurrencyGenerators){
+				g.Reset();
+			}
 		}
 	}
 }

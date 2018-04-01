@@ -109,6 +109,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\GrabObjectSlide.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\GeneratorBase.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\GeneratorUnit.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\HackableBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\HackingGameManager.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\HackingTopBar.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\UnlockBase.cs" />

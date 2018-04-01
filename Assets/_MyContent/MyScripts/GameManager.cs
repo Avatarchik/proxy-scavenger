@@ -4,6 +4,8 @@ using UnityEngine;
 using com.ootii.Messages;
 using Devdog.General;
 using Devdog.InventoryPro;
+using Devdog.General.ThirdParty.UniLinq;
+using Devdog.General.UI;
 using Sirenix.OdinInspector;
 using DunGen;
 using UnityEngine.UI;
@@ -102,6 +104,13 @@ public class GameManager : MonoBehaviour {
 	[BoxGroup("Dungeon Info")]
 	public DungenCharacter DungenCharacter;
 
+	[BoxGroup("Character Inventory Info")]
+	public CharacterUI CharacterInventoryUI;
+	[BoxGroup("Character Inventory Info")]
+	public InventoryItemBase CurrentEquippedItem;
+	[BoxGroup("Character Inventory Info")]
+	public uint EquipmentSlotUint;
+
 	[BoxGroup("Map")]
 	public GameObject MapCamera;
 	[BoxGroup("Map")]
@@ -157,11 +166,73 @@ public class GameManager : MonoBehaviour {
 		//HeatDungeon.SetActive(false);
 
 		MessageDispatcher.AddListener("Hazard", Hazards, true);
-		MessageDispatcher.AddListener("Hazards", Hazard, true);
+		MessageDispatcher.AddListener("Hazards", Hazard, true); 
+
+		foreach(EquippableSlot i in CharacterInventoryUI.equippableSlots){
+			if(i.name == "Equipment Slot"){
+				EquipmentSlotUint = i.index;
+			}
+		}
+
+		CharacterInventoryUI.OnAddedItem += ItemAdded;
+		CharacterInventoryUI.OnRemovedItem += ItemRemoved;
+		CharacterInventoryUI.OnSwappedItems += ItemSwapped;
 
 		DungenCharacter.OnTileChanged += OnCharacterTileChanged;
 
 		StartCoroutine ("UpdateTick");
+	}
+
+	private void ItemAdded(IEnumerable<InventoryItemBase> items, uint u, bool b){
+		foreach(EquippableSlot i in CharacterInventoryUI.equippableSlots){
+			if(i.name == "Equipment Slot"){
+				CurrentEquippedItem = i.slot.item;
+				var bc = CurrentEquippedItem.gameObject.GetComponents<Collider>();
+				foreach(Collider box in bc){
+					box.enabled = false;
+				}
+				var cc = CurrentEquippedItem.gameObject.GetComponentsInChildren<Collider>();
+				foreach(Collider ccc in cc){
+					ccc.enabled = false;
+				}
+			}
+		}
+	}
+
+	private void ItemRemoved(InventoryItemBase i, uint ID, uint slot, uint amount){
+		InventoryItemBase c = (InventoryItemBase)CurrentEquippedItem;
+		if(ID == EquipmentSlotUint && c == i){
+			CurrentEquippedItem = null;
+			var bc = CurrentEquippedItem.gameObject.GetComponents<BoxCollider>();
+			foreach(BoxCollider box in bc){
+				//box.enabled = true;
+			}
+		}
+	}
+
+	private void ItemSwapped(ItemCollectionBase fromCollection, uint fromSlot, ItemCollectionBase toCollection, uint toSlot){
+		foreach(EquippableSlot i in CharacterInventoryUI.equippableSlots){
+			if(i.name == "Equipment Slot"){
+				if(i.slot.item != null){
+					CurrentEquippedItem = i.slot.item;
+					var bc = CurrentEquippedItem.gameObject.GetComponents<Collider>();
+					foreach(Collider box in bc){
+						box.enabled = false;
+					}
+					var cc = CurrentEquippedItem.gameObject.GetComponentsInChildren<Collider>();
+					foreach(Collider ccc in cc){
+						ccc.enabled = false;
+					}
+				} else {
+					CurrentEquippedItem = null;
+				}
+			}
+		}
+	}
+
+	public void RemoveCurrentItem(){
+		ItemCollectionBase icb = CharacterInventoryUI;
+		uint itemsRemoved = icb.RemoveItem(CurrentEquippedItem.ID, 1); // (0) ItemID, (1) Amount of items to remove
 	}
 
 	IEnumerator UpdateTick()

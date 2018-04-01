@@ -39,25 +39,22 @@ namespace mindler.hacking
 		[BoxGroup("Unlock Cost")]
 		public float unlockCost = 1000f;
 
+		[BoxGroup("Locked")]
+		public bool Lock = true;
 
 		//[BoxGroup("Graduated Time Multiplier")]
-		//public Vector2[] GeneratorGraduatedTimeMultiplier;
-
-		//[BoxGroup("Graduated Cost Multiplier")]
-		//public Vector2[] GeneratorGraduatedCostMultiplier;
-
-		//[BoxGroup("Graduated Time Multiplier")]
+		[System.NonSerialized]
 		private Vector3[] GraduatedTimeMultiplier = new Vector3[11]{new Vector3(1f,1f,0f),
-			new Vector3(10f,0.95f, 0f),
-			new Vector3(20f,0.96f, 0f),
+			new Vector3(10f,0.9f, 0f),
+			new Vector3(20f,0.75f, 0f),
 			new Vector3(30f,0.97f, 0f),
 			new Vector3(40f,0.98f, 0f),
-			new Vector3(50f,0.99f, 0f),
-			new Vector3(60f,0.995f, 0f),
-			new Vector3(70f,0.996f, 0f),
-			new Vector3(80f,0.997f, 0f),
-			new Vector3(90f,0.998f, 0f),
-			new Vector3(100f,0.999f, 0f)};
+			new Vector3(50f,0.75f, 0f),
+			new Vector3(60f,0.95f, 0f),
+			new Vector3(70f,0.96f, 0f),
+			new Vector3(80f,0.97f, 0f),
+			new Vector3(90f,0.98f, 0f),
+			new Vector3(100f,0.75f, 0f)};
 
 		public Vector3[] GraduatedTimeMultipliers
 		{
@@ -66,18 +63,19 @@ namespace mindler.hacking
 		}
 
 		//[BoxGroup("Graduated Cost Multiplier")]
-		private Vector3[] GraduatedCostMultiplier = new Vector3[12]{new Vector3(1f,1.13f,0f),
-			new Vector3(10f,1.14f, 0f),
-			new Vector3(20f,1.15f, 0f),
-			new Vector3(30f,1.16f, 0f),
-			new Vector3(40f,1.17f, 0f),
-			new Vector3(50f,1.18f, 0f),
-			new Vector3(60f,1.19f, 0f),
-			new Vector3(70f,1.2f, 0f),
-			new Vector3(80f,1.21f, 0f),
-			new Vector3(90f,1.22f, 0f),
-			new Vector3(100f,1.23f, 0f),
-			new Vector3(110f,1.24f, 0f)};
+		[System.NonSerialized]
+		private Vector3[] GraduatedCostMultiplier = new Vector3[12]{new Vector3(1f,1.2f,0f),
+			new Vector3(3f,1.3f, 0f),
+			new Vector3(10f,1.4f, 0f),
+			new Vector3(20f,1.55f, 0f),
+			new Vector3(30f,1.65f, 0f),
+			new Vector3(40f,1.7f, 0f),
+			new Vector3(50f,1.8f, 0f),
+			new Vector3(60f,1.9f, 0f),
+			new Vector3(70f,2f, 0f),
+			new Vector3(80f,2.5f, 0f),
+			new Vector3(90f,2.8f, 0f),
+			new Vector3(100f,3f, 0f)};
 
 		public Vector3[] GraduatedCostMultipliers
 		{
@@ -86,28 +84,34 @@ namespace mindler.hacking
 		}
 
 		//[BoxGroup("Graduated Revenue Multiplier")]
-		private Vector3[] GraduatedRevenueMultiplier = new Vector3[22]{new Vector3(1f,2.0f,0f),
+		[System.NonSerialized]
+		private Vector3[] GraduatedRevenueMultiplier = new Vector3[27]{new Vector3(1f,2.0f,0f),
 			new Vector3(2f,1.5f, 0f),
 			new Vector3(3f,1.3f, 0f),
 			new Vector3(4f,1.2821f, 0f),
 			new Vector3(5f,1.2f, 0f),
 			new Vector3(9f,2f, 0f),
-			new Vector3(10f,1.18f, 0f),
+			new Vector3(10f,1.1f, 0f),
 			new Vector3(19f,1.5f, 0f),
-			new Vector3(20f,1.17f, 0f),
-			new Vector3(29f,1.4f, 0f),
-			new Vector3(30f,1.16f, 0f),
-			new Vector3(39f,1.3f, 0f),
-			new Vector3(40f,1.15f, 0f),
+			new Vector3(20f,1.09f, 0f),
+			new Vector3(29f,2f, 0f),
+			new Vector3(30f,1.08f, 0f),
+			new Vector3(39f,2f, 0f),
+			new Vector3(40f,1.07f, 0f),
 			new Vector3(49f,2f, 0f),
-			new Vector3(50f,1.18f, 0f),
-			new Vector3(60f,1.19f, 0f),
-			new Vector3(70f,1.2f, 0f),
-			new Vector3(80f,1.21f, 0f),
-			new Vector3(90f,1.22f, 0f),
-			new Vector3(99f,2f, 0f),
-			new Vector3(100f,1.23f, 0f),
-			new Vector3(110f,1.24f, 0f)};
+			new Vector3(50f,1.06f, 0f),
+			new Vector3(59f,1.5f, 0f),
+			new Vector3(60f,1.05f, 0f),
+			new Vector3(69f,1.5f, 0f),
+			new Vector3(70f,1.04f, 0f),
+			new Vector3(79f,1.5f, 0f),
+			new Vector3(80f,1.03f, 0f),
+			new Vector3(89f,1.5f, 0f),
+			new Vector3(90f,1.02f, 0f),
+			new Vector3(99f,1.5f, 0f),
+			new Vector3(100f,1.01f, 0f),
+			new Vector3(109f,1.25f, 0f),
+			new Vector3(110f,1.005f, 0f)};
 
 		public Vector3[] GraduatedRevenueMultipliers
 		{

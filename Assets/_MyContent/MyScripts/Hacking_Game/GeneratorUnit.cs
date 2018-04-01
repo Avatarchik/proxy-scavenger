@@ -8,6 +8,12 @@ namespace mindler.hacking
 {
 	public class GeneratorUnit : MonoBehaviour 
 	{
+
+		[BoxGroup("Name and Type")]
+		public string name;
+		[BoxGroup("Name and Type")]
+		public GeneratorType type;
+
 		[BoxGroup("UI Elements")]
 		public Slider progressBar;
 		[BoxGroup("UI Elements")]
@@ -69,21 +75,27 @@ namespace mindler.hacking
 
 		[BoxGroup("Locked or Unlocked")]
 		public bool Locked = true;
+		[BoxGroup("Locked or Unlocked")]
+		public bool LockOnReset = true;
 
 		[BoxGroup("Purchaseable")]
 		public bool Purchaseable = false;
 
 
 		public void init(){
+			name = baseObject.objectName;
+			type = baseObject.GeneratorName;
+
 			icon.sprite = baseObject.Icon;
+
 			if(!Locked){
 				lockedButton.gameObject.SetActive(false);
 			} else {
 				lockedButton.gameObject.SetActive(true);
-				lockText.text = "Unlock : " + baseObject.unlockCost;
+				lockText.text = "Unlock : " + baseObject.unlockCost.ToString("#,#");
 			}
 
-			Debug.Log("Before : " + currentRevenueMultiplier + " revenue X");
+			ResetGraduatedValues();
 
 			currentGeneratorCount = 1f;
 			currentNewGeneratorCost = baseObject.initialNewGeneratorCost;
@@ -92,9 +104,14 @@ namespace mindler.hacking
 			currentRevenueMultiplier = baseObject.GraduatedRevenueMultipliers[0].y;
 			currentRevenue = baseObject.initialRevenue;
 
+
 			//currentProgressTimeMultiplier = baseObject.initialProgressTimeMultiplier;
+
+			Debug.Log(name + " : " + currentRevenueMultiplier + " Current Revenue Multiplier");
+
 			currentProgressTimeMultiplier = baseObject.GraduatedTimeMultipliers[0].y;
 			currentProgressTime = baseObject.initialProgressTime;
+			Debug.Log(name + " : " + currentProgressTimeMultiplier + " Current Time Multiplier");
 
 
 			//currentGeneratorCostMultiplier = baseObject.GraduatedCostMultipliers[0].y;
@@ -102,8 +119,6 @@ namespace mindler.hacking
 			CheckPurchaseable();
 
 			UpdateUI();
-
-			Debug.Log(currentRevenueMultiplier + " revenue X");
 		}
 
 		public void AddGenerator(int increase)
@@ -113,17 +128,37 @@ namespace mindler.hacking
 
 			//currentProgressTimeMultiplier =  baseObject.initialProgressTimeMultiplier * currentGeneratorCount; 
 			//currentProgressTime = currentProgressTime * baseObject.initialProgressTimeMultiplier;
-			currentProgressTime = currentProgressTime * currentProgressTimeMultiplier;
+
 
 			//currentRevenueMultiplier = baseObject.newGeneratorRevenueMultiplier * currentGeneratorCount;
 			//currentRevenue = baseObject.initialRevenue * currentRevenueMultiplier;
 
+			Vector3[] v1 = baseObject.GraduatedTimeMultipliers;
+			int y = 0;
+			foreach(Vector3 t in v1){
+				if(t.x == currentGeneratorCount && t.z != 1f){
+					currentProgressTimeMultiplier = t.y;
+					currentProgressTime = currentProgressTime * currentProgressTimeMultiplier;
+					Vector3 vv = t;
+					vv.z = 1f;
+					baseObject.GraduatedTimeMultipliers[y] = vv;
+				}
+				y++;
+			}
+
 			currentRevenue = currentRevenue * currentRevenueMultiplier;
+			double d = System.Math.Round(currentRevenue, 2);
+			currentRevenue = (float)d;
 
 			//currentNewGeneratorCost = baseObject.initialNewGeneratorCost * (baseObject.newGeneratorCostMultiplier * currentGeneratorCount);
 			currentNewGeneratorCost = currentNewGeneratorCost * currentGeneratorCostMultiplier;
+			double dd = System.Math.Round(currentNewGeneratorCost, 2);
+			currentNewGeneratorCost = (float)dd;
+			Debug.Log(name + " Current Generator Cost Multiplier : " + currentGeneratorCostMultiplier);
 
 			CheckMultipliers();
+
+			Debug.Log(name + " New Generator Cost Multiplier : " + currentGeneratorCostMultiplier);
 
 			UpdateUI();
 		}
@@ -137,8 +172,8 @@ namespace mindler.hacking
 			}
 			//Debug.Log(progressBar.value + " progress bar's value");
 			generatorCount.text = currentGeneratorCount.ToString();
-			newGeneratorCost.text = currentNewGeneratorCost.ToString();
-			generatingAmount.text = currentRevenue.ToString();
+			newGeneratorCost.text = currentNewGeneratorCost.ToString("N");
+			generatingAmount.text = currentRevenue.ToString("N");
 		}
 
 		public void GeneratorUpdate()
@@ -180,7 +215,6 @@ namespace mindler.hacking
 			}
 
 			int yy = 0;
-
 			foreach(Vector3 c in v2){
 				if(c.x == currentGeneratorCount && c.z != 1f){
 					
@@ -230,8 +264,40 @@ namespace mindler.hacking
 			progressBar.value = 0f;
 			currentGeneratorCount = 0f;
 			tempTimeEnd = 0f;
+			Locked = baseObject.Lock;
+			ResetGraduatedValues();
 
 			init();
+		}
+
+		public void ResetGraduatedValues(){
+			Vector3[] v1 = baseObject.GraduatedTimeMultipliers;
+			Vector3[] v2 = baseObject.GraduatedCostMultipliers;
+			Vector3[] v3 = baseObject.GraduatedRevenueMultipliers;
+
+			int ii = 0;
+			foreach(Vector3 i in v1){
+				Vector3 v = baseObject.GraduatedTimeMultipliers[ii];
+				v.z = 0f;
+				baseObject.GraduatedTimeMultipliers[ii] = v;
+				ii++;
+			}
+
+			int jj = 0;
+			foreach(Vector3 j in v2){
+				Vector3 v = j;
+				v.z = 0f;
+				baseObject.GraduatedCostMultipliers[jj] = v;
+				jj++;
+			}
+
+			int kk = 0;
+			foreach(Vector3 k in v3){
+				Vector3 v = k;
+				v.z = 0f;
+				baseObject.GraduatedRevenueMultipliers[kk] = v;
+				kk++;
+			}
 		}
 
 		public bool IsThisLocked(){
@@ -278,7 +344,7 @@ namespace mindler.hacking
 		}
 
 		public void Unlock(){
-			if(HGM.AccruedCurrency >= baseObject.unlockCost){
+			if(Purchaseable){
 				HGM.RemoveCurrency(baseObject.unlockCost);
 				Locked = false;
 				init();

@@ -117,7 +117,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		for(int l = 0; l < rrPartCount; l++){
 			RepairableParts[l] = new RepairableUnitPart();
 
-			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts + 1);
+			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts);
 			int RandomWorkingLevel = UnityEngine.Random.Range(0,3);
 			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
 
