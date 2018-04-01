@@ -9,6 +9,7 @@ using Devdog.General.UI;
 using Sirenix.OdinInspector;
 using DunGen;
 using UnityEngine.UI;
+using mindler.hacking;
 
 public enum HazardType {
 	None = 0,
@@ -115,6 +116,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject MapCamera;
 	[BoxGroup("Map")]
 	public bool ShowMap = false;
+
+	[BoxGroup("Managers")]
+	public HackingGameManager HackManager;
 
 	private Tile newTile = null;
 	private Tile prevTile = null;
@@ -252,6 +256,23 @@ public class GameManager : MonoBehaviour {
 				MapCamera.SetActive(true);
 				ShowMap = true;
 			}
+		}
+
+		if(Input.GetKeyDown(KeyCode.Mouse0)){
+			Debug.Log("LMB Clicked");
+		}
+
+		if(CurrentEquippedItem == HackManager.HackingToolItem){
+			Debug.Log("Current item is hacking tool");
+		} else {
+			Debug.Log("Current item is NOT hacking tool");
+			Debug.Log(CurrentEquippedItem + " current equipped item");
+			Debug.Log(HackManager.HackingToolItem + " hacking tool item");
+			Debug.Log(CurrentEquippedItem.name + " Current item name | " + HackManager.HackingToolItem + " hacking tool item's name");
+		}
+
+		if(Input.GetKeyDown(KeyCode.Mouse0) && CurrentEquippedItem.name == HackManager.HackingToolItem.name){
+			HackManager.ShowHackWindow();
 		}
 	}
 

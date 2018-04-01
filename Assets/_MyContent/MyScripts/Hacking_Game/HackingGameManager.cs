@@ -1,6 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Devdog.InventoryPro;
+using Devdog.General.UI;
 using Sirenix.OdinInspector;
 
 public enum GeneratorType {
@@ -42,11 +45,39 @@ namespace mindler.hacking
 		[BoxGroup("Currency Generators")]
 		public GeneratorUnit[] CurrencyGenerators;
 
+		[BoxGroup("Hacking")]
+		public bool Hackable = false;
+		[BoxGroup("Hacking")]
 		public bool HackingRunning = false;
+		[BoxGroup("Hacking")]
 		public bool HackLoopRunning = false;
+		[BoxGroup("Hacking")]
+		public bool HackShown = false;
+
+		[BoxGroup("HackingUI")]
+		public UIWindow HackWindow;
+		[BoxGroup("HackingUI")]
+		public UIWindow HackGame;
+		[BoxGroup("HackingUI")]
+		public UIWindow HackStartScreen;
+		[BoxGroup("HackingUI")]
+		public Button StartHackButton;
+
+		[BoxGroup("HackingItems")]
+		public GameObject HackingTool;
+		[BoxGroup("HackingItems")]
+		public InventoryItemBase HackingToolItem;
+		[BoxGroup("HackingAttachment")]
+		public GameObject HackingAttachment;
+		[BoxGroup("HackingAttachment")]
+		public InventoryItemBase HackingAttachmentItem;
+
 
 		// Use this for initialization
 		void Start () {
+
+			HackingToolItem = HackingTool.GetComponent<InventoryItemBase>();
+			HackingAttachmentItem = HackingAttachment.GetComponent<InventoryItemBase>();
 
 			int p = CurrencyGeneratorBase.Length;
 			Generators = new GameObject[p];
@@ -140,19 +171,52 @@ namespace mindler.hacking
 		}
 
 		public void StartHack(){
+			HackingRunning = true;
+			HackStartScreen.Hide();
+			HackGame.Show();
 			StartCoroutine("StartHackingGame");
 		}
 
 		public void StopHack(){
 			HackingRunning = false;
+			StopCoroutine("StartHackingGame");
+			HackStartScreen.Show();
+			HackGame.Hide();
+			StartHackButton.interactable = false;
+			Reset();
 		}
 
 		public void Reset(){
-			HackingRunning = false;
 			AccruedCurrency = 0f;
 			foreach(GeneratorUnit g in CurrencyGenerators){
 				g.Reset();
 			}
+		}
+
+		public void ShipHackable(bool value){
+			Debug.Log(value + " Ship Hackable?");
+			Hackable = value;
+			StartHackButton.interactable = value;
+		}
+
+		public void ShowHackWindow(){
+			if(!HackShown){
+
+				HackShown = true;
+				HackWindow.Show();
+				if(HackingRunning){
+					HackStartScreen.Hide();
+					HackGame.Show();
+				} else {
+					HackStartScreen.Show();
+					HackGame.Hide();
+				}
+			}
+		}
+
+		public void HideHackWindow(){
+			HackShown = false;
+			HackWindow.Hide();
 		}
 	}
 }
