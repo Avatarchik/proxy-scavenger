@@ -1,0 +1,157 @@
+﻿DotTeam Support Site: www.dotteam.pro
+DotTeam support E-mail: info@dotteam.pro
+
+
+Heavy Station Kit base
+
+-----------------
+B  A  S  E   2.21
+-----------------
+
+WHAT'S NEW
+
+The huge loads are distributed on the strong support pillars, securing space for the bunker or the center of operations. This heavy looking interior/exterior/top-down Kit is made to suit extreme environments - Space, Underwater, Underground, and On-ground.
+
+What should You expect from 2.21 version?
+
+ENHANCED EDITION
+
+MODELING
+
+The new look for many objects. Flat surfaces got less tris. Round ones like the railings got more. To widen the possibilities new objects were added.
+
+MAPPING
+
+To reduce the drawcalls, most models were packet into themes. Each theme is a single Material.
+Some UVs has a bit of free space. This is reserved for future updates, so adding new objects will not require additional material.
+
+TEXTURING
+
+PBR was implemented - in a way as we think it should be.
+All the materials now has Metallic, Height and Occlusion maps, in addition to Albedo, Normal, and if it fits, Emission.
+
+SCRIPTING
+
+Corrected and amplified previous, and for widing the possibilities of the Kit made the New ones – all to work properly with the Unity 5.3 or higher.
+
+
+Includes everything of "base v1.3", plus:
+
+– Exterior Prefabs
+
+– Pentagonal and Hexagonal Rooms
+
+– Transparent Roofs
+
+– Animated materials for Displays
+
+– Universal 6 in 1 Doors Control
+
+– Animated Door Mode Console
+
+– Animated Door Power Console
+
+– One-sided Floors and Ceilings
+
+– Additional Equipment
+
+– More than 120 additional Prefabs
+
+INSIDE
+
+– More than 270 Prefabs in 18 Categories
+
+– PBR Materials (Albedo, Metalic, Normal, Height, Occlusion and Emission maps included)
+– Textures up to 4096 px
+– Ambient and Door sounds
+
+– Colliders are made for speed, however some has details for shooting through
+
+– One FPS Exterior & Interior Demo Scene
+
+– Two FPS Interior Demo Scenes
+
+– One Top-Down Demo Scene
+
+– One Pentagonal and Hexagonal Rooms Demo Scene
+
+– One Prefabs Demo Scene
+
+IMPORTANT
+
+Before downloading and installing Heavy Station Kit base 2.21 it is necessary downloading and installing Standard Assets (Characters and Effects) first.
+Prefab Dot_FPC (First Person Controller from DotTeam) have to be used in order for character to interact properly with the scene.
+Scripts are safe using in Unity version 5.x or higher and 3D models may be used in much earlier versions.
+
+CHARACTER CONTROLS
+
+Move 		W, A, S, D
+Jump		Space
+Crouch		C
+Light		L
+Interaction		E
+
+-----------------
+B  A  S  E    2.1
+-----------------
+
+WHAT'S NEW
+
+- Added Crouching option and Flash light control to Dot FPC (which is First Person Controller)
+- Scripts and selected Prefabs were updated and unified with other Heavy Station Kit assets
+- Crags, Rocks and some other prefabs were enchanced
+
+-----------------
+B  A  S  E    2.0
+-----------------
+
+WHAT'S NEW
+
+- Exterior Prefabs
+- Pentagonal and Hexagonal Rooms
+- Transparent Roofs
+- One-sided Floors and Ceilings
+- Equipment
+- Animated Materials for Displays
+- Universal Doors Control
+- Detail Albedo Map
+
+ATTENTION!
+
+Before downloading and installing Heavy Station Kit base 2.0 it is necessary that You download and install Standard Assets (Characters and Effects) first.
+
+
+Previous Versions:
+
+-----------------
+B  A  S  E    1.3
+-----------------
+
+WHAT'S NEW
+
+- Overall -50% tris from colliders. Colliders were redone for all prefabs, with box colliders and low poly mesh.
+- Light leaks were fixed, by modifying light source.
+- Added Top-Down support with 5 new prefabs (for Walls, Partitions2 and Arches, new Outwall element).
+- Top-Down Demo Scene.
+- New Metal Material for all Prefabs.
+- Three new prefabs were added, Solid Floor, Wall lights On, Wall lights Off.
+
+-----------------
+B  A  S  E    1.2
+-----------------
+
+WHAT'S NEW
+
+- Added lighting to prefabs: Walls, Channels, Stairs, Equipment, Top Bottom.
+- Optimized colliders for: Arms, Arches, Stairs, Support, Equipment, Partitions2, Props.
+- Done 10 pages Booklet of Prefabs, which shows in artistic way quantity and materials of all prefabs.
+
+-----------------
+B  A  S  E    1.1
+-----------------
+
+WHAT'S NEW
+
+- Improved Textures and Materials
+- Unity3D 5.x GI Supported
+- Unity3D WebGL Compatible

@@ -1119,6 +1119,8 @@
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorBase.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorColony.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorConsole.cs" />
+     <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorConsoleCollider.cs" />
+     <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorControl.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Door\DotHskDoorSlider.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Elevator\DotFPCElevatorSupport.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Elevator\DotHskElevator2.cs" />
@@ -1126,6 +1128,9 @@
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Elevator\DotHskElevator2Console.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Elevator\DotHskElevator2Events.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\HideCursor.cs" />
+     <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Ladder\DotLadder.cs" />
+     <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Ladder\DotLadderController.cs" />
+     <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Light Control\DotFlickerLight.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\ReadOnlyAttribute.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Vent\DotHskVentColony.cs" />
      <Compile Include="Assets\DoTeam_Assets\Heavy Station Kit\Common\Vent\DotHskVentFixColony.cs" />
@@ -1656,6 +1661,7 @@
      <None Include="Assets\Devdog\SciFiDesign\FirstVersion\Fonts\Orbitron\OFL.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Standard\Camera\CameraZoom.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\Pistol01\WeaponPistol01Zoom.txt" />
+     <None Include="Assets\DoTeam_Assets\Heavy Station Kit-2\BASE\Base2_Info.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Demo\SystemOFFWeaponGlideIn.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Demo\SniperWeapon.txt" />
      <None Include="Assets\DoTeam_Assets\Heavy Station Kit base\Standard Assets\Effects\Projectors\Shaders\ProjectorLight.shader" />

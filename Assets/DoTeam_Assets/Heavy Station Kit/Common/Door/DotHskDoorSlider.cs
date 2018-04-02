@@ -29,11 +29,15 @@ public class DotHskDoorSlider : MonoBehaviour {
 
 	[HideInInspector]public DotHskDoorsEventsClass doorEvents;
 	private int dir = 0; // -1 - closing, 0 - idle, 1 - opening
-	private float curPos = 0f; // normalized current position of flap [0..1]
+	public float curPos = 0f; // normalized current position of flap [0..1]
 	private float targetPos = 0f; // normalized target position
 
 	private bool isOff = false;
 	private bool isBlocked = false;
+
+	public bool getIsFullyOpen(){ return curPos == 1f; }
+	public bool getIsFullyClosed(){ return curPos == 0f; }
+	public bool getIsStopped(){	return dir == 0; }
 
 	void Start(){
 		Init ();
@@ -107,13 +111,14 @@ public class DotHskDoorSlider : MonoBehaviour {
 		return true;
 	}
 
-	void operate(bool open){
+	public void operate(bool open){
 		if (isOff) { return; }
 		if (isBlocked) {
 			if ((doorEvents != null) && open) { doorEvents.OnBlock(); }
 		} else {
-			targetPos = open ? 1 : 0f;
-			dir = (curPos < targetPos) ? 1 : -1;
+			float _tp = (open ? 1 : 0f);
+			if (targetPos == _tp) { return; }
+			dir = (curPos < (targetPos = _tp)) ? 1 : -1;
 			if (doorEvents != null) { doorEvents.OnStartMotion(curPos, dir); }
 		}
 	}

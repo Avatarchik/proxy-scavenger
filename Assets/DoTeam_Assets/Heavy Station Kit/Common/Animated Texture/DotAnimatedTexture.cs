@@ -33,7 +33,7 @@ public class DotAnimatedTexture : MonoBehaviour {
 		Init();
 	}
 
-	void Init(){
+	private void Init(){
 		if (_renderer == null) { _renderer = GetComponent<Renderer> ();	}
 		Material rendererMaterial = (_renderer == null) ? null : _renderer.sharedMaterial;
 		if (rendererMaterial == null) {
@@ -48,18 +48,23 @@ public class DotAnimatedTexture : MonoBehaviour {
 		#endif
 	}
 
-	void Update() {
-		if (!Application.isPlaying) { Init (); }
+    void Update(){
+        ForceUpdate(false);
+    }
+
+    public void ForceUpdate(bool force = true) {
+        bool isp = Application.isPlaying;
+        if (!isp) { Init (); }
 		// Validate frame grid size
 		materialTotalFrames = materialTileRows * materialTileCols;
 		if ( materialTotalFrames == 0) {
 			#if UNITY_EDITOR
-			if (prevWarning != 1) {	Debug.LogWarning (transform.name + ": Incorrect parameters 'Row Count' or 'Col Count'");prevWarning = 1;}
+			if (!force && (prevWarning != 1)) {	Debug.LogWarning (transform.name + ": Incorrect parameters 'Row Count' or 'Col Count'");prevWarning = 1;}
 			#endif
 			return;
 		} 
 		// Validate active sequence
-		if ((sequences == null) || (activeSequence + 1 > sequences.Count)) { // !2017-07-09 
+		if ((sequences == null) || (activeSequence + 1 > sequences.Count)) {  
 			#if UNITY_EDITOR
 			if (prevWarning != 2) {	Debug.LogWarning (transform.name + ": Incorrect parameter 'Active Sequence' or sequences was not set");prevWarning = 2;}
 			#endif
@@ -85,11 +90,11 @@ public class DotAnimatedTexture : MonoBehaviour {
 			// Size of frame
 			Vector2 size = new Vector2 (1.0f / materialTileCols, 1.0f / materialTileRows);
 			// Calculate newIndex
-			int newIndex = firstFrame;  
-			if (Application.isPlaying) {
-				newIndex += ((int)(Time.time * FPS) + startingFrame) % totalFrames;
+			int newIndex;
+            if (isp) {
+                newIndex = ((int)(Time.time * FPS) + startingFrame) % totalFrames;
 			} else {
-				newIndex += startingFrame % totalFrames;
+				newIndex = startingFrame % totalFrames;
 				Vector2 _size = _renderer.sharedMaterial.mainTextureScale;
 				int _total = 0;
 				if( _size.x * _size.y != 0 ){
@@ -100,13 +105,14 @@ public class DotAnimatedTexture : MonoBehaviour {
 				#endif
 				materialTotalFrames = _total;
 			}
-			if (newIndex != prevIndex) {
+			if ((newIndex != prevIndex) || !isp) {
 				prevIndex = newIndex;
-				if(randomly){ newIndex = Mathf.RoundToInt (Random.value * (totalFrames - 1)); }
-				// Current offset
-				Vector2 offset = new Vector2 ((newIndex % materialTileCols) * size.x, (1.0f - size.y) - ((int)(newIndex / materialTileCols)) * size.y);
+                if (randomly && isp) { newIndex = Mathf.RoundToInt(Random.value * (totalFrames - 1)); }
+                newIndex += firstFrame;
+                // Current offset
+                Vector2 offset = new Vector2 ((newIndex % materialTileCols) * size.x, (1.0f - size.y) - ((int)(newIndex / materialTileCols)) * size.y);
 				// Set offset and size for texture
-				if (Application.isPlaying) {
+				if (isp) {
 					_renderer.material.mainTextureOffset = offset;
 				} else {
 					#if UNITY_EDITOR

@@ -1,67 +1,55 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
+[ExecuteInEditMode]
 public class DotHskDoorConsole : MonoBehaviour {
 
-	public DotHskDoor Door2Script;
-	public bool multiControlMode = false;
-	public Texture banner;
-	public DotAnimatedTexture AnimatedTextureScript;
+    public List<DotHskDoorControl> controlledDoors;
 
-	private bool _operate = false;
+    private dotHskDoorMode doorsMode = dotHskDoorMode.active;
+    private dotHskDoorMode prevDoorsMode = dotHskDoorMode.active;
 
-	// Use this for initialization
-	void Start () {
-		if ((Door2Script == null) || (AnimatedTextureScript == null)) {
-			Debug.LogWarning("Controlled Door property not assigned in Inspector or DotAnimatedTexture not attached");
-		}
-		UpdateAnimationScreenMode ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (_operate) {
-			string s = Input.inputString;
-			if ((s.Length == 0) || (Door2Script == null) || (AnimatedTextureScript == null)) { return; }
-			switch (s.Substring (0, 1)) {
-			case "1": Door2Script.mode = dotHskDoorMode.active;break;
-			case "2": Door2Script.mode = dotHskDoorMode.blocked;break;
-			case "3": Door2Script.mode = dotHskDoorMode.inactiveClosed;break;
-			case "4": Door2Script.mode = dotHskDoorMode.inactiveOpen;break;
-			}
-			UpdateAnimationScreenMode ();
-		} else {
-			if (multiControlMode) {
-				UpdateAnimationScreenMode ();
-			}
-		}
-	}
+    void Start(){
+        Init();
+    }
 
-	void OnTriggerEnter () {
-		_operate = true;
-	}
+    void Update() {
+        bool isp = Application.isPlaying;
+        if(!isp) { Init(); }
+		if(prevDoorsMode != doorsMode) {
+            ChangeMode(doorsMode);
+            prevDoorsMode = doorsMode;
+        }
+    }
 
-	void OnTriggerExit () {
-		_operate = false;
-	}
+    void Init() {
+        bool first = true;
+        foreach(DotHskDoorControl door in controlledDoors) {
+			if(door == null) { continue; }
+            door.RegisterConsole(this);
+            if(first && (door.doorScript != null) ) {
+				doorsMode = door.doorScript.mode; first = false;
+            }
+        }
+    }
 
-	void OnGUI(){
-		if (_operate) {
-			float _tw = banner.width;
-			float _th = banner.height;
-			GUI.DrawTexture (new Rect ((Screen.width - _tw) / 2, Screen.height - 36 - _th, _tw, _th), banner, ScaleMode.ScaleToFit, true); 
-		}
+    public dotHskDoorMode GetMode() {
+		if((controlledDoors.Count > 0) && (controlledDoors[0]!=null) && (controlledDoors[0].doorScript != null)) {
+            return controlledDoors[0].doorScript.mode;
+        }
+        return dotHskDoorMode.inactiveClosed;
+    }
+
+    public void ChangeMode(dotHskDoorMode doorMode) {
+        foreach (DotHskDoorControl door in controlledDoors) {door.SetMode(doorMode);}
+    }
+
+	public void SetPowerMode(bool isOn) {
+		foreach(DotHskDoorControl door in controlledDoors) {door.SetPowerMode(isOn);}
 	}
 
-	private void UpdateAnimationScreenMode(){
-		if (Door2Script != null) {
-			switch (Door2Script.mode) {
-			case dotHskDoorMode.active:	AnimatedTextureScript.activeSequence = 0; break;
-			case dotHskDoorMode.blocked: AnimatedTextureScript.activeSequence = 1; break;
-			case dotHskDoorMode.inactiveClosed: AnimatedTextureScript.activeSequence = 2; break;
-			case dotHskDoorMode.inactiveOpen: AnimatedTextureScript.activeSequence = 3; break;
-			}
-		}
+	public bool IsDoorsAttached(){
+		return controlledDoors.Count > 0;
 	}
-
 }
