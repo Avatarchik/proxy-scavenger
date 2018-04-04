@@ -53,11 +53,19 @@ namespace mindler.hacking
 		public float currentProgressTime = 2f;
 		[BoxGroup("Current Progress Stats")]
 		public float currentProgressTimeMultiplier = -0.2f;
+		[BoxGroup("Current Progress Stats")]
+		public float currentProgressBonus = 1f;
+		[BoxGroup("Current Progress Stats")]
+		public float adjustedProgressTime = 1f;
 
 		[BoxGroup("Current Revenue Stats")]
 		public float currentRevenue = 100f;
 		[BoxGroup("Current Revenue Stats")]
 		public float currentRevenueMultiplier = 1.05f;
+		[BoxGroup("Current Revenue Stats")]
+		public float currentRevenueBonus = 1f;
+		[BoxGroup("Current Revenue Stats")]
+		public float adjustedRevenue = 100f;
 
 		[BoxGroup("Current Generator Stats")]
 		public float currentNewGeneratorCost = 1000f;
@@ -80,6 +88,7 @@ namespace mindler.hacking
 
 		[BoxGroup("Purchaseable")]
 		public bool Purchaseable = false;
+
 
 
 		public void init(){
@@ -111,7 +120,8 @@ namespace mindler.hacking
 
 			currentProgressTimeMultiplier = baseObject.GraduatedTimeMultipliers[0].y;
 			currentProgressTime = baseObject.initialProgressTime;
-			Debug.Log(name + " : " + currentProgressTimeMultiplier + " Current Time Multiplier");
+			AdjustSpeed();
+			Debug.Log(name + " : " + currentProgressTimeMultiplier + " Current Time Multiplier | " + adjustedProgressTime + " Adjusted Progress Time");
 
 
 			//currentGeneratorCostMultiplier = baseObject.GraduatedCostMultipliers[0].y;
@@ -145,10 +155,12 @@ namespace mindler.hacking
 				}
 				y++;
 			}
+			AdjustSpeed();
 
 			currentRevenue = currentRevenue * currentRevenueMultiplier;
 			double d = System.Math.Round(currentRevenue, 2);
 			currentRevenue = (float)d;
+			AdjustRevenue();
 
 			//currentNewGeneratorCost = baseObject.initialNewGeneratorCost * (baseObject.newGeneratorCostMultiplier * currentGeneratorCount);
 			currentNewGeneratorCost = currentNewGeneratorCost * currentGeneratorCostMultiplier;
@@ -173,7 +185,7 @@ namespace mindler.hacking
 			//Debug.Log(progressBar.value + " progress bar's value");
 			generatorCount.text = currentGeneratorCount.ToString();
 			newGeneratorCost.text = currentNewGeneratorCost.ToString("N");
-			generatingAmount.text = currentRevenue.ToString("N");
+			generatingAmount.text = adjustedRevenue.ToString("N");
 		}
 
 		public void GeneratorUpdate()
@@ -183,9 +195,10 @@ namespace mindler.hacking
 
 			if(progress >= 1f){
 				capturedTime = Time.time;
-				tempTimeEnd = currentProgressTime;
+				//tempTimeEnd = currentProgressTime;
+				tempTimeEnd = adjustedProgressTime;
 				currentProgress = 0f;
-				HGM.AddCurrency(currentRevenue); //send generate notification
+				HGM.AddCurrency(adjustedRevenue); //send generate notification
 			} else if(progress < 1f) {
 				currentProgress = progress;
 			}
@@ -194,6 +207,25 @@ namespace mindler.hacking
 			}
 			CheckPurchaseable();
 			UpdateUI();
+		}
+
+		public void AddSpeedBonus(float value){
+			currentProgressBonus -= value;
+			AdjustSpeed();
+		}
+
+		public void AdjustSpeed(){
+			adjustedProgressTime = currentProgressTime * currentProgressBonus;
+		}
+
+		public void AddBonus(float value){
+			currentRevenueBonus += value;
+			AdjustRevenue();
+		}
+
+		public void AdjustRevenue(){
+			adjustedRevenue = currentRevenue * currentRevenueBonus;
+			generatingAmount.text = adjustedRevenue.ToString("N");
 		}
 
 		public void CheckMultipliers(){
@@ -266,6 +298,11 @@ namespace mindler.hacking
 			tempTimeEnd = 0f;
 			Locked = baseObject.Lock;
 			ResetGraduatedValues();
+			currentRevenue = baseObject.initialRevenue;
+			adjustedRevenue = currentRevenue;
+
+			currentRevenueBonus = 1f;
+			currentProgressBonus = 1f;
 
 			init();
 		}

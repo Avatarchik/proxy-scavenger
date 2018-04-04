@@ -15,6 +15,7 @@ namespace mindler.hacking
 		public GameManager GM;
 		public HackingGameManager HM;
 		public InventoryItemBase CurrentEquippedItem;
+		public InventoryItemBase HackingInventoryItem;
 		public GameObject HackingItem;
 		public GameObject HackingObject;
 
@@ -22,18 +23,19 @@ namespace mindler.hacking
 		void Start () {
 			GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 			HM = GM.GetComponentInChildren<HackingGameManager>();
-			CurrentEquippedItem = HackingItem.GetComponent<InventoryItemBase>();
+			HackingInventoryItem = HackingItem.GetComponent<InventoryItemBase>();
+			HackingObject.SetActive(false);
 		}
-
+		/*
 		void Update(){
 			CurrentEquippedItem = GM.CurrentEquippedItem;
 		}
-
+		*/
 		public bool OnTriggerUsed(Player player)
 		{
 			Debug.Log("Hacking Box Used!");
-			if(CurrentEquippedItem != null){
-				if(GM.CurrentEquippedItem == CurrentEquippedItem){
+			if(GM.CurrentEquippedItem != null){
+				if(GM.CurrentEquippedItem.name == HackingInventoryItem.name){
 					Debug.Log("Hacking Item Used on Box");
 					HackingObject.SetActive(true);
 					GM.RemoveCurrentItem();
@@ -42,6 +44,8 @@ namespace mindler.hacking
 					var t = this.gameObject.GetComponent<Trigger>();
 					t.enabled = false;
 
+				} else {
+					Debug.Log(GM.CurrentEquippedItem.name + " - " + HackingInventoryItem.name);
 				}
 			} else {
 				Debug.Log("CurrentItem is null");

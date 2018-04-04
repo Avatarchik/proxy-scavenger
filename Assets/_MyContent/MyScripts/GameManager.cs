@@ -169,6 +169,10 @@ public class GameManager : MonoBehaviour {
 		SpaceStation.SetActive(false);
 		//HeatDungeon.SetActive(false);
 
+		if(HackManager == null){
+			HackManager = this.gameObject.GetComponentInChildren<HackingGameManager>();
+		}
+
 		MessageDispatcher.AddListener("Hazard", Hazards, true);
 		MessageDispatcher.AddListener("Hazards", Hazard, true); 
 
@@ -258,20 +262,9 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Mouse0)){
-			Debug.Log("LMB Clicked");
-		}
-
-		if(CurrentEquippedItem == HackManager.HackingToolItem){
-			Debug.Log("Current item is hacking tool");
-		} else {
-			Debug.Log("Current item is NOT hacking tool");
-			Debug.Log(CurrentEquippedItem + " current equipped item");
-			Debug.Log(HackManager.HackingToolItem + " hacking tool item");
-			Debug.Log(CurrentEquippedItem.name + " Current item name | " + HackManager.HackingToolItem + " hacking tool item's name");
-		}
-
 		if(Input.GetKeyDown(KeyCode.Mouse0) && CurrentEquippedItem.name == HackManager.HackingToolItem.name){
+			Debug.Log("LMB Clicked");
+			Debug.Log(CurrentEquippedItem.name + " Current item name | " + HackManager.HackingToolItem + " hacking tool item's name");
 			HackManager.ShowHackWindow();
 		}
 	}

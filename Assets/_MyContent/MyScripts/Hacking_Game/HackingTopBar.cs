@@ -12,8 +12,22 @@ namespace mindler.hacking
 		[BoxGroup("UI Elements")]
 		public Text CurrentCurrencyText;
 
+		[BoxGroup("Text Formatting")]
+		public NumberStringFormatter TextFormatter;
+
+		public void Start(){
+			if(TextFormatter == null){
+				TextFormatter = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<NumberStringFormatter>();
+			}
+		}
+
 		public void UpdateCurrentCurrency(float value){
-			CurrentCurrencyText.text = value.ToString("N");
+			if(TextFormatter == null){
+				TextFormatter = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<NumberStringFormatter>();
+			}
+			string t = TextFormatter.FormatNumber(value, 2);
+			CurrentCurrencyText.text = t;
+			//CurrentCurrencyText.text = value.ToString("N");
 		}
 	}
 }
