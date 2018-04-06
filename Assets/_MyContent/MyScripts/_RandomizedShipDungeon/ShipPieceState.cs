@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using mindler.dungeonship;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 
@@ -14,7 +15,7 @@ public partial class ShipPieceState {
 
 	[BoxGroup("Ship Part & State")]
 	[SerializeField]
-	public ShipPartState ShipComponentState = ShipPartState.Broken;
+	public ShipPartState ShipComponentState = ShipPartState.Damaged;
 
 	public void init(ShipPart p, ShipPartState s){
 		ShipComponent = p;

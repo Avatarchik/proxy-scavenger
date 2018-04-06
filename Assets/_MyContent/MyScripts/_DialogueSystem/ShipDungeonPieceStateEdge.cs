@@ -4,6 +4,7 @@ using Devdog.General.ThirdParty.UniLinq;
 using Devdog.InventoryPro;
 using Devdog.QuestSystemPro;
 using Devdog.QuestSystemPro.Dialogue;
+using mindler.dungeonship;
 
 public class ShipDungeonPieceStateEdge : SimpleEdgeCondition {
 
@@ -55,10 +56,10 @@ public class ShipDungeonPieceStateEdge : SimpleEdgeCondition {
 		string r = "";
 
 		switch(IfShipPartState){
-		case ShipPartState.Broken:
+		case ShipPartState.Damaged:
 			r = "is Broken";
 			break;
-		case ShipPartState.Fixed:
+		case ShipPartState.Active:
 			r = "is Fixed";
 			break;
 		case ShipPartState.Removed:

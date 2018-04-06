@@ -3,30 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
+using mindler.dungeonship;
 using com.ootii.Messages;
 
-public enum ShipPartState {
-	Broken = 0,
-	Fixed = 1,
-	Removed = 2,
-	Destroyed = 3
-}
 
-public enum ShipPart {
-	Engine = 0,
-	PowerCore = 1,
-	LifeSupport = 2,
-	WarpDrive = 3,
-	ThermalShielding = 4,
-	Controls = 5
-}
-
-public enum ShipState {
-	Broken = 0,
-	Fixed = 1,
-	Unrecoverable = 2,
-	Recovered = 3
-}
 
 [System.Serializable]
 public class DungeonInfo : MonoBehaviour {
@@ -40,7 +20,7 @@ public class DungeonInfo : MonoBehaviour {
 	public HazardLevel hazardRating = HazardLevel.None;
 
 	[BoxGroup("Ship State")]
-	public ShipState CurrentShipState = ShipState.Broken;
+	public ShipState CurrentShipState = ShipState.Damaged;
 	[BoxGroup("Ship State")]
 	public ShipRecovery CurrenShipRecovery = ShipRecovery.Unrecovered;
 	[BoxGroup("Ship State")]
@@ -95,12 +75,12 @@ public class DungeonInfo : MonoBehaviour {
 		Thermal = new ShipPieceState();
 		Controls = new ShipPieceState();
 
-		Engine.init(ShipPart.Engine, ShipPartState.Fixed);
-		Power.init(ShipPart.PowerCore, ShipPartState.Fixed);
-		LifeSupport.init(ShipPart.LifeSupport, ShipPartState.Fixed);
-		Warp.init(ShipPart.WarpDrive, ShipPartState.Fixed);
-		Thermal.init(ShipPart.ThermalShielding, ShipPartState.Fixed);
-		Controls.init(ShipPart.Controls, ShipPartState.Fixed);
+		Engine.init(ShipPart.Engine, ShipPartState.Active);
+		Power.init(ShipPart.PowerCore, ShipPartState.Active);
+		LifeSupport.init(ShipPart.LifeSupport, ShipPartState.Active);
+		Warp.init(ShipPart.WarpDrive, ShipPartState.Active);
+		Thermal.init(ShipPart.ThermalShielding, ShipPartState.Active);
+		Controls.init(ShipPart.Controls, ShipPartState.Active);
 
 		BreakHazardComponent();
 	}
@@ -108,19 +88,19 @@ public class DungeonInfo : MonoBehaviour {
 	private void BreakHazardComponent(){
 		switch(hazard){
 		case HazardType.Heat:
-			Engine.ShipComponentState = ShipPartState.Broken;
+			Engine.ShipComponentState = ShipPartState.Damaged;
 			break;
 		case HazardType.Cold:
-			Thermal.ShipComponentState = ShipPartState.Broken;
+			Thermal.ShipComponentState = ShipPartState.Damaged;
 			break;
 		case HazardType.Radiation:
-			Power.ShipComponentState = ShipPartState.Broken;
+			Power.ShipComponentState = ShipPartState.Damaged;
 			break;
 		case HazardType.Toxic:
-			Warp.ShipComponentState = ShipPartState.Broken;
+			Warp.ShipComponentState = ShipPartState.Damaged;
 			break;
 		case HazardType.Deoxygenation:
-			LifeSupport.ShipComponentState = ShipPartState.Broken;
+			LifeSupport.ShipComponentState = ShipPartState.Damaged;
 			break;
 		case HazardType.None:
 			// No Ship Parts are broken
@@ -144,19 +124,19 @@ public class DungeonInfo : MonoBehaviour {
 				Thermal.ShipComponentState == ShipPartState.Removed)
 			{
 				CurrentShipSalvage = ShipSalvage.Unsalvageable;
-				CurrentShipState = ShipState.Broken;
+				CurrentShipState = ShipState.Damaged;
 				//BreakShip();
 			}
 
-			if(Engine.ShipComponentState == ShipPartState.Fixed && 
-				Power.ShipComponentState == ShipPartState.Fixed && 
-				Controls.ShipComponentState == ShipPartState.Fixed && 
-				LifeSupport.ShipComponentState == ShipPartState.Fixed && 
-				Warp.ShipComponentState == ShipPartState.Fixed && 
-				Thermal.ShipComponentState == ShipPartState.Fixed)
+			if(Engine.ShipComponentState == ShipPartState.Active && 
+				Power.ShipComponentState == ShipPartState.Active && 
+				Controls.ShipComponentState == ShipPartState.Active && 
+				LifeSupport.ShipComponentState == ShipPartState.Active && 
+				Warp.ShipComponentState == ShipPartState.Active && 
+				Thermal.ShipComponentState == ShipPartState.Active)
 			{
 				CurrentShipSalvage = ShipSalvage.Salvageable;
-				CurrentShipState = ShipState.Fixed;
+				CurrentShipState = ShipState.Active;
 				//BreakShip();
 			}
 		}
@@ -164,19 +144,19 @@ public class DungeonInfo : MonoBehaviour {
 
 	public void BreakShip(){
 		if(Engine.ShipComponentState != ShipPartState.Removed){
-			Engine.ShipComponentState = ShipPartState.Broken;
+			Engine.ShipComponentState = ShipPartState.Damaged;
 		}
 		if(Power.ShipComponentState != ShipPartState.Removed){
-			Power.ShipComponentState = ShipPartState.Broken;
+			Power.ShipComponentState = ShipPartState.Damaged;
 		}
 		if(Thermal.ShipComponentState != ShipPartState.Removed){
-			Thermal.ShipComponentState = ShipPartState.Broken;
+			Thermal.ShipComponentState = ShipPartState.Damaged;
 		}
 		if(Warp.ShipComponentState != ShipPartState.Removed){
-			Warp.ShipComponentState = ShipPartState.Broken;
+			Warp.ShipComponentState = ShipPartState.Damaged;
 		}
 		if(LifeSupport.ShipComponentState != ShipPartState.Removed){
-			LifeSupport.ShipComponentState = ShipPartState.Broken;
+			LifeSupport.ShipComponentState = ShipPartState.Damaged;
 		}
 	}
 
@@ -226,7 +206,7 @@ public class DungeonInfo : MonoBehaviour {
 			s = Controls.ShipComponentState;
 			break;
 		default:
-			s = ShipPartState.Broken;
+			s = ShipPartState.Damaged;
 			Debug.Log("Dungeon Info : GetShipPartState - Returning Default of Broken");
 			break;
 		}
@@ -235,7 +215,7 @@ public class DungeonInfo : MonoBehaviour {
 	}
 
 	public void SetShipState(ShipState s){
-		if(s == ShipState.Fixed){
+		if(s == ShipState.Active){
 			MessageDispatcher.SendMessage(this, "ShipFixed", "Ship is now Fixed", 0);
 		}
 		CurrentShipState = s;

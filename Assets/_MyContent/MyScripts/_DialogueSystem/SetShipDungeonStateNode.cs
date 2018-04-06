@@ -4,6 +4,7 @@ using Devdog.General.ThirdParty.UniLinq;
 using Devdog.InventoryPro;
 using Devdog.QuestSystemPro;
 using Devdog.QuestSystemPro.Dialogue;
+using mindler.dungeonship;
 
 [System.Serializable]
 [Category("MyProject")]

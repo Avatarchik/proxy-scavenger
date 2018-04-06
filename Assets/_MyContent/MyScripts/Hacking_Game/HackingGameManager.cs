@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Devdog.InventoryPro;
 using Devdog.General.UI;
+using mindler.dungeonship;
 using Sirenix.OdinInspector;
 
 public enum GeneratorType {
@@ -22,12 +23,7 @@ public enum HackingUnlock {
 	UnlockBrokenUnitsLocation = 2,
 	UnlockDoors = 3,
 	UnlockImproveShipData = 4,
-	UnlockEngineTerminal = 5,
-	UnlockPowerCoreTerminal = 6,
-	UnlockLifeSupportTerminal = 7,
-	UnlockWarpDriveTerminal = 8,
-	UnlockThermalShieldingTerminal = 9,
-	UnlockControlsTerminal = 10
+	UnlockSpecificTerminal = 5
 }
 
 namespace mindler.hacking 
@@ -117,6 +113,9 @@ namespace mindler.hacking
 		[FoldoutGroup("Hacks"), BoxGroup("Hacks/Hacking Attachments")]
 		public InventoryItemBase HackingAttachmentItem;
 
+		[BoxGroup("Dungeon Ship Manager")]
+		public DungeonShipManager DSM;
+
 
 		// Use this for initialization
 		void Start () 
@@ -128,6 +127,9 @@ namespace mindler.hacking
 
 		private void init()
 		{
+			if(!DSM){
+				DSM = GameObject.FindGameObjectWithTag("GameManager").GetComponentInChildren<DungeonShipManager>();
+			}
 
 			if(!NumberTextFormatter){
 				NumberTextFormatter = this.gameObject.GetComponent<NumberStringFormatter>();
@@ -399,6 +401,14 @@ namespace mindler.hacking
 				ImprovementUnits[ic] = iu;
 
 				ic++;
+			}
+		}
+
+		public void ActivateTerminals(bool all, ShipPart part){
+			if(all){
+				DSM.SetAllTerminalsActive();
+			} else {
+				DSM.SetTerminalActive(part, true);
 			}
 		}
 	}

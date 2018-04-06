@@ -47,6 +47,10 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 	public bool ObjectRepaired = false;
 
+	public bool ObjectActive = false;
+
+	public bool BoardBroken = true;
+
 	[BoxGroup("Visual Indicator Objects")]
 	public GameObject visualWorkingIndicator;
 	[BoxGroup("Visual Indicator Objects")]
@@ -81,20 +85,26 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 	private ComponentPart[] ComponentParts;
 
+
 	// Use this for initialization
 	void Awake () {
+		init();
+	}
+
+	public void init(){
 		var trigger = GetComponent<Trigger>();
 		// The collection we want to place the items into.
 		_collection = trigger.window.window.GetComponent<ItemCollectionBase>();
 
 		Debug.Log(_collection + " is this null?");
 
-		int i = 0;
-
 		GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
 		ComponentManager cm = gm.GetComponentInChildren<ComponentManager>();
 		ComponentParts = cm.GetComponentParts();
 
+		/*
+		 int i = 0;
+		  
 		int NumberOfComponentParts = 0;
 		foreach(ComponentPart cp in ComponentParts){
 			NumberOfComponentParts ++;
@@ -123,21 +133,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 			RepairableParts[l].Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[l].ItemAnchor, ComponentLayouts[0].Anchors[l].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
 		}
-		/*
-		int RepairableUnitPartCounter = 0;
-		foreach(RepairableUnitPart rup in RepairableParts){
-			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts);
-			int RandomWorkingLevel = UnityEngine.Random.Range(0,3);
-			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
-			Debug.Log("Random Repair Unit Part State : " + rups);
-			Debug.Log("Repairable Unit Part [" + RepairableUnitPartCounter + "] - " + rup);
-			if(rup == null){
-				Debug.Log("rup is null");
-			}
-			rup.Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[RepairableUnitPartCounter].ItemAnchor, ComponentLayouts[0].Anchors[RepairableUnitPartCounter].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
-			RepairableUnitPartCounter++;
-		}
-		*/
+
 
 		foreach(RepairableUnitPart r in RepairableParts){
 				r.init();
@@ -158,8 +154,81 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 				}
 				i++;
 		}
+		*/
+
+		initParts();
 
 		FunctionalityCheck();
+	}
+
+	private void initParts(){
+		int i = 0;
+
+		int NumberOfComponentParts = 0;
+		foreach(ComponentPart cp in ComponentParts){
+			NumberOfComponentParts ++;
+		}
+
+		int HighestNumberOfItems = 0;
+		foreach(ComponentLayout cl in ComponentLayouts){
+			if(cl.SlotCount > HighestNumberOfItems){
+				HighestNumberOfItems = cl.SlotCount;
+			}
+		}
+
+		int rrPartCount = UnityEngine.Random.Range(0,(HighestNumberOfItems + 1));
+		Debug.Log("Random Range for picking how many repair items are in the unit : " + rrPartCount);
+		rrPartCount = 3; // setting it to 3 just for now until more layouts are made.
+
+		RepairableParts = new RepairableUnitPart[rrPartCount];
+
+		for(int l = 0; l < rrPartCount; l++){
+			RepairableParts[l] = new RepairableUnitPart();
+
+			int RandomWorkingLevel = 0;
+			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts);
+			if(BoardBroken){
+				RandomWorkingLevel = UnityEngine.Random.Range(0,3);
+			} else {
+				RandomWorkingLevel = 2; //Working
+			}
+			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
+
+			RepairableParts[l].Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[l].ItemAnchor, ComponentLayouts[0].Anchors[l].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
+		}
+
+		if(BoardBroken){
+			int b = 0;
+			foreach(RepairableUnitPart p in RepairableParts){
+				if(p.partState != RepairUnitPartState.Working){
+					b++;
+				}
+			}
+			if(b == 0){
+				int rr = UnityEngine.Random.Range(0, rrPartCount + 1);
+				RepairableParts[rr].partState = RepairUnitPartState.Broken;
+			}
+		}
+
+		foreach(RepairableUnitPart r in RepairableParts){
+			r.init();
+
+			if(r.partState == RepairUnitPartState.Broken){
+				r.currentItem = r.GetBrokenItem();
+			} else if (r.partState == RepairUnitPartState.Working){
+				r.currentItem = r.GetWorkingItem();
+			} else {
+				r.currentItem = null;
+			}
+
+			if(r.currentItem != null){
+				r.currentItem = GameObject.Instantiate<InventoryItemBase>(r.currentItem);
+				r.currentItem.transform.SetParent(transform);
+				r.currentItem.gameObject.SetActive(false);
+				_items[i] = r.currentItem;
+			}
+			i++;
+		}
 	}
 
 	void Update(){

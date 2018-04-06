@@ -95,6 +95,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\DungeonInfo.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\HazardZone.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\MyRuntimeDungeon.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\PrimaryRoomInfo.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\ShipPieceState.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\ShipRoomTrigger.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\SpawnQualityItemOnShipComplete.cs" />
@@ -104,6 +105,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\BeamWeaponEffect.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\CreateAtPoint.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\DrillDamage.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\DungeonShipManager.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\GameManager.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\GateOpenAutoClose.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\GrabObjectSlide.cs" />
@@ -131,10 +133,13 @@
      <Compile Include="Assets\_MyContent\MyScripts\RodProjectile.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RollOverTrigger.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RoomController.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\RoomTerminalController.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SlideClamp.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitBankVisualizer.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitHelper.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitHolder.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\TerminalManager.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\TerminalWindow.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\TileMapper.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\UItoWorldAnchor.cs" />
      <Compile Include="Assets\AmplifyBloom\Plugins\AmplifyBloomBase.cs" />

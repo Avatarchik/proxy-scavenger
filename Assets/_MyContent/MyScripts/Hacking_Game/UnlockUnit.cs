@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using mindler.dungeonship;
 using Sirenix.OdinInspector;
 
 namespace mindler.hacking 
@@ -44,6 +45,8 @@ namespace mindler.hacking
 			Name = baseObject.objectName;
 			Type = baseObject.HackingUnlockName;
 
+			//UnlockType = baseObject.UnlockType;
+
 			Cost = baseObject.Cost;
 
 			UpdateUI();
@@ -66,9 +69,33 @@ namespace mindler.hacking
 				HGM.RemoveCurrency(Cost);
 				Locked = false;
 				CheckButtonLockStatus();
+				ActivateUnlockAction();
 				UpdateUI();
 			} else {
 				Debug.Log("NOT ENOUGH MONEY");
+			}
+		}
+
+		public void ActivateUnlockAction(){
+			switch(Type){
+				case HackingUnlock.UnlockAllTerminals:
+					HGM.ActivateTerminals(true, baseObject.ActivateTerminal);
+				break;
+				case HackingUnlock.UnlockSpecificTerminal:
+					HGM.ActivateTerminals(false, baseObject.ActivateTerminal);
+				break;
+				case HackingUnlock.UnlockMap:
+					//unlock map
+				break;
+				case HackingUnlock.UnlockBrokenUnitsLocation:
+					//unlock broken part location
+				break;
+				case HackingUnlock.UnlockDoors:
+					//unlock doors
+				break;
+				case HackingUnlock.UnlockImproveShipData:
+					//improve ship location unit data
+				break;
 			}
 		}
 
