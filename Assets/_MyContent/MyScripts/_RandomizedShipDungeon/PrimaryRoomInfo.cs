@@ -59,9 +59,31 @@ namespace mindler.dungeonship
 				RepairBoxes[i].transform.parent = RepairBoxParent.transform;
 				RepairableObject r = g.GetComponentInChildren<RepairableObject>();
 				RepairBoards[i] = r;
+
 				i++;
 			}
+
+			int numberOfBrokenBoards = 0;
+			if(PartState != ShipPartState.Active){
+				numberOfBrokenBoards = UnityEngine.Random.Range(0,3);
+			}
+			int p = 0;
+			foreach (RepairableObject r in RepairBoards){
+				if(PartState == ShipPartState.Active){
+					r.repairState = RepairObjectRepairState.Working;
+				} else {
+					if(p <= numberOfBrokenBoards){
+						r.repairState = RepairObjectRepairState.Damaged;
+					} else {
+						r.repairState = RepairObjectRepairState.Working;
+					}
+				}
+
+				r.init();
+			}
 		}
+
+
 
 		public void OpenWindow(){
 			Debug.Log("Opening Window from PRI");

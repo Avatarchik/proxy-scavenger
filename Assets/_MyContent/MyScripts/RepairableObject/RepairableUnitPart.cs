@@ -8,6 +8,7 @@ using Sirenix.OdinInspector;
 
 [System.Serializable]
 public partial class RepairableUnitPart {
+
 	[FoldoutGroup(" Repairable Unit Part")]
 	public GameObject parentObject;
 
@@ -129,7 +130,11 @@ public partial class RepairableUnitPart {
 		UnityEngine.Object.Destroy(i.GetComponent<TriggerBase>());
 		UnityEngine.Object.Destroy(i.GetComponent<InventoryItemBase>());
 		UnityEngine.Object.Destroy(i.GetComponent<SphereCollider>());
+		if(i.GetComponent<SphereCollider>()){
+			i.GetComponent<SphereCollider>().enabled = false;
+		}
 		UnityEngine.Object.Destroy(i.GetComponent<BoxCollider>());
+
 		UnityEngine.Object.Destroy(i.GetComponent<Rigidbody>());
 
 		Vector3 p = itemAnchor.transform.position;

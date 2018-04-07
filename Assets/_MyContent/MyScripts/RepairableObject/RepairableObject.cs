@@ -24,6 +24,13 @@ public enum RepairUnitPart {
 	MemoryUnit = 3,
 }
 
+public enum RepairObjectRepairState {
+	Working = 0,
+	Damaged = 1,
+	Broken = 2,
+	Destroyed = 3
+}
+
 public enum RepairUnitSlotPosition {
 	RepairUnitSlotPositionNone = 0,
 	RepairUnitSlotPositionA = 1,
@@ -43,13 +50,20 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 	public GameObject windowToAnchor;
 
+	public UItoWorldAnchor uiToAnchor;
+
+	public ItemCollectionSlotUI[] uiSlots = new ItemCollectionSlotUI[3];
+
 	public bool ItemAdjusted = false;
 
 	public bool ObjectRepaired = false;
 
 	public bool ObjectActive = false;
 
-	public bool BoardBroken = true;
+	public RepairObjectRepairState repairState = RepairObjectRepairState.Working;
+
+	//public bool BoardBroken = true;
+	//public bool BoardDestroyed = false;
 
 	[BoxGroup("Visual Indicator Objects")]
 	public GameObject visualWorkingIndicator;
@@ -88,7 +102,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 	// Use this for initialization
 	void Awake () {
-		init();
+		//init();
 	}
 
 	public void init(){
@@ -101,6 +115,11 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
 		ComponentManager cm = gm.GetComponentInChildren<ComponentManager>();
 		ComponentParts = cm.GetComponentParts();
+		windowToAnchor = GameObject.FindGameObjectWithTag("RepairWindow");
+		uiToAnchor = windowToAnchor.GetComponent<UItoWorldAnchor>();
+		uiSlots[0] = uiToAnchor.SlotA;
+		uiSlots[1] = uiToAnchor.SlotB;
+		uiSlots[2] = uiToAnchor.SlotC;
 
 		/*
 		 int i = 0;
@@ -187,17 +206,28 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 			int RandomWorkingLevel = 0;
 			int RandomUnitPart = UnityEngine.Random.Range(0, NumberOfComponentParts);
-			if(BoardBroken){
+
+			switch(repairState){
+			case RepairObjectRepairState.Working:
+				RandomWorkingLevel = 2;
+				break;
+			case RepairObjectRepairState.Damaged:
+				RandomWorkingLevel = UnityEngine.Random.Range(1,3);
+				break;
+			case RepairObjectRepairState.Broken:
 				RandomWorkingLevel = UnityEngine.Random.Range(0,3);
-			} else {
-				RandomWorkingLevel = 2; //Working
+				break;
+			case RepairObjectRepairState.Destroyed:
+				RandomWorkingLevel = 0;
+				break;
 			}
+
 			RepairUnitPartState rups = (RepairUnitPartState)RandomWorkingLevel;
 
-			RepairableParts[l].Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[l].ItemAnchor, ComponentLayouts[0].Anchors[l].SlotUI, ComponentParts[RandomUnitPart].mountingObject);
+			RepairableParts[l].Setup(this.gameObject, ComponentParts[RandomUnitPart].GetPart(), rups, ComponentParts[RandomUnitPart].GetWorkingItem(), ComponentParts[RandomUnitPart].GetBrokenItem(), ComponentLayouts[0].Anchors[l].ItemAnchor, uiSlots[l], ComponentParts[RandomUnitPart].mountingObject);
 		}
 
-		if(BoardBroken){
+		if(repairState == RepairObjectRepairState.Broken || repairState == RepairObjectRepairState.Damaged){
 			int b = 0;
 			foreach(RepairableUnitPart p in RepairableParts){
 				if(p.partState != RepairUnitPartState.Working){

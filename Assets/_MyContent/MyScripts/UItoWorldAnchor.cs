@@ -1,23 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Devdog.General;
+using Devdog.InventoryPro;
+using Devdog.General.UI;
+using Devdog.InventoryPro.UI;
+using Sirenix.OdinInspector;
 
 public class UItoWorldAnchor : MonoBehaviour {
 
+	[BoxGroup("World Anchor")]
 	public RectTransform targetCanvas;
+
+	[BoxGroup("Follow Object")]
 	public Transform objectToFollow;
+
+	[BoxGroup("Transforms to Follow")]
 	public Transform positionAToFollow;
+	[BoxGroup("Transforms to Follow")]
 	public Transform positionBToFollow;
+	[BoxGroup("Transforms to Follow")]
 	public Transform positionCToFollow;
 
+	[BoxGroup("UI & UI Positions")]
 	public RectTransform UI;
+	[BoxGroup("UI & UI Positions")]
 	public RectTransform PostionAUI;
+	[BoxGroup("UI & UI Positions")]
 	public RectTransform PositionBUI;
+	[BoxGroup("UI & UI Positions")]
 	public RectTransform PositionCUI;
 
-	public Camera MainCam;
-	public Vector3 ScreenPoint;
+	[BoxGroup("UI Slots")]
+	public ItemCollectionSlotUI SlotA;
+	[BoxGroup("UI Slots")]
+	public ItemCollectionSlotUI SlotB;
+	[BoxGroup("UI Slots")]
+	public ItemCollectionSlotUI SlotC;
 
+	[BoxGroup("World to 2D")]
+	public Camera MainCam;
+	[BoxGroup("World to 2D")]
+	public Vector3 ScreenPoint;
+	[BoxGroup("World to 2D")]
 	private Vector2 positionCorrection = new Vector2(0, 0);
 
 
