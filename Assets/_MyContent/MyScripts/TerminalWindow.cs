@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Devdog.General.UI;
+using mindler.dungeonship;
 
 public class TerminalWindow : MonoBehaviour {
 
@@ -19,6 +20,8 @@ public class TerminalWindow : MonoBehaviour {
 
 	public bool Online = true;
 	public bool Damaged = false;
+
+	public PrimaryRoomInfo roomInfo;
 
 	public void OpenWindow(){
 		Debug.Log("Opening Window from TerminalWindow");
@@ -62,5 +65,14 @@ public class TerminalWindow : MonoBehaviour {
 
 	public void SetDamaged(bool value){
 		Damaged = value;
+	}
+
+	public void CyclePower(){
+		roomInfo.RepairableBoxStateCheck();
+		roomInfo.UpdateWindow();
+	}
+
+	public void SetRoomInfo(PrimaryRoomInfo info){
+		roomInfo = info;
 	}
 }

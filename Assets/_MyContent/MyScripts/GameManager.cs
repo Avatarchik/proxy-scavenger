@@ -10,6 +10,7 @@ using Sirenix.OdinInspector;
 using DunGen;
 using UnityEngine.UI;
 using mindler.hacking;
+using mindler.dungeonship;
 
 public enum HazardType {
 	None = 0,
@@ -119,6 +120,8 @@ public class GameManager : MonoBehaviour {
 
 	[BoxGroup("Managers")]
 	public HackingGameManager HackManager;
+	[BoxGroup("Managers")]
+	public DungeonShipManager DungeonManager;
 
 	private Tile newTile = null;
 	private Tile prevTile = null;
@@ -171,6 +174,9 @@ public class GameManager : MonoBehaviour {
 
 		if(HackManager == null){
 			HackManager = this.gameObject.GetComponentInChildren<HackingGameManager>();
+		}
+		if(DungeonManager == null){
+			DungeonManager = this.gameObject.GetComponentInChildren<DungeonShipManager>();
 		}
 
 		MessageDispatcher.AddListener("Hazard", Hazards, true);
@@ -262,10 +268,12 @@ public class GameManager : MonoBehaviour {
 			}
 		}
 
-		if(Input.GetKeyDown(KeyCode.Mouse0) && CurrentEquippedItem.name == HackManager.HackingToolItem.name){
-			Debug.Log("LMB Clicked");
-			Debug.Log(CurrentEquippedItem.name + " Current item name | " + HackManager.HackingToolItem + " hacking tool item's name");
-			HackManager.ShowHackWindow();
+		if(CurrentEquippedItem != null){
+			if(Input.GetKeyDown(KeyCode.Mouse0) && CurrentEquippedItem.name == HackManager.HackingToolItem.name){
+				Debug.Log("LMB Clicked");
+				Debug.Log(CurrentEquippedItem.name + " Current item name | " + HackManager.HackingToolItem + " hacking tool item's name");
+				HackManager.ShowHackWindow();
+			}
 		}
 	}
 
@@ -640,11 +648,30 @@ public class GameManager : MonoBehaviour {
 		Debug.Log(gs);
 		if(gs == GenerationStatus.Complete){
 			Debug.Log("Dungeon has completed generating!");
-			dg.OnGenerationStatusChanged -= OnDungeonChanged;
-			ControlRoomDoor.mode = dotHskDoorMode.active;
-			GeneratedDungeonInfo.GenerationComplete = true;
-			MessageDungeonComplete();
 			ShipCourseText.text = "Docked with Ship";
+			ControlRoomDoor.mode = dotHskDoorMode.active;
+
+			dg.OnGenerationStatusChanged -= OnDungeonChanged;
+			GeneratedDungeonInfo.GenerationComplete = true;
+
+			var tiles = dg.CurrentDungeon.AllTiles;
+
+			DungeonManager.SetupPrimaryRooms(tiles);
+
+			int i = 0;
+			foreach(Tile t in tiles){
+				Debug.Log("Dungeon Tile : " + i);
+				var rc = t.gameObject.GetComponent<RoomController>();
+				if(rc != null){
+					rc.OnShipCompleteFromList();
+				}
+				i++;
+			}
+			Debug.Log("Game Manager Finished going through all the tiles");
+
+
+			MessageDungeonComplete();
+
 		}
 		if(gs == GenerationStatus.Failed){
 			ShipCourseText.text = "Failed to Dock with Ship";
@@ -652,6 +679,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	private void MessageDungeonComplete(){
+		Debug.Log("GameManager Message Dungeon Complete function called");
 		MessageDispatcher.SendMessage(this, "ShipDungeonComplete", "Ship Finished Generating", 0);
 	}
 

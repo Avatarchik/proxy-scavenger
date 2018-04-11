@@ -14,7 +14,7 @@ namespace mindler.dungeonship
 		public ShipPartState PartState = ShipPartState.Active;
 
 		public bool TerminalActive = true;
-		public bool ShipPartDamaged = false;
+		public bool ShipPartDamaged = true;
 
 		public DungeonShipManager DSM;
 
@@ -48,15 +48,40 @@ namespace mindler.dungeonship
 		
 		// Update is called once per frame
 		void Update () {
-			
+		}
+
+		public void RepairableBoxStateCheck(){
+			int b = 0;
+			foreach(RepairableObject r in RepairBoards){
+				if(r != null){
+					if(r.ObjectRepaired == true){
+						b++;
+					}
+				} else {
+					Debug.Log("repairable object in array is null?");
+				}
+			}
+
+			if(b == 3){
+				ShipPartDamaged = false;
+				PartState = ShipPartState.Damaged;
+			} else {
+				ShipPartDamaged = true;
+				PartState = ShipPartState.Active;
+			}
 		}
 
 		public void CreateRepairBoxes(){
 			int i = 0;
 			foreach(GameObject a in RepairBoxAnchors){
-				GameObject g = GameObject.Instantiate(RepairBoxObject,RepairBoxAnchors[i].transform.position, RepairBoxAnchors[i].transform.rotation);
+				
+				//GameObject g = GameObject.Instantiate(RepairBoxObject,RepairBoxAnchors[i].transform.position, RepairBoxAnchors[i].transform.rotation);
+				GameObject g = GameObject.Instantiate(RepairBoxObject, RepairBoxParent.transform);
+				g.transform.position = RepairBoxAnchors[i].transform.position;
+				g.transform.rotation = RepairBoxAnchors[i].transform.rotation;
+				g.GetComponent<GrabObjectSlide>().StartPosition();
 				RepairBoxes[i] = g;
-				RepairBoxes[i].transform.parent = RepairBoxParent.transform;
+				//RepairBoxes[i].transform.parent = RepairBoxParent.transform;
 				RepairableObject r = g.GetComponentInChildren<RepairableObject>();
 				RepairBoards[i] = r;
 
@@ -83,12 +108,14 @@ namespace mindler.dungeonship
 			}
 		}
 
-
+		public void UpdateWindow(){
+			DSM.UpdateTerminalWindow(ShipPartDamaged);
+		}
 
 		public void OpenWindow(){
 			Debug.Log("Opening Window from PRI");
 			CheckPartState();
-			DSM.OpenTerminalWindow(ShipPartName, TerminalActive, ShipPartDamaged);
+			DSM.OpenTerminalWindow(ShipPartName, TerminalActive, ShipPartDamaged, this);
 		}
 
 		public void HideWindow(){

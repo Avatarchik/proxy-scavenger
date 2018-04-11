@@ -138,6 +138,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\SuitBankVisualizer.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitHelper.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitHolder.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\TerminalCyclePowerButton.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\TerminalManager.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\TerminalWindow.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\TileMapper.cs" />

@@ -35,8 +35,14 @@ public class RoomController : MonoBehaviour {
 		}
 	}
 
+	public void OnShipCompleteFromList(){
+		Debug.Log(this.gameObject.name + " : Got the message that the dungeon was complete from the forloop");
+	}
+
 	public void ShowRoom(){
-		room.SetActive(true);
+		if(room != null){
+			room.SetActive(true);
+		}
 		active = true;
 		Debug.Log("ShowRoom Called");
 	}

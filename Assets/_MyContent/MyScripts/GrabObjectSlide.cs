@@ -27,10 +27,20 @@ public class GrabObjectSlide : vp_Interactable {
 	public bool ClampMovement = true;
 	public Transform initTransform;
 	public Vector3 initPosition;
+
+	public Vector3 movement;
+	public float movementOffset;
+	public Vector3 movementMaxOffset;
+	public Vector3 movementMaxWorldSpaceOffset;
+
 	public Vector3 MaxOffset;
 	public Vector3 Offset;
 	public Vector3 initLerpPos;
 	public Vector3 clampedLerpPos;
+
+	public bool useForward = false;
+	public bool useRight = true;
+	public bool useUp = false;
 
 	public bool lockX = false;
 	public bool lockY = false;
@@ -99,12 +109,33 @@ public class GrabObjectSlide : vp_Interactable {
 
 		m_InteractManager = GameObject.FindObjectOfType(typeof(vp_FPInteractManager)) as vp_FPInteractManager;
 
+		//initTransform = this.transform;
+		//initPosition = initTransform.position;
+		//Offset = initPosition;
+		//Offset += MaxOffset;
+		StartPosition();
+
+	}
+
+	public void StartPosition(){
 		initTransform = this.transform;
-		initPosition = initTransform.position;
+		initPosition = initTransform.localPosition;
+
+		if(useRight){
+			movement += initTransform.right;
+		}
+		if(useUp){
+			movement += initTransform.up;
+		}
+		if(useForward){
+			movement += initTransform.forward;
+		}
+
+		movementMaxOffset = movement * movementOffset;
+		movementMaxWorldSpaceOffset = initPosition + movementMaxOffset;
+
 		Offset = initPosition;
 		Offset += MaxOffset;
-
-
 	}
 	
 	/// <summary>
@@ -205,16 +236,27 @@ public class GrabObjectSlide : vp_Interactable {
 			0.0f));
 
 		m_TempCarryingOffset = (m_Player.IsFirstPerson.Get() ? CarryingOffset : CarryingOffset - m_Camera.Position3rdPersonOffset);
+		//m_TempCarryingOffset = Vector3.one;
 
 		Vector3 lerpPos;
+
+
 		lerpPos = Vector3.Lerp(m_Transform.position, (m_Camera.Transform.position - m_CurrentSwayForce)+
 			(m_Camera.Transform.right * m_TempCarryingOffset.x) +
 			(m_Camera.Transform.up * m_Transform.localScale.y * m_TempCarryingOffset.y) +
 			(m_Camera.Transform.forward * m_TempCarryingOffset.z), 
 			((m_FetchProgress < 1.0f) ? m_FetchProgress : (Time.deltaTime * (Stiffness * 60.0f))));
-		initLerpPos = lerpPos;
 
-		Vector3 newPos = lerpPos;
+		initLerpPos = initTransform.InverseTransformVector(lerpPos);
+
+		//initLerpPos = lerpPos;
+
+
+		//Vector3 newPos = lerpPos;
+		Vector3 newPos = initTransform.InverseTransformVector(lerpPos);
+		//Vector3 newPos = initLerpPos;
+
+
 		if(lockX){
 			newPos.x = initPosition.x;
 		}
@@ -225,6 +267,7 @@ public class GrabObjectSlide : vp_Interactable {
 			newPos.z = initPosition.z;
 		}
 
+		/*
 		if(clampX){
 			
 			if(MaxOffset.x > 0){
@@ -248,8 +291,85 @@ public class GrabObjectSlide : vp_Interactable {
 			newPos.z = Mathf.Clamp(lerpPos.z, initPosition.z, Offset.z);
 		}
 		clampedLerpPos = newPos;
+		*/
 
-		m_Transform.position = newPos;
+		if(clampX){
+			
+			if(MaxOffset.x > 0){
+				if(newPos.x > Offset.x){
+					newPos.x = Offset.x;
+				} else if (newPos.x < initPosition.x){
+					newPos.x = initPosition.x;
+				}
+			} else if (MaxOffset.x < 0){
+				if(newPos.x < Offset.x){
+					newPos.x = Offset.x;
+				} else if (newPos.x > initPosition.x){
+					newPos.x = initPosition.x;
+				}
+			}
+
+			//newPos.x = Mathf.Clamp(newPos.x, initPosition.x, MaxOffset.x);
+		}
+		if(clampY){
+			newPos.y = Mathf.Clamp(newPos.y, initPosition.y, Offset.y);
+		}
+		if(clampZ){
+			newPos.z = Mathf.Clamp(newPos.z, initPosition.z, Offset.z);
+		}
+
+		//var i = initTransform.InverseTransformVector(newPos);
+
+		m_Transform.localPosition = newPos;
+
+		/*
+		float x = m_Transform.position.x * movement.x;
+		float y = m_Transform.position.y * movement.y;
+		float z = m_Transform.position.z * movement.z;
+		Vector3 p = initPosition;
+		if(x > 0){
+			p.x = initLerpPos.x;
+		} else {
+			if(movementMaxOffset.x < 0){
+				if(m_Transform.position.x < movementMaxWorldSpaceOffset.x){
+					p.x = movementMaxOffset.x;
+				}
+			} else {
+				if(m_Transform.position.x > movementMaxWorldSpaceOffset.x){
+					p.x = movementMaxOffset.x;
+				}
+			}
+		}
+
+		if(y > 0){
+			p.y = initLerpPos.y;
+		} else {
+			if(movementMaxOffset.y < 0){
+				if(m_Transform.position.y < movementMaxWorldSpaceOffset.y){
+					p.y = movementMaxOffset.y;
+				}
+			} else {
+				if(m_Transform.position.y > movementMaxWorldSpaceOffset.y){
+					p.y = movementMaxOffset.y;
+				}
+			}
+		}
+
+		if(z > 0){
+			p.z = initLerpPos.z;
+		} else {
+			if(movementMaxOffset.z < 0){
+				if(m_Transform.position.z < movementMaxWorldSpaceOffset.z){
+					p.z = movementMaxOffset.z;
+				}
+			} else {
+				if(m_Transform.position.z > movementMaxWorldSpaceOffset.z){
+					p.z = movementMaxOffset.z;
+				}
+			}
+		}
+		m_Transform.position = p;
+		*/
 
 	}
 

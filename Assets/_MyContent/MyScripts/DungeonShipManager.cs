@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DunGen;
 using Devdog.General.UI;
 using Sirenix.OdinInspector;
+using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace mindler.dungeonship 
 {
@@ -32,6 +36,7 @@ namespace mindler.dungeonship
 	public class DungeonShipManager : MonoBehaviour {
 
 		public UIWindow TerminalWindow;
+		public TerminalCyclePowerButton CyclePowerButton;
 		public TerminalWindow WindowController;
 
 		[BoxGroup("Ship Quality")]
@@ -60,6 +65,60 @@ namespace mindler.dungeonship
 
 		public PrimaryRoomInfo[] RoomsInfo = new PrimaryRoomInfo[6];
 
+		private int EngineCounter = 0;
+		private int PowerCoreCounter = 0;
+		private int LifeSupportCounter = 0;
+		private int WarpDriveCounter = 0;
+		private int ThermalShieldingCounter = 0;
+		private int ControlsCounter = 0;
+
+
+		public void SetupPrimaryRooms(ReadOnlyCollection<Tile> TileList){
+			foreach(Tile t in TileList){
+				PrimaryRoomInfo p = t.gameObject.GetComponent<PrimaryRoomInfo>();
+				if(p != null){
+					SetPrimaryRoom(p.ShipPartRoom, p);
+				} else {
+					Debug.Log("Yeah, no primary room info here");
+				}
+			}
+
+			if(EngineCounter > 1){
+				Debug.Log("Too Many Engines!");
+			} else if (EngineCounter == 0){
+				Debug.Log("Uh Oh! No Engines");
+			}
+
+			if(PowerCoreCounter > 1){
+				Debug.Log("Too Many PowerCore!");
+			} else if (PowerCoreCounter == 0){
+				Debug.Log("Uh Oh! No PowerCore");
+			}
+
+			if(LifeSupportCounter > 1){
+				Debug.Log("Too Many LifeSupport!");
+			} else if (LifeSupportCounter == 0){
+				Debug.Log("Uh Oh! No LifeSupport");
+			}
+
+			if(WarpDriveCounter > 1){
+				Debug.Log("Too Many WarpDrive!");
+			} else if (WarpDriveCounter == 0){
+				Debug.Log("Uh Oh! No WarpDrive");
+			}
+
+			if(ThermalShieldingCounter > 1){
+				Debug.Log("Too Many Thermal!");
+			} else if (ThermalShieldingCounter == 0){
+				Debug.Log("Uh Oh! No Thermal");
+			}
+
+			if(ControlsCounter > 1){
+				Debug.Log("Too Many Controls!");
+			} else if (ControlsCounter == 0){
+				Debug.Log("Uh Oh! No Controls");
+			}
+		}
 
 		public void SetAllTerminalsActive(){
 			foreach(PrimaryRoomInfo p in RoomsInfo){
@@ -116,30 +175,37 @@ namespace mindler.dungeonship
 		}
 
 		public void SetPrimaryRoom(ShipPart part, PrimaryRoomInfo info){
+
 			switch(part){
 			case ShipPart.Controls:
 				ControlsInfo = info;
 				RoomsInfo[0] = ControlsInfo;
+				ControlsCounter ++;
 				break;
 			case ShipPart.Engine:
 				EngineInfo = info;
 				RoomsInfo[1] = EngineInfo;
+				EngineCounter ++;
 				break;
 			case ShipPart.LifeSupport:
 				LifeSupportInfo = info;
 				RoomsInfo[2] = LifeSupportInfo;
+				LifeSupportCounter ++;
 				break;
 			case ShipPart.PowerCore:
 				PowerCoreInfo = info;
 				RoomsInfo[3] = PowerCoreInfo;
+				PowerCoreCounter ++;
 				break;
 			case ShipPart.ThermalShielding:
 				ThermalShieldingInfo = info;
 				RoomsInfo[4] = ThermalShieldingInfo;
+				ThermalShieldingCounter ++;
 				break;
 			case ShipPart.WarpDrive:
 				ControlsInfo = info;
 				RoomsInfo[5] = ControlsInfo;
+				WarpDriveCounter ++;
 				break;
 			}
 			ScanInfo();
@@ -157,11 +223,17 @@ namespace mindler.dungeonship
 			}
 		}
 
-		public void OpenTerminalWindow(string terminalName, bool online, bool damaged){
+		public void OpenTerminalWindow(string terminalName, bool online, bool damaged, PrimaryRoomInfo info){
 			Debug.Log("Opening Terminal Window from DSM");
 			TerminalWindow.Show();
 			WindowController.SetName(terminalName);
 			WindowController.SetOnline(online);
+			WindowController.SetDamaged(damaged);
+			WindowController.OpenWindow();
+			WindowController.SetRoomInfo(info);
+		}
+
+		public void UpdateTerminalWindow(bool damaged){
 			WindowController.SetDamaged(damaged);
 			WindowController.OpenWindow();
 		}
