@@ -611,6 +611,8 @@ public class GameManager : MonoBehaviour {
 		GeneratedDungeonInfo.hazardRating = (HazardLevel)randomShipQaulity; // Hazard level is worse the better the ship
 		GeneratedDungeonInfo.ShipQuality = (Quality)randomShipQaulity;
 		GeneratedDungeonInfo.init();
+		CurrentHazardLevel = GeneratedDungeonInfo.hazardRating;
+
 
 		RuntimeDungeon r = GeneratedDungeon.GetComponentInChildren<RuntimeDungeon>();
 		r.Generator.OnGenerationStatusChanged += OnDungeonChanged;
@@ -656,7 +658,11 @@ public class GameManager : MonoBehaviour {
 
 			var tiles = dg.CurrentDungeon.AllTiles;
 
+
 			DungeonManager.SetupPrimaryRooms(tiles);
+			DungeonManager.hazard = GeneratedDungeonInfo.hazard;
+			DungeonManager.hazardRating = GeneratedDungeonInfo.hazardRating;
+			DungeonManager.ScanInfo();
 
 			int i = 0;
 			foreach(Tile t in tiles){

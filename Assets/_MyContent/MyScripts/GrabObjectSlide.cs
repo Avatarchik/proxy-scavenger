@@ -24,23 +24,12 @@ public class GrabObjectSlide : vp_Interactable {
 	public Vector2 SoundsPitch = new Vector2(1.0f, 1.5f);	// random pitch range for grab and release sounds
 	public List<AudioClip> GrabSounds = new List<AudioClip>(); // list of sounds to randomly play on grab
 
-	public bool ClampMovement = true;
+	//public bool ClampMovement = true;
 	public Transform initTransform;
 	public Vector3 initPosition;
 
-	public Vector3 movement;
-	public float movementOffset;
-	public Vector3 movementMaxOffset;
-	public Vector3 movementMaxWorldSpaceOffset;
-
-	public Vector3 MaxOffset;
 	public Vector3 Offset;
-	public Vector3 initLerpPos;
-	public Vector3 clampedLerpPos;
-
-	public bool useForward = false;
-	public bool useRight = true;
-	public bool useUp = false;
+	public Vector3 MaxOffset;
 
 	public bool lockX = false;
 	public bool lockY = false;
@@ -121,21 +110,7 @@ public class GrabObjectSlide : vp_Interactable {
 		initTransform = this.transform;
 		initPosition = initTransform.localPosition;
 
-		if(useRight){
-			movement += initTransform.right;
-		}
-		if(useUp){
-			movement += initTransform.up;
-		}
-		if(useForward){
-			movement += initTransform.forward;
-		}
-
-		movementMaxOffset = movement * movementOffset;
-		movementMaxWorldSpaceOffset = initPosition + movementMaxOffset;
-
-		Offset = initPosition;
-		Offset += MaxOffset;
+		Offset = initPosition + MaxOffset;
 	}
 	
 	/// <summary>
@@ -247,14 +222,10 @@ public class GrabObjectSlide : vp_Interactable {
 			(m_Camera.Transform.forward * m_TempCarryingOffset.z), 
 			((m_FetchProgress < 1.0f) ? m_FetchProgress : (Time.deltaTime * (Stiffness * 60.0f))));
 
-		initLerpPos = initTransform.InverseTransformVector(lerpPos);
 
-		//initLerpPos = lerpPos;
+		Transform t = this.transform.parent;
 
-
-		//Vector3 newPos = lerpPos;
-		Vector3 newPos = initTransform.InverseTransformVector(lerpPos);
-		//Vector3 newPos = initLerpPos;
+		Vector3 newPos = t.InverseTransformPoint(lerpPos);
 
 
 		if(lockX){
@@ -294,83 +265,35 @@ public class GrabObjectSlide : vp_Interactable {
 		*/
 
 		if(clampX){
-			
-			if(MaxOffset.x > 0){
-				if(newPos.x > Offset.x){
-					newPos.x = Offset.x;
-				} else if (newPos.x < initPosition.x){
-					newPos.x = initPosition.x;
-				}
-			} else if (MaxOffset.x < 0){
-				if(newPos.x < Offset.x){
-					newPos.x = Offset.x;
-				} else if (newPos.x > initPosition.x){
-					newPos.x = initPosition.x;
-				}
+			if(Offset.x > initPosition.x){
+				newPos.x = Mathf.Clamp(newPos.x, initPosition.x, Offset.x);
+			} else {
+				newPos.x = Mathf.Clamp(newPos.x,  Offset.x, initPosition.x);
 			}
-
-			//newPos.x = Mathf.Clamp(newPos.x, initPosition.x, MaxOffset.x);
 		}
 		if(clampY){
-			newPos.y = Mathf.Clamp(newPos.y, initPosition.y, Offset.y);
+			if(Offset.y > initPosition.y){
+				newPos.y = Mathf.Clamp(newPos.y, initPosition.y, Offset.y);
+			} else {
+				newPos.y = Mathf.Clamp(newPos.y,  Offset.y, initPosition.y);
+			}
 		}
 		if(clampZ){
-			newPos.z = Mathf.Clamp(newPos.z, initPosition.z, Offset.z);
+			if(Offset.z > initPosition.z){
+				newPos.z = Mathf.Clamp(newPos.z, initPosition.z, Offset.z);
+			} else {
+				newPos.z = Mathf.Clamp(newPos.z,  Offset.z, initPosition.z);
+			}
 		}
 
-		//var i = initTransform.InverseTransformVector(newPos);
 
 		m_Transform.localPosition = newPos;
 
-		/*
-		float x = m_Transform.position.x * movement.x;
-		float y = m_Transform.position.y * movement.y;
-		float z = m_Transform.position.z * movement.z;
-		Vector3 p = initPosition;
-		if(x > 0){
-			p.x = initLerpPos.x;
-		} else {
-			if(movementMaxOffset.x < 0){
-				if(m_Transform.position.x < movementMaxWorldSpaceOffset.x){
-					p.x = movementMaxOffset.x;
-				}
-			} else {
-				if(m_Transform.position.x > movementMaxWorldSpaceOffset.x){
-					p.x = movementMaxOffset.x;
-				}
-			}
-		}
+	}
 
-		if(y > 0){
-			p.y = initLerpPos.y;
-		} else {
-			if(movementMaxOffset.y < 0){
-				if(m_Transform.position.y < movementMaxWorldSpaceOffset.y){
-					p.y = movementMaxOffset.y;
-				}
-			} else {
-				if(m_Transform.position.y > movementMaxWorldSpaceOffset.y){
-					p.y = movementMaxOffset.y;
-				}
-			}
-		}
-
-		if(z > 0){
-			p.z = initLerpPos.z;
-		} else {
-			if(movementMaxOffset.z < 0){
-				if(m_Transform.position.z < movementMaxWorldSpaceOffset.z){
-					p.z = movementMaxOffset.z;
-				}
-			} else {
-				if(m_Transform.position.z > movementMaxWorldSpaceOffset.z){
-					p.z = movementMaxOffset.z;
-				}
-			}
-		}
-		m_Transform.position = p;
-		*/
-
+	public void OnDrawGizmos(){
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(m_Transform.localPosition, 1);
 	}
 
 	public override bool TryInteract(vp_PlayerEventHandler player)

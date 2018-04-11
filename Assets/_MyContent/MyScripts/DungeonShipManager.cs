@@ -78,6 +78,7 @@ namespace mindler.dungeonship
 				PrimaryRoomInfo p = t.gameObject.GetComponent<PrimaryRoomInfo>();
 				if(p != null){
 					SetPrimaryRoom(p.ShipPartRoom, p);
+					Debug.Log("SetupPrimaryRooms Called : " + p.ShipPartRoom + " - " + p.ShipPartName);
 				} else {
 					Debug.Log("Yeah, no primary room info here");
 				}
@@ -203,8 +204,8 @@ namespace mindler.dungeonship
 				ThermalShieldingCounter ++;
 				break;
 			case ShipPart.WarpDrive:
-				ControlsInfo = info;
-				RoomsInfo[5] = ControlsInfo;
+				WarpDriveInfo = info;
+				RoomsInfo[5] = WarpDriveInfo;
 				WarpDriveCounter ++;
 				break;
 			}
