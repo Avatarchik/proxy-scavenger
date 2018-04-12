@@ -116,6 +116,11 @@ namespace mindler.hacking
 		[BoxGroup("Dungeon Ship Manager")]
 		public DungeonShipManager DSM;
 
+		[FoldoutGroup("Current Hack Type")]
+		public bool LocalHack = true;
+		[FoldoutGroup("Current Hack Type")]
+		public int RemoteHackingUnits = 0;
+
 
 		// Use this for initialization
 		void Start () 
@@ -279,6 +284,15 @@ namespace mindler.hacking
 			return AccruedCurrency;
 		}
 
+		public void AddRemoveRemoteHackingUnits(int value)
+		{
+			RemoteHackingUnits += value;
+		}
+
+		public void SetLocalHack(bool local){
+			LocalHack = local;
+		}
+
 		public void StartHack()
 		{
 			HackingRunning = true;
@@ -323,20 +337,38 @@ namespace mindler.hacking
 			if(!HackShown){
 
 				HackShown = true;
-				HackWindow.Show();
+
 				if(HackingRunning){
 					HackStartScreen.Hide();
 					HackGame.Show();
 				} else {
 					HackStartScreen.Show();
 					HackGame.Hide();
+					if(LocalHack){
+						ShipHackable(true);
+					} else if (RemoteHackingUnits <= 0){
+						ShipHackable(false);
+					} else if (RemoteHackingUnits > 0){
+						ShipHackable(true);
+					}
 				}
+				HackWindow.Show();
 			}
 		}
 
 		public void HideHackWindow()
 		{
+			Debug.Log("HideHackWindow Called");
+			//HackWindow.Hide();
+
 			HackShown = false;
+			if(LocalHack){
+				StopHack();
+			} else{
+				if(RemoteHackingUnits <= 0){
+					StopHack();
+				}
+			}
 			HackWindow.Hide();
 		}
 
