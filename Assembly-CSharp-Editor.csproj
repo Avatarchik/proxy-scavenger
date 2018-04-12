@@ -349,6 +349,14 @@
      <Compile Include="Assets\IconCreator\Editor\IconCreatorEditor.cs" />
      <Compile Include="Assets\ootii\Framework_v1\Code\Utilities\Debug\Editor\LogEditor.cs" />
      <Compile Include="Assets\ootii\MessageDispatcher\Code\Messages\Editor\MessageDispatcherEditorSymbol.cs" />
+     <Compile Include="Assets\UBER\Editor\NoKeywordToggleDrawer.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_BakeTanNormalsEditor.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_PostProcessDistanceMap.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_PostProcessMIPGloss.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_PostProcessMIPHeights.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_PostProcessModelForPOM.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_StandardShaderGUI.cs" />
+     <Compile Include="Assets\UBER\Editor\UBER_TextureChannelMixer.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_AboutBox.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_AddonBrowser.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Core\Editor\Menu\vp_UFPSMenu.cs" />
@@ -383,6 +391,7 @@
      <Compile Include="Assets\UFPS\Base\Scripts\Gameplay\Editor\vp_RemotePlayerWizard.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Gameplay\Editor\vp_SpawnPointEditor.cs" />
      <Compile Include="Assets\UFPS\Base\Scripts\Gameplay\Editor\vp_SurfaceIdentifierEditor.cs" />
+     <None Include="Assets\UBER\Editor\BakeProps.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -505,6 +514,9 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="SimpleMatrixLibrary">
+ <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/UBER/Editor/SimpleMatrixLibrary.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

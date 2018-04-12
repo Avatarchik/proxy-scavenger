@@ -261,6 +261,9 @@
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
+ <Reference Include="SimpleMatrixLibrary">
+ <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/UBER/Editor/SimpleMatrixLibrary.dll</HintPath>
+ </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

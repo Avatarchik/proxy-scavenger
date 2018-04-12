@@ -1,31 +1,24 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_MyContent/MyScripts/GrabObjectSlide.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Devdog/InventoryPro/Scripts/Items/ScriptableObjects/ItemDropHandler.cs">
     <Files>
-      <File FileName="Assets/_MyContent/MyScripts/RoomTerminalController.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/HackingGameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/GeneratorBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/GeneratorUnit.cs" Line="305" Column="19" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/ImprovementBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/ImprovementUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/GameManager.cs" Line="179" Column="82" />
-      <File FileName="Assets/_MyContent/MyScripts/TerminalWindow.cs" Line="72" Column="27" />
-      <File FileName="Assets/_MyContent/MyScripts/_RandomizedShipDungeon/PrimaryRoomInfo.cs" Line="81" Column="5" />
-      <File FileName="Assets/_MyContent/MyScripts/_RandomizedShipDungeon/DungeonInfo.cs" Line="14" Column="2" />
-      <File FileName="Assets/_MyContent/MyScripts/DungeonShipManager.cs" Line="86" Column="24" />
-      <File FileName="Assets/_MyContent/MyScripts/_DialogueSystem/SetShipDungeonPieceStateNode.cs" Line="7" Column="27" />
-      <File FileName="Assets/_MyContent/MyScripts/_DialogueSystem/SetShipDungeonStateNode.cs" Line="1" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/GrabObjectSlide.cs" Line="291" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/DungeonShipManager.cs" Line="161" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/_RandomizedShipDungeon/PrimaryRoomInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/GameManager.cs" Line="665" Column="30" />
+      <File FileName="Assets/_MyContent/MyScripts/_RandomizedShipDungeon/DungeonInfo.cs" Line="1" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/HackingGameManager.cs" Line="460" Column="51" />
+      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/HackableBox.cs" Line="72" Column="15" />
+      <File FileName="Assets/Devdog/General/UI/Windows/UIWindow.cs" Line="1" Column="1" />
+      <File FileName="Assets/Devdog/General/Triggers/Interfaces/ITriggerCallbacks.cs" Line="1" Column="1" />
       <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/UnlockBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/UnlockUnit.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/RepairableObject/RepairableObject.cs" Line="215" Column="54" />
-      <File FileName="Assets/_MyContent/MyScripts/RepairableObject/ComponentManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/RepairableObject/RepairableUnitPart.cs" Line="10" Column="42" />
-      <File FileName="Assets/_MyContent/MyScripts/UItoWorldAnchor.cs" Line="1" Column="1" />
-      <File FileName="Assets/DunGen/Code/RuntimeDungeon.cs" Line="1" Column="1" />
-      <File FileName="Assets/DunGen/Code/DungeonGenerator.cs" Line="1" Column="1" />
-      <File FileName="Assets/DunGen/Code/Dungeon.cs" Line="4" Column="1" />
-      <File FileName="Assets/_MyContent/MyScripts/RoomController.cs" Line="43" Column="10" />
-      <File FileName="Assets/_MyContent/MyScripts/GrabObjectSlide.cs" Line="256" Column="3" />
+      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/UnlockUnit.cs" Line="97" Column="6" />
+      <File FileName="Assets/_MyContent/MyScripts/Hacking_Game/GeneratorUnit.cs" Line="226" Column="18" />
+      <File FileName="Assets/_MyContent/MyScripts/_InventoryProExtended/Items/EquippableEquipmentUFPSInventoryItem.cs" Line="21" Column="24" />
+      <File FileName="Assets/Devdog/InventoryPro/Scripts/Integration/UFPS/ItemTypes/EquippableUFPSInventoryItem.cs" Line="12" Column="77" />
+      <File FileName="Assets/Devdog/InventoryPro/Scripts/Integration/UFPS/ItemTypes/UFPSInventoryItemBase.cs" Line="13" Column="74" />
+      <File FileName="Assets/Devdog/InventoryPro/Scripts/Items/EquippableInventoryItem.cs" Line="88" Column="9" />
+      <File FileName="Assets/Devdog/InventoryPro/Scripts/Items/ScriptableObjects/ItemDropHandler.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
