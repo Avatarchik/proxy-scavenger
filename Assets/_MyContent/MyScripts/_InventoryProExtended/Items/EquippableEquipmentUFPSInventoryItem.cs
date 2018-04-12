@@ -13,4 +13,11 @@ public class EquippableEquipmentUFPSInventoryItem : EquippableUFPSInventoryItem 
 		base.Awake ();
 		//collection = GetComponent<MyCustomFPSCollection>();
 	}
+
+	public override void NotifyItemEquippedVisually(CharacterEquipmentTypeBinder binder)
+	{
+		var r = binder.currentItem.GetComponent<Rigidbody>();
+		r.constraints = RigidbodyConstraints.FreezeAll;
+		r.useGravity = false;
+	}
 }

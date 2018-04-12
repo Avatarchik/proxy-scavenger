@@ -85,16 +85,16 @@ namespace mindler.hacking
 					HGM.ActivateTerminals(false, baseObject.ActivateTerminal);
 				break;
 				case HackingUnlock.UnlockMap:
-					//unlock map
+					HGM.ActivateMap();
 				break;
 				case HackingUnlock.UnlockBrokenUnitsLocation:
-					//unlock broken part location
+					HGM.LocateBrokenParts();
 				break;
 				case HackingUnlock.UnlockDoors:
-					//unlock doors
+					HGM.ActivateAllDoors();
 				break;
 				case HackingUnlock.UnlockImproveShipData:
-					//improve ship location unit data
+					HGM.ImproveShipData();
 				break;
 			}
 		}

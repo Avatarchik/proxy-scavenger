@@ -443,5 +443,21 @@ namespace mindler.hacking
 				DSM.SetTerminalActive(part, true);
 			}
 		}
+
+		public void ActivateAllDoors(){
+			Debug.Log("ACTIVATE ALL DOORS!");
+		}
+
+		public void ActivateMap(){
+			Debug.Log("ACTIVATE / REVEAL MAP!");
+		}
+
+		public void ImproveShipData(){
+			Debug.Log("IMPROVE SHIP DATA!");
+		}
+
+		public void LocateBrokenParts(){
+			Debug.Log("LOCATE ALL THE BROKEN PARTS ROOMS");
+		}
 	}
 }

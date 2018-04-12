@@ -183,9 +183,12 @@ namespace mindler.hacking
 				progressBar.value = currentProgress;
 			}
 			//Debug.Log(progressBar.value + " progress bar's value");
-			generatorCount.text = currentGeneratorCount.ToString();
-			newGeneratorCost.text = currentNewGeneratorCost.ToString("N");
-			generatingAmount.text = adjustedRevenue.ToString("N");
+			string cg = currentGeneratorCount.ToString();
+			string ngc = HGM.NumberTextFormatter.FormatNumber(currentNewGeneratorCost, 2);
+			string ar = HGM.NumberTextFormatter.FormatNumber(adjustedRevenue, 2);
+			generatorCount.text = cg;
+			newGeneratorCost.text = ngc;
+			generatingAmount.text = ar;
 		}
 
 		public void GeneratorUpdate()
@@ -219,12 +222,14 @@ namespace mindler.hacking
 		}
 
 		public void AddBonus(float value){
-			currentRevenueBonus += value;
+			//currentRevenueBonus += value;
+			currentRevenue = currentRevenue * value;
 			AdjustRevenue();
 		}
 
 		public void AdjustRevenue(){
-			adjustedRevenue = currentRevenue * currentRevenueBonus;
+			//adjustedRevenue = currentRevenue * currentRevenueBonus;
+			adjustedRevenue = currentRevenue;
 			generatingAmount.text = adjustedRevenue.ToString("N");
 		}
 
