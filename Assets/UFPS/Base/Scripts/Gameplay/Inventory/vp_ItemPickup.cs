@@ -345,6 +345,7 @@ public class vp_ItemPickup : MonoBehaviour
 		if (m_WasSleepingLastFrame)
 			return;
 
+
 		// allow some time for the pickup to touch down or it may pause floating
 		vp_Timer.In(COLLIDER_DISABLE_DELAY, ()=>
 		{
@@ -364,7 +365,7 @@ public class vp_ItemPickup : MonoBehaviour
 		});
 
 		m_WasSleepingLastFrame = Rigidbody.IsSleeping();
-		
+
 	}
 
 

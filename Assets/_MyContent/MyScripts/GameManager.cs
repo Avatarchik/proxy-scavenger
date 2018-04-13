@@ -201,13 +201,15 @@ public class GameManager : MonoBehaviour {
 		foreach(EquippableSlot i in CharacterInventoryUI.equippableSlots){
 			if(i.name == "Equipment Slot"){
 				CurrentEquippedItem = i.slot.item;
-				var bc = CurrentEquippedItem.gameObject.GetComponents<Collider>();
-				foreach(Collider box in bc){
-					box.enabled = false;
-				}
-				var cc = CurrentEquippedItem.gameObject.GetComponentsInChildren<Collider>();
-				foreach(Collider ccc in cc){
-					ccc.enabled = false;
+				if(CurrentEquippedItem != null){
+					var bc = CurrentEquippedItem.gameObject.GetComponents<Collider>();
+					foreach(Collider box in bc){
+						box.enabled = false;
+					}
+					var cc = CurrentEquippedItem.gameObject.GetComponentsInChildren<Collider>();
+					foreach(Collider ccc in cc){
+						ccc.enabled = false;
+					}
 				}
 			}
 		}
