@@ -4,21 +4,36 @@ This script updates the Screen's Width & Height, Panel's Width & Height and Pane
 Please Read ReadMe for more info.
 */
 
+/*
+ChangeLog
+20181803 - Add createNewInstance so users can create a new instance of the material on Awake,
+20181803 - Use False values for coordinates in edit mode so people don't have black bars, these black will still show up when playing.
+
+*/
+
+
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace GaussianBlur_LiveBlur 
 {
     [RequireComponent(typeof(Image))]
-    //[ExecuteInEditMode]
+
+    [ExecuteInEditMode]
     public class SyncCoordinates : MonoBehaviour {
 
         private Material thisMaterial;
         private Image thisImage;
         private Rect thisRect;
 
+        public bool createNewInstance = false;
 
     #region ScreenHeight
         private float _ScreenHeight;
@@ -123,13 +138,42 @@ namespace GaussianBlur_LiveBlur
             RectTransform thisRectTransform = (RectTransform)transform;
             thisRect = thisRectTransform.rect;
 
-            thisImage =  GetComponent<Image>();
-            thisMaterial = thisImage.material;
+            thisImage = GetComponent<Image>();
+
+            if (!createNewInstance)
+            {
+                thisMaterial = thisImage.material;
+            }
+            else
+            {
+                thisMaterial = Material.Instantiate(thisImage.material);
+                thisImage.material = thisMaterial;
+            }
             
         }
-        
-        // Update is called once per frame
-        void FixedUpdate () 
+
+
+		private void Update()
+		{
+#if UNITY_EDITOR
+
+            if (!EditorApplication.isPlaying)
+            {
+                ScreenHeight = Screen.height;
+                ScreenWidth = Screen.width;
+                PanelY = float.PositiveInfinity;
+                PanelX = float.PositiveInfinity;
+                PanelHeight = float.PositiveInfinity;
+                PanelWidth = float.PositiveInfinity;
+
+                return;
+            }
+#endif
+		}
+
+
+		// Update is called once per frame
+		void FixedUpdate () 
         {
 
             RectTransform thisRectTransform = (RectTransform)transform;

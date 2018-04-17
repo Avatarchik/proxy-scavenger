@@ -32,6 +32,13 @@ namespace mindler.hacking
 		[BoxGroup("Hacking Game Objects")]
 		public GameObject HackingObject;
 
+		[BoxGroup("Remote Hacking Game Objects")]
+		public GameObject RemoteHackingItemAnchor;
+		[BoxGroup("Remote Hacking Game Objects")]
+		public GameObject RemoteHackingSpawnedItem;
+
+		private Trigger myTrigger;
+
 		// Use this for initialization
 		void Start () {
 			GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
@@ -39,25 +46,31 @@ namespace mindler.hacking
 			HackingInventoryItem = RemoteHackingItem.GetComponent<InventoryItemBase>();
 			LocalHackingInventoryItem = LocalHackingItem.GetComponent<InventoryItemBase>();
 			HackingObject.SetActive(false);
+			myTrigger = this.gameObject.GetComponent<Trigger>();
 		}
-		/*
+
 		void Update(){
-			CurrentEquippedItem = GM.CurrentEquippedItem;
+			if(RemoteHackingSpawnedItem == null && myTrigger.enabled == false){
+				myTrigger.enabled = true;
+			}
 		}
-		*/
+
 		public bool OnTriggerUsed(Player player)
 		{
 			Debug.Log("Hacking Box Used!");
 			if(GM.CurrentEquippedItem != null){
 				if(GM.CurrentEquippedItem.name == HackingInventoryItem.name){
 					Debug.Log("Hacking Item Used on Box");
-					HackingObject.SetActive(true);
-					GM.RemoveCurrentItem();
-					//HM.ShipHackable(true);
-					HM.AddRemoveRemoteHackingUnits(1);
+					//HackingObject.SetActive(true);
 
-					var t = this.gameObject.GetComponent<Trigger>();
-					t.enabled = false;
+					if(RemoteHackingSpawnedItem == null){
+						SpawnHackingItem();
+
+						GM.RemoveCurrentItem();
+						HM.AddRemoveRemoteHackingUnits(1);
+
+						myTrigger.enabled = false;
+					}
 
 				} else if(GM.CurrentEquippedItem.name == LocalHackingInventoryItem.name){
 					HM.SetLocalHack(true);
@@ -84,6 +97,47 @@ namespace mindler.hacking
 			// Return true to consume the event (other callback listeners won't receive it)
 			// Return false to not cosnume the event.
 			return true;
+		}
+
+		public void SpawnHackingItem(){
+			GameObject g = RemoteHackingItem;
+			Vector3 v = Vector3.zero;
+			Quaternion q = Quaternion.identity;
+
+			GameObject i = GameObject.Instantiate(g,v,q);
+			//UnityEngine.Object.Destroy(i.GetComponent<ITriggerInputHandler>() as UnityEngine.Component);
+			//UnityEngine.Object.Destroy(i.GetComponent<TriggerBase>());
+			//UnityEngine.Object.Destroy(i.GetComponent<InventoryItemBase>());
+			//UnityEngine.Object.Destroy(i.GetComponent<SphereCollider>());
+			if(i.GetComponent<SphereCollider>()){
+				i.GetComponent<SphereCollider>().enabled = false;
+			}
+			//UnityEngine.Object.Destroy(i.GetComponent<BoxCollider>());
+
+			//UnityEngine.Object.Destroy(i.GetComponent<Rigidbody>());
+			Rigidbody r = i.GetComponent<Rigidbody>();
+			r.useGravity = false;
+			r.constraints = RigidbodyConstraints.FreezeAll;
+
+			Vector3 p = RemoteHackingItemAnchor.transform.position;
+
+			i.transform.position = p;
+			i.transform.rotation = q;
+			//i.transform.localScale = Vector3.one;
+
+			i.transform.parent = RemoteHackingItemAnchor.transform;
+
+			Vector3 lp = RemoteHackingItemAnchor.transform.localPosition;
+
+			i.transform.localPosition = lp;
+			i.transform.localRotation = q;
+			RemoteHackingSpawnedItem = i;
+		}
+
+		public void RemoveSpawnedItem(){
+			if(RemoteHackingSpawnedItem != null){
+				Destroy(RemoteHackingSpawnedItem);
+			}
 		}
 	}
 }

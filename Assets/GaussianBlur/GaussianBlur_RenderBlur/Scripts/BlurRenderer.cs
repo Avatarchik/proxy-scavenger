@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.Rendering;
 
+
+
+[System.Obsolete("This Class will be replaced by BlurRenderer_Mobile in future updates",false)]
 [RequireComponent(typeof(Camera))]
 public class BlurRenderer : MonoBehaviour
 {
@@ -24,7 +27,7 @@ public class BlurRenderer : MonoBehaviour
     /// </summary>
     [Range(0, 20)]
     public float maxBlur = 5f;
-    
+
     /// <summary>
     /// the quality of the blur we will render at (for best results 2)
     /// </summary>
@@ -36,13 +39,13 @@ public class BlurRenderer : MonoBehaviour
     /// </summary>
     [Range(1, 5)]
     public int textureCnt = 5;
-    
+
     /// <summary>
     /// the amount we'll down resolution the screen
     /// </summary>
     [Range(0, 3)]
     public int downRes;
-    
+
     /// <summary>
     /// the base name of the global textures we'll be rendering
     /// </summary>
@@ -52,7 +55,7 @@ public class BlurRenderer : MonoBehaviour
     /// Just a material we'll use to store the shader
     /// </summary>
     private Material mat;
-    
+
     /// <summary>
     /// indicates the number of OnPreRenders we've executed
     /// </summary>
@@ -100,7 +103,7 @@ public class BlurRenderer : MonoBehaviour
     {
         if (renderNow)
         {
-            RenderBlur(maxBlur,quality,textureCnt,downRes);
+            RenderBlur(maxBlur, quality, textureCnt, downRes);
 
             renderNow = false;
         }
@@ -121,7 +124,7 @@ public class BlurRenderer : MonoBehaviour
         quality = Quality;
         textureCnt = Mathf.Clamp(TextureCnt, 1, 5);
         downRes = DownRes;
-        
+
         RenderBlur(syncWithMainCamera);
     }
 
@@ -213,8 +216,10 @@ public class BlurRenderer : MonoBehaviour
         thisCamera.renderingPath = MC.renderingPath;
         //thisCamera.targetTexture = MC.targetTexture; //you don't want to sync this
         thisCamera.useOcclusionCulling = MC.useOcclusionCulling;
+
         thisCamera.allowHDR = MC.allowHDR;
         thisCamera.allowMSAA = MC.allowMSAA;
+
         //thisCamera.targetDisplay = thisCamera.targetDisplay; //it doesn't matter if you sync this
 
         print("Camera Synced");
@@ -297,7 +302,7 @@ public class BlurRenderer : MonoBehaviour
 
 
     //semi-Singleton Pattera to easily create a new BlurRenderer
-    #region SINGLETON PATTERN
+#region SINGLETON PATTERN
     public static BlurRenderer _instance;
     public static BlurRenderer instance
     {
@@ -319,5 +324,5 @@ public class BlurRenderer : MonoBehaviour
             return _instance;
         }
     }
-    #endregion
+#endregion
 }

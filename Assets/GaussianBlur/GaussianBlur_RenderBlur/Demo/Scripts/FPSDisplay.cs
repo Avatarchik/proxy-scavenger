@@ -16,9 +16,9 @@ public class FPSDisplay : MonoBehaviour
  
         GUIStyle style = new GUIStyle();
  
-        Rect rect = new Rect(w-150, h-25, w, h * 2 / 100);
+        Rect rect = new Rect(w-400, h-50, w, h * 2 / 100);
         style.alignment = TextAnchor.UpperLeft;
-        style.fontSize = 20;
+        style.fontSize = 50;
         style.normal.textColor = new Color (1.0f, 1.0f, 1.0f, 1.0f);
         float msec = deltaTime * 1000.0f;
         float fps = 1.0f / deltaTime;

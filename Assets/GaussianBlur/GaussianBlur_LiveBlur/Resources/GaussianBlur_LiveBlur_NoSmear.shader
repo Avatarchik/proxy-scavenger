@@ -3,6 +3,14 @@ GaussianBlur_LiveBlur_NoSmear.shader
 This is the second version of the shader with no edge smear problems.
 This shader requires the Screen's Width & Height, Panel's Width & Height and Panel's position. (see SyncCoordinates.cs)
 -->Working on a version that will not require SyncCoordinates.cs<--
+
+*/
+
+/*
+ChangeLog
+
+20180323	adjusted _PanelY to be _ScreenHeight - _PanelY if UVs are calcualted upside down
+
 */
 
 Shader "Custom/GaussianBlur_LiveBlur_NoSmear" 
@@ -79,11 +87,15 @@ Shader "Custom/GaussianBlur_LiveBlur_NoSmear"
                 {
                     v2f o;
                     o.vertex = UnityObjectToClipPos(v.vertex);
+
+
                     #if UNITY_UV_STARTS_AT_TOP
                     float scale = -1.0;
                     #else
                     float scale = 1.0;
                     #endif
+
+
                     o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
                     o.uvgrab.zw = o.vertex.zw;
                     o.mask = TRANSFORM_TEX( v.texcoord, _MainTex );
@@ -122,11 +134,17 @@ Shader "Custom/GaussianBlur_LiveBlur_NoSmear"
                 		_PanelHeight= 0.5 ;
                 	}
 
-                	//edited
+                	
+					/*
                 	#if UNITY_UV_STARTS_AT_TOP
                 		i.uvgrab.y = 1-i.uvgrab.y;
                 	#endif
-                	
+					*/
+
+					#if UNITY_UV_STARTS_AT_TOP
+						_PanelY = _ScreenHeight - _PanelY;
+					#endif
+
 					fixed4 m = tex2D(_MainTex, i.mask);
 
                 	// float thisBlur = m.a * _BlurSize;
@@ -3216,11 +3234,13 @@ Shader "Custom/GaussianBlur_LiveBlur_NoSmear"
                 {
                     v2f o;
                     o.vertex = UnityObjectToClipPos(v.vertex);
+
                     #if UNITY_UV_STARTS_AT_TOP
                     	float scale = -1.0;
                     #else
                     	float scale = 1.0;
                     #endif
+
                     o.uvgrab.xy = (float2(o.vertex.x, o.vertex.y*scale) + o.vertex.w) * 0.5;
                     o.uvgrab.zw = o.vertex.zw;
                     o.mask = TRANSFORM_TEX( v.texcoord, _MainTex );
@@ -3260,10 +3280,16 @@ Shader "Custom/GaussianBlur_LiveBlur_NoSmear"
                 	}
 
                 	//edited
+					/*
                 	#if UNITY_UV_STARTS_AT_TOP
                 		i.uvgrab.y = 1-i.uvgrab.y;
                 	#endif
-                	
+					*/
+
+					#if UNITY_UV_STARTS_AT_TOP
+						_PanelY = _ScreenHeight - _PanelY;
+					#endif
+
 					fixed4 m = tex2D(_MainTex, i.mask);
 
 //                	float thisBlur = m.a * _BlurSize;

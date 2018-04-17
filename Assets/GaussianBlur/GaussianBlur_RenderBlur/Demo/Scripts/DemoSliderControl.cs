@@ -33,7 +33,10 @@ namespace GaussianBlur_RenderBlur
         void Start()
         {
             BR = BlurRenderer.instance;
-            BR.RenderBlur(MaxBlur.value, (int)Quality.value, 1, (int)DownRes.value, true);
+            BR.RenderBlur(MaxBlur.value, (int)Quality.value, 5, (int)DownRes.value, true);
+
+
+            //StartCoroutine("UpdateBlur");
         }
 
         // Update is called once per frame
@@ -54,8 +57,23 @@ namespace GaussianBlur_RenderBlur
 
         public void ReRender()
         {
-            BR.RenderBlur(MaxBlur.value, (int)Quality.value, 1, (int)DownRes.value, true);
+            BR.RenderBlur(MaxBlur.value, (int)Quality.value, 5, (int)DownRes.value, true);
         }
+
+
+
+        //this will play the animation and switch the scene at switchPoint
+        /*
+        private IEnumerator UpdateBlur()
+        {
+            while (true)
+            {
+                ReRender();
+
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        */
         
     }
 }
