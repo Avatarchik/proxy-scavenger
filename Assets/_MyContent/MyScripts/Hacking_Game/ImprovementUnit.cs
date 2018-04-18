@@ -15,7 +15,13 @@ namespace mindler.hacking
 		[BoxGroup("Improve Units")]
 		public bool ImproveAllUnits = false;
 		[BoxGroup("Improve Units")]
-		public float ImprovementMultiplier = 2f;
+		public bool ProductionImprovement = false;
+		[BoxGroup("Improve Units")]
+		public float ProductionImprovementMultiplier = 2f;
+		[BoxGroup("Improve Units")]
+		public bool SpeedImprovement = false;
+		[BoxGroup("Improve Units")]
+		public float SpeedImprovementMultiplier = 1f;
 
 		[BoxGroup("Cost")]
 		public float Cost = 5000f;
@@ -40,6 +46,9 @@ namespace mindler.hacking
 		[BoxGroup("Hacking Game Manager")]
 		public HackingGameManager HGM;
 
+		[BoxGroup("Number Formatter")]
+		public NumberStringFormatter NumberFormatter;
+
 		[BoxGroup("Base Unlock Object")]
 		public ImprovementBase baseObject;
 
@@ -59,6 +68,14 @@ namespace mindler.hacking
 			ImproveAllUnits = baseObject.ImproveAllUnits;
 
 			Cost = baseObject.Cost;
+
+			ProductionImprovement = baseObject.ProductionImprovement;
+			ProductionImprovementMultiplier = baseObject.ProductionImprovementMultiplier;
+
+			SpeedImprovement = baseObject.SpeedImprovement;
+			SpeedImprovementMultiplier = baseObject.SpeedImprovementMultiplier;
+
+			NumberFormatter = HGM.NumberTextFormatter;
 
 			UpdateUI();
 
@@ -94,9 +111,21 @@ namespace mindler.hacking
 
 		public void ApplyBonus(){
 			if(ImproveAllUnits){
-				HGM.ApplyAllBonus(ImprovementMultiplier);
+				if(ProductionImprovement){
+					HGM.ApplyAllBonus(ProductionImprovementMultiplier);
+				}
+
+				if (SpeedImprovement){
+					HGM.ApplyAllSpeedBonus(SpeedImprovementMultiplier);
+				}
 			} else {
-				HGM.ApplySpecificBonus(ImprovementMultiplier, ImproveUnit);
+				if (ProductionImprovement){
+					HGM.ApplySpecificBonus(ProductionImprovementMultiplier, ImproveUnit);
+				}
+
+				if (SpeedImprovement){
+					HGM.ApplySpecificSpeedBonus(SpeedImprovementMultiplier, ImproveUnit);
+				}
 			}
 		}
 
@@ -127,11 +156,20 @@ namespace mindler.hacking
 		}
 
 		public void UpdateUI(){
-			string improvementText = "+ " + baseObject.ImprovementMultiplier + "x";
+			string improvementText = "";
+
+			if(ProductionImprovement && SpeedImprovement){
+				improvementText = "+ " + ProductionImprovementMultiplier + "x Production & + " + SpeedImprovementMultiplier + "x Speed" ;
+			} else if(ProductionImprovement){
+				improvementText = "+ " + ProductionImprovementMultiplier + "x Production";
+			} else if (SpeedImprovement){
+				improvementText = "+ " + SpeedImprovementMultiplier + "x Speed";
+			}
 
 			LockedNameText.text = baseObject.Name;
 			LockedMultiplierText.text = improvementText;
-			LockedAmountText.text = Cost.ToString("#,#");
+			LockedAmountText.text = NumberFormatter.FormatNumber(Cost, 0);
+			//LockedAmountText.text = Cost.ToString("#,#");
 			UnlockNameText.text = baseObject.Name;
 			UnlockMultiplierText.text = improvementText;
 

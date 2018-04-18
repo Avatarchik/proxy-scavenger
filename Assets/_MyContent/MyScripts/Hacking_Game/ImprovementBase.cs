@@ -18,8 +18,16 @@ namespace mindler.hacking
 
 		[BoxGroup("Improve Units")]
 		public bool ImproveAllUnits = false;
-		[BoxGroup("Improve Units")]
-		public float ImprovementMultiplier = 2f;
+
+		[BoxGroup("Improve Production")]
+		public bool ProductionImprovement = true;
+		[BoxGroup("Improve Production")]
+		public float ProductionImprovementMultiplier = 2f;
+
+		[BoxGroup("Speed Improvement")]
+		public bool SpeedImprovement = false;
+		[BoxGroup("Speed Improvement")]
+		public float SpeedImprovementMultiplier = 1f;
 
 		[BoxGroup("Cost")]
 		public float Cost = 5000f;

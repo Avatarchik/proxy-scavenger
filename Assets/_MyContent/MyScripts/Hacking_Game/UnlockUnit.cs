@@ -29,6 +29,9 @@ namespace mindler.hacking
 		[BoxGroup("Hacking Game Manager")]
 		public HackingGameManager HGM;
 
+		[BoxGroup("Number Formatter")]
+		public NumberStringFormatter NumberFormatter;
+
 		[BoxGroup("Base Unlock Object")]
 		public UnlockBase baseObject;
 
@@ -44,6 +47,7 @@ namespace mindler.hacking
 		public void init(){
 			Name = baseObject.objectName;
 			Type = baseObject.HackingUnlockName;
+			NumberFormatter = HGM.NumberTextFormatter;
 
 			//UnlockType = baseObject.UnlockType;
 
@@ -124,7 +128,8 @@ namespace mindler.hacking
 		public void UpdateUI(){
 			
 			LockedNameText.text = baseObject.objectName;
-			LockedAmountText.text = Cost.ToString("#,#");
+			LockedAmountText.text = NumberFormatter.FormatNumber(Cost, 0);
+			//LockedAmountText.text = Cost.ToString("#,#");
 			UnlockNameText.text = baseObject.objectName;
 
 			//LockedImage.sprite = baseObject.Icon;
