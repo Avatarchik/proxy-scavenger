@@ -4,6 +4,7 @@ using System.Text;
 using UnityEngine;
 using Devdog.General;
 using Devdog.InventoryPro;
+using Devdog.InventoryPro.Integration.UFPS;
 using Sirenix.OdinInspector;
 
 [System.Serializable]
@@ -126,9 +127,12 @@ public partial class RepairableUnitPart {
 		Quaternion q = Quaternion.identity;
 
 		GameObject i = GameObject.Instantiate(g,v,q);
+		UnityEngine.Object.Destroy(i.GetComponent<InventoryItemBase>());
+		if(i.GetComponent<ItemTriggerUFPS>()){
+			UnityEngine.Object.Destroy(i.GetComponent<ItemTriggerUFPS>());
+		}
 		UnityEngine.Object.Destroy(i.GetComponent<ITriggerInputHandler>() as UnityEngine.Component);
 		UnityEngine.Object.Destroy(i.GetComponent<TriggerBase>());
-		UnityEngine.Object.Destroy(i.GetComponent<InventoryItemBase>());
 		UnityEngine.Object.Destroy(i.GetComponent<SphereCollider>());
 		if(i.GetComponent<SphereCollider>()){
 			i.GetComponent<SphereCollider>().enabled = false;

@@ -14,7 +14,9 @@ namespace mindler.hacking
 		public HackingUnlock HackingUnlockName;
 	
 		[BoxGroup("Terminal Info")]
-		public ShipPart ActivateTerminal = ShipPart.Controls;
+		public ShipPart ActivateTerminal = ShipPart.None;
+		[BoxGroup("Terminal Info")]
+		public bool ShowForLocalHack = true;
 
 		[BoxGroup("Unlock Cost")]
 		public float Cost = 5000f;

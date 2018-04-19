@@ -17,17 +17,21 @@ namespace mindler.hacking
 			string numberText = "";
 			bool format = false;
 
-			if(number > trillion){
+
+			if(number >= trillion){
 				tempNum = number / trillion;
 				textNum = " Trillion";
 				format = true;
-			} else if(number > billion){
+			} else if(number >= billion){
 				tempNum = number / billion;
 				textNum = " Billion";
 				format = true;
-			} else if(number > million){
+			} else if(number >= million){
 				tempNum = number / million;
 				textNum = " Million";
+				format = true;
+			} else if(decimals == 0){
+				tempNum = number;
 				format = true;
 			} else {
 				format = false;
@@ -35,7 +39,15 @@ namespace mindler.hacking
 
 			if(format){
 				d = System.Math.Round(tempNum, decimals);
-				numberText = d + textNum;
+				string num = "";
+				if(decimals == 2){
+					num = d.ToString("N");
+				} else if (decimals == 1){
+					num = d.ToString("N1");
+				} else {
+					num = d.ToString("#,#");
+				}
+				numberText = num + textNum;
 			} else {
 				numberText = number.ToString("N");
 			}

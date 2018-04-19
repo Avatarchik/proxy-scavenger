@@ -335,9 +335,11 @@ public class vp_ItemPickup : MonoBehaviour
 
 		if (m_Depleted)
 			return;
-
-		if(Rigidbody.isKinematic)
-			return;
+		
+		if(Rigidbody != null){
+			if(Rigidbody.isKinematic)
+				return;
+		}
 
 		if(!Rigidbody.IsSleeping())
 			return;

@@ -6,6 +6,7 @@ using Devdog.General;
 using Devdog.General.UI;
 using Devdog.InventoryPro.Dialogs;
 using Devdog.General.ThirdParty.UniLinq;
+using mindler.dungeonship;
 using Sirenix.OdinInspector;
 
 namespace mindler.hacking 
@@ -36,6 +37,10 @@ namespace mindler.hacking
 		public GameObject RemoteHackingItemAnchor;
 		[BoxGroup("Remote Hacking Game Objects")]
 		public GameObject RemoteHackingSpawnedItem;
+
+		[BoxGroup("Hacking Game Objects")]
+		public ShipPart ShipPartTerminal;
+
 
 		private Trigger myTrigger;
 
@@ -110,7 +115,13 @@ namespace mindler.hacking
 			//UnityEngine.Object.Destroy(i.GetComponent<InventoryItemBase>());
 			//UnityEngine.Object.Destroy(i.GetComponent<SphereCollider>());
 			if(i.GetComponent<SphereCollider>()){
-				i.GetComponent<SphereCollider>().enabled = false;
+				Debug.Log(this.gameObject.name + " Found a sphere collider on " + i.name);
+				//i.GetComponent<SphereCollider>().enabled = false;
+				SphereCollider c = i.GetComponent<SphereCollider>();
+				c.radius = 0.1f;
+				c.center = Vector3.zero;
+				Debug.Log(i.gameObject.name + " Found a sphere collider and resized it to " + c.radius + " AND it's center is now " + c.center);
+
 			}
 			//UnityEngine.Object.Destroy(i.GetComponent<BoxCollider>());
 

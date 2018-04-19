@@ -57,3 +57,4 @@
 /Users/amindler/Documents/Work/github/proxy-scavenger/Temp/bin/Debug/Unity.Cecil.Mdb.dll
 /Users/amindler/Documents/Work/github/proxy-scavenger/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.dll
 /Users/amindler/Documents/Work/github/proxy-scavenger/Temp/bin/Debug/UnityEditor.iOS.Extensions.Xcode.xml
+/Users/amindler/Documents/Work/github/proxy-scavenger/Temp/bin/Debug/SimpleMatrixLibrary.dll

@@ -120,6 +120,9 @@ namespace mindler.hacking
 		public bool LocalHack = false;
 		[FoldoutGroup("Current Hack Type")]
 		public int RemoteHackingUnits = 0;
+		[FoldoutGroup("Current Hack Type")]
+		public ShipPart LocalHackTerminal;
+
 
 
 		// Use this for initialization
@@ -149,16 +152,22 @@ namespace mindler.hacking
 
 			MakeImprovements();
 
-			if(debugBoost){
-				ApplyAllBonus(revenueBoost);
-				ApplyAllSpeedBonus(speedBoost);
-			}
+
+			ApplyDebugBoosts();
+			
 
 			TopBar.UpdateCurrentCurrency(0f);
 			if(HackingRunning){
 				StartCoroutine("StartHackingGame");
 			}
 
+		}
+
+		private void ApplyDebugBoosts(){
+			if(debugBoost){
+				ApplyAllBonus(revenueBoost);
+				ApplyAllSpeedBonus(speedBoost);
+			}
 		}
 
 
@@ -296,6 +305,15 @@ namespace mindler.hacking
 			LocalHack = local;
 		}
 
+		public void SetupLocalHack(bool local, ShipPart terminal){
+			LocalHack = local;
+			if(terminal != ShipPart.None){
+				LocalHackTerminal = terminal;
+			} else if(terminal == ShipPart.None) {
+				LocalHackTerminal = ShipPart.None;
+			}
+		}
+
 		public void StartHack()
 		{
 			HackingRunning = true;
@@ -326,6 +344,7 @@ namespace mindler.hacking
 			foreach(ImprovementUnit i in ImprovementUnits){
 				i.Reset();
 			}
+			ApplyDebugBoosts();
 		}
 
 		public void ShipHackable(bool value)
@@ -366,6 +385,7 @@ namespace mindler.hacking
 
 			HackShown = false;
 			if(LocalHack && RemoteHackingUnits <= 0){
+				LocalHackTerminal = ShipPart.None;
 				StopHack();
 			} else if (LocalHack && RemoteHackingUnits > 0){
 				// Keep Hack Running
@@ -397,12 +417,60 @@ namespace mindler.hacking
 			}
 		}
 
+		private void ShowHideUnlocks(){
+			if(RemoteHackingUnits > 0){
+				foreach(GameObject ugo in UnlockObjects){
+					ugo.SetActive(true);
+				}
+			} else if (LocalHack){
+				
+				int i = 0;
+				foreach(UnlockBase u in UnlockBases){
+
+					if(UnlockUnits[i].Purchased == true){
+						UnlockObjects[i].SetActive(true);
+					}
+
+					if(u.ActivateTerminal == LocalHackTerminal){
+						UnlockObjects[i].SetActive(true);
+					}
+
+					if (u.ShowForLocalHack){
+						UnlockObjects[i].SetActive(true);
+					}
+
+					i++;
+				}
+
+			}
+		}
+
 		private void MakeUnlocks()
 		{
 			int ul =  UnlockBases.Length;
 			UnlockObjects = new GameObject[ul];
 			UnlockUnits = new UnlockUnit[ul];
 
+			List<GameObject> units = new List<GameObject>();
+			foreach(UnlockBase b in UnlockBases){
+				GameObject ug = GameObject.Instantiate(UnlockUI);
+				UnlockUnit uu = ug.GetComponent<UnlockUnit>();
+				uu.baseObject = b;
+				uu.HGM = this;
+				uu.init();
+				Debug.Log(uu.Name + " Unlock : " + uu.Cost + " Cost - " + uu.Cost.ToString("#,#"));
+				units.Add(ug);
+			}
+			units.Sort(SortUnlockByCost);
+
+			for(int i = 0; i < units.Count; i++){
+				units[i].transform.parent = UnlockHolder.transform;
+
+				UnlockObjects[i] = units[i];
+				UnlockUnits[i] = units[i].GetComponent<UnlockUnit>();
+			}
+
+			/*
 			int u = 0;
 			foreach(UnlockBase un in UnlockBases){
 				GameObject ug = GameObject.Instantiate(UnlockUI, UnlockHolder.transform);
@@ -415,6 +483,12 @@ namespace mindler.hacking
 
 				u++;
 			}
+			*/
+
+		}
+
+		private int SortUnlockByCost(GameObject g1, GameObject g2){
+			return g1.GetComponent<UnlockUnit>().Cost.CompareTo(g2.GetComponent<UnlockUnit>().Cost);
 		}
 
 		private void MakeImprovements()

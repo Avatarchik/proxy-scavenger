@@ -11,7 +11,7 @@ public class ListenForRepairBox : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		Debug.Log("ListenForRepairBox on " + this.gameObject.name + " gameObject Name | " + this.gameObject.transform.parent.name + " parent name");
 	}
 	
 	void Update(){
@@ -19,8 +19,10 @@ public class ListenForRepairBox : MonoBehaviour {
 		int o = 0;
 		foreach(RepairableObject r in RepairBox){
 			i++;
-			if(r.ObjectRepaired){
-				o++;
+			if(r != null){
+				if(r.ObjectRepaired){
+					o++;
+				}
 			}
 		}
 		if(i == o){

@@ -42,6 +42,8 @@ namespace mindler.hacking
 
 		[BoxGroup("Purchaseable")]
 		public bool Purchaseable = false;
+		[BoxGroup("Purchaseable")]
+		public bool Purchased = false;
 
 
 		public void init(){
@@ -70,6 +72,7 @@ namespace mindler.hacking
 
 		public void PurchaseButton(){
 			if(Purchaseable){
+				Purchased = true;
 				HGM.RemoveCurrency(Cost);
 				Locked = false;
 				CheckButtonLockStatus();

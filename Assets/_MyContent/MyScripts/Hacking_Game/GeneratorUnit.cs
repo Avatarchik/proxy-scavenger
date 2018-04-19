@@ -54,9 +54,7 @@ namespace mindler.hacking
 		[BoxGroup("Current Progress Stats")]
 		public float currentProgressTimeMultiplier = -0.2f;
 		[BoxGroup("Current Progress Stats")]
-		public float currentProgressBonus = 1f;
-		[BoxGroup("Current Progress Stats")]
-		public float adjustedProgressTime = 1f;
+		public float currentProgressTimeMultiplierBonus = 0f;
 
 		[BoxGroup("Current Revenue Stats")]
 		public float currentRevenue = 100f;
@@ -118,10 +116,10 @@ namespace mindler.hacking
 
 			Debug.Log(name + " : " + currentRevenueMultiplier + " Current Revenue Multiplier");
 
-			currentProgressTimeMultiplier = baseObject.GraduatedTimeMultipliers[0].y;
+			currentProgressTimeMultiplier = baseObject.GraduatedTimeMultipliers[0].y - currentProgressTimeMultiplierBonus;
 			currentProgressTime = baseObject.initialProgressTime;
-			AdjustSpeed();
-			Debug.Log(name + " : " + currentProgressTimeMultiplier + " Current Time Multiplier | " + adjustedProgressTime + " Adjusted Progress Time");
+			//AdjustSpeed();
+			Debug.Log(name + " : " + currentProgressTimeMultiplier + " Current Time Multiplier | " + currentProgressTimeMultiplierBonus + " multiplier bonus");
 
 
 			//currentGeneratorCostMultiplier = baseObject.GraduatedCostMultipliers[0].y;
@@ -143,19 +141,7 @@ namespace mindler.hacking
 			//currentRevenueMultiplier = baseObject.newGeneratorRevenueMultiplier * currentGeneratorCount;
 			//currentRevenue = baseObject.initialRevenue * currentRevenueMultiplier;
 
-			Vector3[] v1 = baseObject.GraduatedTimeMultipliers;
-			int y = 0;
-			foreach(Vector3 t in v1){
-				if(t.x == currentGeneratorCount && t.z != 1f){
-					currentProgressTimeMultiplier = t.y;
-					currentProgressTime = currentProgressTime * currentProgressTimeMultiplier;
-					Vector3 vv = t;
-					vv.z = 1f;
-					baseObject.GraduatedTimeMultipliers[y] = vv;
-				}
-				y++;
-			}
-			AdjustSpeed();
+			SetSpeed();
 
 			currentRevenue = currentRevenue * currentRevenueMultiplier;
 			double d = System.Math.Round(currentRevenue, 2);
@@ -173,6 +159,22 @@ namespace mindler.hacking
 			Debug.Log(name + " New Generator Cost Multiplier : " + currentGeneratorCostMultiplier);
 
 			UpdateUI();
+		}
+
+		public void SetSpeed(){
+			Vector3[] v1 = baseObject.GraduatedTimeMultipliers;
+			int y = 0;
+			foreach(Vector3 t in v1){
+				if(t.x == currentGeneratorCount && t.z != 1f){
+					float bonusTime = t.y - currentProgressTimeMultiplierBonus;
+					currentProgressTimeMultiplier = bonusTime;
+					currentProgressTime = currentProgressTime * currentProgressTimeMultiplier;
+					Vector3 vv = t;
+					vv.z = 1f;
+					baseObject.GraduatedTimeMultipliers[y] = vv;
+				}
+				y++;
+			}
 		}
 
 		public void UpdateUI(){
@@ -198,8 +200,7 @@ namespace mindler.hacking
 
 			if(progress >= 1f){
 				capturedTime = Time.time;
-				//tempTimeEnd = currentProgressTime;
-				tempTimeEnd = adjustedProgressTime;
+				tempTimeEnd = currentProgressTime;
 				currentProgress = 0f;
 				HGM.AddCurrency(adjustedRevenue); //send generate notification
 			} else if(progress < 1f) {
@@ -213,12 +214,8 @@ namespace mindler.hacking
 		}
 
 		public void AddSpeedBonus(float value){
-			currentProgressBonus -= value;
-			AdjustSpeed();
-		}
-
-		public void AdjustSpeed(){
-			adjustedProgressTime = currentProgressTime * currentProgressBonus;
+			currentProgressTimeMultiplierBonus += value;
+			SetSpeed();
 		}
 
 		public void AddBonus(float value){
@@ -230,7 +227,7 @@ namespace mindler.hacking
 		public void AdjustRevenue(){
 			//adjustedRevenue = currentRevenue * currentRevenueBonus;
 			adjustedRevenue = currentRevenue;
-			generatingAmount.text = adjustedRevenue.ToString("N");
+			generatingAmount.text = HGM.NumberTextFormatter.FormatNumber(adjustedRevenue, 2);
 		}
 
 		public void CheckMultipliers(){
@@ -307,7 +304,7 @@ namespace mindler.hacking
 			adjustedRevenue = currentRevenue;
 
 			currentRevenueBonus = 1f;
-			currentProgressBonus = 1f;
+			currentProgressTimeMultiplierBonus = 0f;
 
 			init();
 		}

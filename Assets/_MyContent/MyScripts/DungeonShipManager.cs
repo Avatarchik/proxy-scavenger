@@ -23,7 +23,8 @@ namespace mindler.dungeonship
 		LifeSupport = 2,
 		WarpDrive = 3,
 		ThermalShielding = 4,
-		Controls = 5
+		Controls = 5,
+		None = 6
 	}
 
 	public enum ShipState {
