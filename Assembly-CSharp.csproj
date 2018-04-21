@@ -101,6 +101,8 @@
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\SpawnQualityItemOnShipComplete.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\TileHazardInfo.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\TileHazardZone.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\_UFPSExtended\FPWeaponItemUse.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\_UFPSExtended\FPWeaponItemUseEditor.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\AmmoHUD.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\BeamWeaponEffect.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\CreateAtPoint.cs" />
