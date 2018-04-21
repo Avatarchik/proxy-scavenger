@@ -101,8 +101,6 @@
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\SpawnQualityItemOnShipComplete.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\TileHazardInfo.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_RandomizedShipDungeon\TileHazardZone.cs" />
-     <Compile Include="Assets\_MyContent\MyScripts\_UFPSExtended\FPWeaponItemUse.cs" />
-     <Compile Include="Assets\_MyContent\MyScripts\_UFPSExtended\FPWeaponItemUseEditor.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\AmmoHUD.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\BeamWeaponEffect.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\CreateAtPoint.cs" />
@@ -136,6 +134,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\RollOverTrigger.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RoomController.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RoomTerminalController.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\SimpleRandomProps.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SlideClamp.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitBankVisualizer.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\SuitHelper.cs" />

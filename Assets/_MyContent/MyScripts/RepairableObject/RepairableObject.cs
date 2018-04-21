@@ -105,6 +105,10 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 		//init();
 	}
 
+	public void DungeonComplete(){
+		AdjustItemPostions();
+	}
+
 	public void init(){
 		var trigger = GetComponent<Trigger>();
 		// The collection we want to place the items into.
@@ -293,7 +297,7 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 						r.currentItemGO.transform.localRotation = Quaternion.identity;
 					}
 				}
-
+			r.mountingItemGO.transform.localPosition = r.itemAnchor.transform.localPosition;
 		}
 
 		ItemAdjusted = true;

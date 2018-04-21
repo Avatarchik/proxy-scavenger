@@ -111,6 +111,12 @@ public class GrabObjectSlide : vp_Interactable {
 		initPosition = initTransform.localPosition;
 
 		Offset = initPosition + MaxOffset;
+
+		//m_Transform.localPosition = initPosition;
+	}
+
+	public void DungeonComplete(){
+		m_Transform.localPosition = initPosition;
 	}
 	
 	/// <summary>

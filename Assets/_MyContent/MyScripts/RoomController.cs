@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using com.ootii.Messages;
+using mindler.dungeonship;
 
 public class RoomController : MonoBehaviour {
 
@@ -13,36 +14,47 @@ public class RoomController : MonoBehaviour {
 
 	public void Start(){
 
-		MessageDispatcher.AddListener("ShipDungeonComplete", OnShipComplete);
-		MessageDispatcher.AddListener("Ship Finished Generating", OnShipCompleted);
+		//MessageDispatcher.AddListener("ShipDungeonComplete", OnShipComplete);
+		//MessageDispatcher.AddListener("Ship Finished Generating", OnShipCompleted);
 
 		if(hideAtStart){
 			StartCoroutine(WaitToHide());
 		}
 	}
 
+	/*
 	public void OnShipCompleted(IMessage rMessage){
-		Debug.Log(" Room Got the Message that the dungeon was completed(completed)!");
+		Debug.Log(room.name + " Room Got the Message that the dungeon was completed(OnShipCompleted notice the ed at the end)!");
 		if(!cull){
 			ShowRoom();
 		}
 	}
 
 	public void OnShipComplete(IMessage rMessage){
-		Debug.Log( "Room Got the Message that the dungeon was complete(complete)!");
+		Debug.Log( this.gameObject.name + " Room Got the Message that the dungeon was complete(OnShipComplete not OnShipCompleted)!");
 		if(!cull){
 			ShowRoom();
 		}
 	}
+	*/
 
 	public void OnShipCompleteFromList(){
 		Debug.Log(this.gameObject.name + " : Got the message that the dungeon was complete from the forloop");
+
+		if(!cull){
+			ShowRoom();
+		}
+
+		if(this.gameObject.GetComponent<PrimaryRoomInfo>() != null){
+			this.gameObject.GetComponent<PrimaryRoomInfo>().DungeonComplete();
+		}
 	}
 
 	public void ShowRoom(){
 		if(room != null){
 			room.SetActive(true);
 		}
+
 		active = true;
 		Debug.Log("ShowRoom Called");
 	}

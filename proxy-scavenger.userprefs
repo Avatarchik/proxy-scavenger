@@ -1,14 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_MyContent/MyScripts/_UFPSExtended/FPWeaponItemUseEditor.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/_MyContent/MyScripts/SimpleRandomProps.cs">
     <Files>
+      <File FileName="Assets/_MyContent/MyScripts/_RandomizedShipDungeon/PrimaryRoomInfo.cs" Line="59" Column="4" />
       <File FileName="Assets/_MyContent/MyScripts/_InventoryProExtended/Items/EquippableEquipmentHolderUFPSInventoryItem.cs" Line="1" Column="1" />
       <File FileName="Assets/Devdog/InventoryPro/Scripts/Integration/UFPS/ItemTypes/EquippableUFPSInventoryItem.cs" Line="1" Column="1" />
       <File FileName="Assets/Devdog/InventoryPro/Scripts/Integration/UFPS/ItemTypes/UFPSInventoryItemBase.cs" Line="1" Column="1" />
-      <File FileName="Assets/UFPS/Base/Scripts/Gameplay/Player/Local/vp_FPWeapon.cs" Line="317" Column="5" />
-      <File FileName="Assets/_MyContent/MyScripts/_UFPSExtended/FPWeaponItemUse.cs" Line="13" Column="41" />
-      <File FileName="Assets/UFPS/Base/Scripts/Core/Editor/vp_FPWeaponEditor.cs" Line="13" Column="19" />
-      <File FileName="Assets/_MyContent/MyScripts/_UFPSExtended/FPWeaponItemUseEditor.cs" Line="43" Column="2" />
+      <File FileName="Assets/UFPS/Base/Scripts/Gameplay/Player/Local/vp_FPWeapon.cs" Line="1" Column="1" />
+      <File FileName="Assets/UFPS/Base/Scripts/Core/Editor/vp_FPWeaponEditor.cs" Line="1" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/RoomController.cs" Line="49" Column="70" />
+      <File FileName="Assets/_MyContent/MyScripts/DungeonShipManager.cs" Line="82" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/GrabObjectSlide.cs" Line="118" Column="29" />
+      <File FileName="Assets/_MyContent/MyScripts/RepairableObject/RepairableObject.cs" Line="300" Column="84" />
+      <File FileName="Assets/_MyContent/MyScripts/RepairableObject/RepairableUnitPart.cs" Line="70" Column="3" />
+      <File FileName="Assets/DunGen/Code/LocalPropSet.cs" Line="1" Column="1" />
+      <File FileName="Assets/_MyContent/MyScripts/SimpleRandomProps.cs" Line="17" Column="5" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

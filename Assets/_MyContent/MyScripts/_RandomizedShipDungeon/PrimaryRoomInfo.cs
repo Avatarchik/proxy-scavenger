@@ -42,12 +42,24 @@ namespace mindler.dungeonship
 			if(ShipPartName == ""){
 				SetName();
 			}
+
+			init();
+		}
+		
+		public void init(){
 			CreateRepairBoxes();
 			CheckPartState();
 		}
-		
-		// Update is called once per frame
-		void Update () {
+
+		public void DungeonComplete(){
+			foreach(GameObject g in RepairBoxes){
+				GrabObjectSlide r = g.GetComponent<GrabObjectSlide>();
+				r.DungeonComplete();
+			}
+
+			foreach(RepairableObject ro in RepairBoards){
+				ro.DungeonComplete();
+			}
 		}
 
 		public void RepairableBoxStateCheck(){
@@ -76,7 +88,14 @@ namespace mindler.dungeonship
 			foreach(GameObject a in RepairBoxAnchors){
 				
 				//GameObject g = GameObject.Instantiate(RepairBoxObject,RepairBoxAnchors[i].transform.position, RepairBoxAnchors[i].transform.rotation);
-				GameObject g = GameObject.Instantiate(RepairBoxObject, RepairBoxParent.transform);
+				GameObject g;
+				if(RepairBoxParent != null){
+					g = GameObject.Instantiate(RepairBoxObject, RepairBoxParent.transform);
+					Debug.Log(this.gameObject.name + " : " + ShipPartName + " RepairBoxParent is NOT null");
+				} else {
+					g = GameObject.Instantiate(RepairBoxObject, this.transform);
+					Debug.Log(this.gameObject.name + " : " + ShipPartName + " Fucking RepairBoxParent is NULL!? THE FUCK!?");
+				}
 				g.transform.position = RepairBoxAnchors[i].transform.position;
 				g.transform.rotation = RepairBoxAnchors[i].transform.rotation;
 				g.GetComponent<GrabObjectSlide>().StartPosition();
