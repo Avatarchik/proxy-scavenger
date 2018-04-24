@@ -121,6 +121,9 @@
      <Compile Include="Assets\_MyContent\MyScripts\Hacking_Game\UnlockUnit.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\HalcyonLaser.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\IndicatorObjectController.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryInteractableItemObject.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryInteractableItemUnit.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryItemInteraction.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\ListenForRepairBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\MyInfoBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ComponentLayout.cs" />

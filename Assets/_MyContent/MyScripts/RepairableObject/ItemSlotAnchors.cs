@@ -9,12 +9,12 @@ using Sirenix.OdinInspector;
 [System.Serializable]
 public partial class ItemSlotAnchors {
 	
-	[FoldoutGroup("Item & Slot Anchors & UI Slot")]
+	[BoxGroup("Item & Slot Anchors & UI Slot")]
 	public GameObject ItemAnchor;
 
-	[FoldoutGroup("Item & Slot Anchors & UI Slot")]
+	[BoxGroup("Item & Slot Anchors & UI Slot")]
 	public GameObject SlotUIAnchor;
 
-	[FoldoutGroup("Item & Slot Anchors & UI Slot")]
+	[BoxGroup("Item & Slot Anchors & UI Slot")]
 	public ItemCollectionSlotUI SlotUI;
 }

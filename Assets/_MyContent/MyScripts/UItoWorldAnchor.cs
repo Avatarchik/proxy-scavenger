@@ -38,6 +38,15 @@ public class UItoWorldAnchor : MonoBehaviour {
 	[BoxGroup("UI Slots")]
 	public ItemCollectionSlotUI SlotC;
 
+	[BoxGroup("Transforms to Follow Array")]
+	public Transform[] positionsToFollow;
+
+	[BoxGroup("UI Positions")]
+	public RectTransform[] PositionUIs;
+
+	[BoxGroup("UI Slots Array")]
+	public ItemCollectionSlotUI[] Slots;
+
 	[BoxGroup("World to 2D")]
 	public Camera MainCam;
 	[BoxGroup("World to 2D")]
@@ -56,6 +65,18 @@ public class UItoWorldAnchor : MonoBehaviour {
 		}
 		if(positionCToFollow != null){
 			RepositionUI(positionCToFollow, PositionCUI);
+		}
+
+		PositionUI();
+	}
+
+	private void PositionUI(){
+		int i = 0;
+		foreach(Transform t in positionsToFollow){
+			if(positionsToFollow[i] != null && PositionUIs[i] != null){
+				RepositionUI(positionsToFollow[i], PositionUIs[i]);
+			}
+			i++;
 		}
 	}
 

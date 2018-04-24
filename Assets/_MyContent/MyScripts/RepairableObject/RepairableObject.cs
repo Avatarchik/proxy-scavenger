@@ -194,8 +194,8 @@ public class RepairableObject : MonoBehaviour, IInventoryItemContainer, ITrigger
 
 		int HighestNumberOfItems = 0;
 		foreach(ComponentLayout cl in ComponentLayouts){
-			if(cl.SlotCount > HighestNumberOfItems){
-				HighestNumberOfItems = cl.SlotCount;
+			if(cl.Anchors.Length > HighestNumberOfItems){
+				HighestNumberOfItems = cl.Anchors.Length;
 			}
 		}
 
