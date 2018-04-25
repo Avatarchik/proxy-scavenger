@@ -347,6 +347,13 @@
      <Compile Include="Assets\Female_mannequin\PostProcessing\Editor\Utils\FxStyles.cs" />
      <Compile Include="Assets\Female_mannequin\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
      <Compile Include="Assets\IconCreator\Editor\IconCreatorEditor.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\_Common\Editor\ParticleEditorUtility.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Multi-Asset Renamer\Editor\MultiAssetRenamer.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlayback.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackEditorWindow.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Playback\Editor\ParticlePlaybackExtensions.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerEditorWindow.cs" />
+     <Compile Include="Assets\Mirza Beig\Editor Extensions\Utilities\Particle Scaler\Editor\ParticleScalerExtensions.cs" />
      <Compile Include="Assets\ootii\Framework_v1\Code\Utilities\Debug\Editor\LogEditor.cs" />
      <Compile Include="Assets\ootii\MessageDispatcher\Code\Messages\Editor\MessageDispatcherEditorSymbol.cs" />
      <Compile Include="Assets\UBER\Editor\NoKeywordToggleDrawer.cs" />
