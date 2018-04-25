@@ -169,6 +169,40 @@
      <Compile Include="Assets\AmplifyOcclusion\Plugins\Runtime\VersionInfo.cs" />
      <Compile Include="Assets\AmplifyOcclusion\Samples\Blacksmith\Scripts\Controls.cs" />
      <Compile Include="Assets\AmplifyOcclusion\Samples\Blacksmith\Scripts\MouseLook.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiBeamScript.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiButtonScript.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiDragMouseOrbit.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiFireProjectile.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiLoadSceneOnClick.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiLoadSceneOnClick2.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiLoopScript.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\InteractiveDemo\Demo Scripts\SciFiProjectileScript.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\Sci-Fi Effects\Scripts\SciFiLightFade.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\Sci-Fi Effects\Scripts\SciFiLightFlicker.cs" />
+     <Compile Include="Assets\Archanor\Sci-Fi Arsenal\Sci-Fi Effects\Scripts\SciFiRotation.cs" />
+     <Compile Include="Assets\ConsolePro\ConsoleProDebug.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\ConsoleProRemoteServer.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\FastBitConverter.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\INetEventListener.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NatPunchModule.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetConstants.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetDataReader.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetDataWriter.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetDebug.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetEndPoint.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetManager.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetPacket.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetPacketPool.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetPeer.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetPeerCollection.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetSerializer.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetSocket.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetThread.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NetUtils.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\NtpSyncModule.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\ReliableChannel.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\SequencedChannel.cs" />
+     <Compile Include="Assets\ConsolePro\Remote\LiteNetLib\SimpleChannel.cs" />
      <Compile Include="Assets\Devdog\General\ExtensionMethods\AnimatorExtensionMethods.cs" />
      <Compile Include="Assets\Devdog\General\ExtensionMethods\AudioSourceExtensionMethods.cs" />
      <Compile Include="Assets\Devdog\General\ExtensionMethods\ComponentExtensionMethod.cs" />
@@ -1860,6 +1894,7 @@
      <None Include="Assets\UFPS\Base\Scripts\Presets\WeaponsHD\Knife01\KnifeAttackToDownLeft.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Demo\MafiaWeaponCrouch.txt" />
      <None Include="Assets\Female_mannequin\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
+     <None Include="Assets\Archanor\Sci-Fi Arsenal\Sci-Fi Arsenal Readme.txt" />
      <None Include="Assets\UFPS\Base\Scripts\Presets\Demo\AstronautController.txt" />
      <None Include="Assets\UBER\Shaders\_Specular\_UBERShader_Specular_Tessellation_TriplanarSelective_Refraction.shader" />
      <None Include="Assets\GaussianBlur\GaussianBlur_LiveBlur\Resources\GaussianBlurV1.shader" />
@@ -2014,6 +2049,9 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+ </Reference>
+ <Reference Include="ConsolePro.Editor">
+ <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/ConsolePro/Editor/ConsolePro.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

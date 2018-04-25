@@ -38,7 +38,7 @@ namespace mindler{
 
 		[SerializeField]
 		private InventoryItemBase[] _items = new InventoryItemBase[3];
-		private InventoryItemBase[] items
+		public InventoryItemBase[] items
 		{
 			get { return _items; }
 			set { _items = value; }
