@@ -34,33 +34,72 @@ namespace mindler{
 		[FoldoutGroup("Current Item")]
 		public InventoryItemBase currentItem;
 
+		[BoxGroup("Item Object")]
+		public InventoryInteractableItemObject itemObject;
+
+		[BoxGroup("Empty Item")]
+		public bool initialItemEmpty = false;
 
 		public void Setup(GameObject parent, GameObject anchor, ItemCollectionSlotUI slotUI)
 		{
 			parentObject = parent;
 			itemAnchor = anchor;
 			slot = slotUI;
-			//mountingItem = mount;
 		}
 
 		public void init()
 		{
-
-			GameObject c = MakeVisualObject(currentItemGO);
-
-			visualItem = c;
-
-			if(mountingItemGO != null){
-				mountingItemGO = GameObject.Instantiate(mountingItem,parentObject.transform);
-				mountingItemGO.transform.position = itemAnchor.transform.position;
-				mountingItemGO.transform.rotation = itemAnchor.transform.rotation;
+			if(initialItemEmpty){
+				currentItem = null;
+				DestroyItem();
+			} else {
+				if(!currentItemGO){
+					if(itemObject){
+						currentItemGO = itemObject.InventoryItem;
+						visualItem = MakeVisualObject(currentItemGO);
+						if(currentItemGO.GetComponent<InventoryItemBase>() != null){
+							currentItem = currentItemGO.GetComponent<InventoryItemBase>();
+						}
+					} else {
+						Debug.Log("No CurrentItemGO AND No itemObject");
+					}
+				} else {
+					visualItem = MakeVisualObject(currentItemGO);
+					if(currentItemGO.GetComponent<InventoryItemBase>() != null){
+						currentItem = currentItemGO.GetComponent<InventoryItemBase>();
+					}
+				}
 			}
 
+			if(itemObject){
+				mountingItem = itemObject.mountingObject;
+			} else {
+				Debug.Log("No mounting item because there's no itemObject");
+			}
+
+			if(mountingItem != null){
+				mountingItemGO = GameObject.Instantiate(mountingItem,itemAnchor.transform);
+				mountingItemGO.transform.localPosition = Vector3.zero;
+				mountingItemGO.transform.localRotation = Quaternion.identity;
+			} else {
+				Debug.Log("No Mounting Item because mounting item is null");
+			}
+
+			if(currentItem != null && visualItem != null){
+				Debug.Log(currentItem.name + " : " + visualItem.transform.localRotation + " visual item local rotation");
+			}
 		}
 
 		public void DestroyItem()
 		{
-			GameObject.Destroy(currentItemGO);
+			if(visualItem != null){
+				GameObject.Destroy(visualItem);
+				visualItem = null;
+			}
+			if(currentItemGO != null){
+				//GameObject.Destroy(currentItemGO);
+				currentItemGO = null;
+			}
 		}
 
 		public void SetCurrentItem(){

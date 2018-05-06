@@ -18,13 +18,13 @@ namespace mindler.dungeonship
 	}
 
 	public enum ShipPart {
-		Engine = 0,
-		PowerCore = 1,
-		LifeSupport = 2,
-		WarpDrive = 3,
-		ThermalShielding = 4,
-		Controls = 5,
-		None = 6
+		None = 0,
+		Engine = 1,
+		PowerCore = 2,
+		LifeSupport = 3,
+		WarpDrive = 4,
+		ThermalShielding = 5,
+		Controls = 6
 	}
 
 	public enum ShipState {

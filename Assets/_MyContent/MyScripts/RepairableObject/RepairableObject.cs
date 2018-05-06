@@ -18,10 +18,11 @@ public enum RepairUnitPartState {
 }
 
 public enum RepairUnitPart {
-	PowerUnit = 0,
-	WireUnit = 1,
-	CoolantUnit = 2,
-	MemoryUnit = 3,
+	None = 0,
+	PowerUnit = 1,
+	WireUnit = 2,
+	CoolantUnit = 3,
+	MemoryUnit = 4,
 }
 
 public enum RepairObjectRepairState {

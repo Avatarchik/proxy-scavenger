@@ -11,7 +11,14 @@ using Devdog.InventoryPro.Integration.UFPS;
 using Devdog.General.ThirdParty.UniLinq;
 using Sirenix.OdinInspector;
 
+public enum InteractiveInventoryItemType {
+	None = 0,
+	HackingUnit = 1,
+	RepairUnit = 2,
+}
+
 namespace mindler{
+
 	[RequireComponent(typeof(Trigger))]
 	public class InventoryItemInteraction : MonoBehaviour, IInventoryItemContainer, ITriggerCallbacks {
 
@@ -20,8 +27,29 @@ namespace mindler{
 		[BoxGroup("UI Anchors")]
 		public UItoWorldAnchor uiToAnchor;
 
+		//[BoxGroup("Interactive Inventory Item Type")]
+		public InteractiveInventoryItemType Type = InteractiveInventoryItemType.None;
+
 		[BoxGroup("Items Adjusted")]
 		public bool ItemAdjusted = false;
+
+		[ToggleGroup("PreloadWithItems")]
+		public bool PreloadWithItems = false;
+
+		[ToggleGroup("RandomizePreloadedItemsFromList"), ShowIf("PreloadWithItems")]
+		public bool RandomizePreloadedItemsFromList = false;
+		[ShowIf("PreloadWithItems"), ShowIf("RandomizePreloadedItemsFromList")]
+		public ItemObjectSelectionList ItemSelectionList;
+		[ShowIf("PreloadWithItems")]
+		public InventoryInteractableItemObject[] PreloadItems;
+
+		//[ShowIf("Type", InteractiveInventoryItemType.RepairUnit)]
+		[FoldoutGroup("Repair Item Options")]
+		public bool RandomizeRepairItemUnitState = true;
+		//[ShowIf("Type", InteractiveInventoryItemType.RepairUnit)]
+		[FoldoutGroup("Repair Item Options")]
+		public RepairUnitPartState[] RepairUnitPartStates;
+
 
 		[BoxGroup("Items Units")]
 		public InventoryInteractableItemUnit[] ItemUnits;
@@ -29,11 +57,21 @@ namespace mindler{
 		[BoxGroup("Items Layouts")]
 		public ComponentLayout[] ItemLayouts;
 
-		[BoxGroup("Selected Layout")]
-		public ItemSlotAnchors[] SelectedItemLayout;
+		[BoxGroup("Layout Selector")]
+		public int ChosenLayout = 0;
+		[BoxGroup("Layout Selector")]
+		public bool RandomizeLayout = true;
 
-		[BoxGroup("Item Objects")]
-		public InventoryInteractableItemObject[] ItemObjects;
+		//[BoxGroup("Item Change Notifiers")]
+		public delegate void ItemChange();
+		//[BoxGroup("Item Change Notifiers")]
+		public event ItemChange OnItemChange;
+
+		//[BoxGroup("Selected Layout")]
+		private ItemSlotAnchors[] SelectedItemLayout;
+
+		//[BoxGroup("Item Objects")]
+		//public InventoryInteractableItemObject[] ItemObjects;
 
 
 		[SerializeField]
@@ -64,6 +102,7 @@ namespace mindler{
 			init();
 		}
 
+
 		public void DungeonComplete()
 		{
 			AdjustItemPostions();
@@ -75,7 +114,19 @@ namespace mindler{
 			uiToAnchor = windowToAnchor.GetComponent<UItoWorldAnchor>();
 			window = windowToAnchor.GetComponent<UIWindow>();
 
-			SelectedItemLayout = ItemLayouts[0].Anchors;
+			if(ItemSelectionList){
+				Type = ItemSelectionList.Type;
+			}
+
+			if(RandomizeLayout){
+				if(ItemLayouts.Length > 1){
+					ChosenLayout = UnityEngine.Random.Range(0, ItemLayouts.Length);
+				} else {
+					ChosenLayout = 0;
+				}
+			}
+
+			SelectedItemLayout = ItemLayouts[ChosenLayout].Anchors;
 
 			for(var i = 0; i < SelectedItemLayout.Length; i++){
 				SelectedItemLayout[i].SlotUI = uiToAnchor.Slots[i];
@@ -99,8 +150,85 @@ namespace mindler{
 				ItemSlotAnchors a = SelectedItemLayout[i];
 				ItemUnits[i].Setup(this.gameObject, a.ItemAnchor, a.SlotUI);
 
+				ItemPreloader(i);
+
+				switch(Type){
+					case InteractiveInventoryItemType.HackingUnit:
+						// Do Special Hacking Unit Code
+						Debug.Log("Hacking Unit Item Setup");
+						break;
+					case InteractiveInventoryItemType.RepairUnit:
+						RepairUnitItemSetup(i);
+						Debug.Log("Repair Unit Item Setup");
+						break;
+					case InteractiveInventoryItemType.None:
+						// Do Special None Code
+						Debug.Log("None Unit Item Setup");
+						break;
+				}
+
+				ItemUnits[i].init();
+			}
+			ItemAdjusted = false;
+		}
+
+		private void ItemPreloader(int ItemUnitIndex){
+			if(PreloadWithItems)
+			{
+				if(RandomizePreloadedItemsFromList)
+				{
+					int r = UnityEngine.Random.Range(0, ItemSelectionList.ItemSelectionList.Length);
+					ItemUnits[ItemUnitIndex].itemObject = ItemSelectionList.ItemSelectionList[r];
+				} else {
+					InventoryInteractableItemUnit x = ItemUnits[ItemUnitIndex];
+					int index = ItemUnitIndex;
+					if(index >= ItemSelectionList.ItemSelectionList.Length){
+						index = ItemSelectionList.ItemSelectionList.Length - 1;
+					}
+					InventoryInteractableItemObject y = ItemSelectionList.ItemSelectionList[index];
+
+					if(x != null && y != null)
+					{
+						x.itemObject = y;
+					}
+				}
+			}
+		}
+
+		private void RepairUnitItemSetup(int ItemUnitIndex){
+			RepairUnitPartState partState = RepairUnitPartState.Working;
+
+			if(RandomizeRepairItemUnitState){
+				int randomState = UnityEngine.Random.Range(0, 3);
+				partState = (RepairUnitPartState)randomState;
+			} else {
+				partState = RepairUnitPartStates[ItemUnitIndex];
 			}
 
+			Debug.Log(partState + " RepairUnitItemSetup - Part State");
+
+			switch(partState){
+				case RepairUnitPartState.None:
+					ItemUnits[ItemUnitIndex].initialItemEmpty = true;
+					Debug.Log("Current Item set to null because part state is NONE");
+					break;
+				case RepairUnitPartState.Working:
+					ItemUnits[ItemUnitIndex].initialItemEmpty = false;
+					ItemUnits[ItemUnitIndex].currentItemGO = ItemUnits[ItemUnitIndex].itemObject.InventoryItem;
+					Debug.Log(ItemUnits[ItemUnitIndex].currentItemGO + " - Current Item set to main item because part state is working");
+					break;
+				case RepairUnitPartState.Broken:
+					ItemUnits[ItemUnitIndex].initialItemEmpty = false;
+					ItemUnits[ItemUnitIndex].currentItemGO = ItemUnits[ItemUnitIndex].itemObject.BrokenInventoryItemVariant;
+					Debug.Log(ItemUnits[ItemUnitIndex].currentItemGO + " - Current Item set to variant item because part state is broken");
+					break;
+			}
+		}
+
+		public void Update(){
+			if(!ItemAdjusted){
+				AdjustItemPostions();
+			}
 		}
 
 		private void AdjustItemPostions()
@@ -111,9 +239,15 @@ namespace mindler{
 					i.currentItemGO.transform.localPosition = Vector3.zero;
 					i.currentItemGO.transform.localRotation = Quaternion.identity;
 				}
-				if(i.mountingItemGO != null){
-					i.mountingItemGO.transform.localPosition = i.itemAnchor.transform.localPosition;
+				if(i.visualItem){
+					i.visualItem.transform.localPosition = Vector3.zero;
+					i.visualItem.transform.localRotation = Quaternion.identity;
+					Debug.Log(i.currentItem.name + " : " + i.visualItem.transform.localRotation + " visual item's local rotation");
 				}
+				if(i.mountingItemGO != null){
+					i.mountingItemGO.transform.localPosition = Vector3.zero;
+				}
+					
 			}
 
 			ItemAdjusted = true;
@@ -128,8 +262,7 @@ namespace mindler{
 				}
 			}
 
-			ItemAdjusted = false;
-			AdjustItemPostions();
+			ItemChanged();
 		}
 
 		private void OnItemAdded(IEnumerable<InventoryItemBase> items, uint amount, bool cameFromCollection)
@@ -141,8 +274,7 @@ namespace mindler{
 				}
 			}
 
-			ItemAdjusted = false;
-			AdjustItemPostions();
+			ItemChanged();
 		}
 
 		private void OnItemSwapped(ItemCollectionBase i, uint u, ItemCollectionBase ii, uint uu)
@@ -154,8 +286,18 @@ namespace mindler{
 				}
 			}
 
+			ItemChanged();
+		}
+
+		private void ItemChanged()
+		{
 			ItemAdjusted = false;
 			AdjustItemPostions();
+
+			if(OnItemChange != null)
+			{
+				OnItemChange();
+			}
 		}
 
 		public bool OnTriggerUsed(Player player)

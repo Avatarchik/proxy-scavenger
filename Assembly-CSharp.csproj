@@ -83,10 +83,12 @@
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\ItemModding\WeaponModifications.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\EquippableEquipmentHolderUFPSInventoryItem.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\EquippableEquipmentUFPSInventoryItem.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\ItemQualityPrice.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\MyCustomFPSCollection.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\MyEquippableUFPSInventoryItem.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\MyUnitTypeUFPSInventoryItem.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\MyUnusableItems.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Items\ShipPartItem.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Loot\GenerateItemsWithoutFilter.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Loot\ItemContainerGenerator.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\_InventoryProExtended\Loot\MyItemCollection.cs" />
@@ -124,6 +126,7 @@
      <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryInteractableItemObject.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryInteractableItemUnit.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\InventoryItemInteraction.cs" />
+     <Compile Include="Assets\_MyContent\MyScripts\InventoryBasedItemInteraction\ItemObjectSelectionList.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\ListenForRepairBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\MyInfoBox.cs" />
      <Compile Include="Assets\_MyContent\MyScripts\RepairableObject\ComponentLayout.cs" />
@@ -2078,6 +2081,9 @@
  <Reference Include="AmplifyOcclusionEditor">
  <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/AmplifyOcclusion/Plugins/Editor/AmplifyOcclusionEditor.dll</HintPath>
  </Reference>
+ <Reference Include="ConsolePro.Editor">
+ <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/ConsolePro/Editor/ConsolePro.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Devdog.Internal">
  <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/Devdog/Internal/Devdog.Internal.dll</HintPath>
  </Reference>
@@ -2122,9 +2128,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/amindler/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="ConsolePro.Editor">
- <HintPath>/Users/amindler/Documents/Work/github/proxy-scavenger/Assets/ConsolePro/Editor/ConsolePro.Editor.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
